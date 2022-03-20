@@ -8,6 +8,10 @@ object Versions {
     const val material = "1.5.0"
     const val constraintLayout = "2.1.3"
 
+    // Network
+    const val retrofit = "2.9.0"
+    const val gson = "2.9.0"
+    const val okhttp3 = "4.9.3"
 
     // Test
     const val jUnit = "4.13.2"

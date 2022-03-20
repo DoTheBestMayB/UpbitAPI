@@ -10,6 +10,16 @@ object Androidx {
     val constraintLayout by lazy { "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}" }
 }
 
+object Network {
+    val retrofit by lazy { "com.squareup.retrofit2:retrofit:${Versions.retrofit}" }
+    val gson by lazy { "com.squareup.retrofit2:converter-gson:${Versions.gson}" }
+    val converterGson by lazy { "com.squareup.retrofit2:converter-gson:${Versions.gson}" }
+    val okhttp3 by lazy { "com.squareup.okhttp3:okhttp:${Versions.okhttp3}" }
+
+    // testImplementation
+    val mockWebServer by lazy { "com.squareup.okhttp3:mockwebserver:${Versions.okhttp3}" }
+}
+
 object Test {
     // testImplementation
     val jUnit by lazy { "junit:junit:${Versions.jUnit}" }
