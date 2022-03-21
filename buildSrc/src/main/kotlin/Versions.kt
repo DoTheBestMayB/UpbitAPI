@@ -1,4 +1,5 @@
 object Versions {
+    const val rxjava3 = "3.1.3"
     const val gradlePlugin = "7.1.2"
     const val kotlin = "1.5.21"
 

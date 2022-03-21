@@ -20,6 +20,10 @@ object Network {
     val mockWebServer by lazy { "com.squareup.okhttp3:mockwebserver:${Versions.okhttp3}" }
 }
 
+object RxJava {
+    val rxjava3 by lazy { "io.reactivex.rxjava3:rxjava:${Versions.rxjava3}" }
+}
+
 object Test {
     // testImplementation
     val jUnit by lazy { "junit:junit:${Versions.jUnit}" }

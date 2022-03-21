@@ -16,6 +16,9 @@ dependencies {
         implementation(okhttp3)
 
         testImplementation(mockWebServer)
+    }
 
+    RxJava.apply {
+        implementation(rxjava3)
     }
 }
