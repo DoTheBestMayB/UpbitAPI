@@ -9,6 +9,6 @@ interface UpbitApiService {
     @GET(API.MARKET_COIN_LIST_URL)
     fun getMarkets(@Query("isDetails") isDetails: Boolean = true): Single<List<UpbitMarketDataResponse>>
 
-    @GET("${API.TICKER_URL}/{coinName}")
-    fun getTicker(@Path(value = "coinName", encoded = true) coinName: String): Single<UpbitTickerDataResponse>
+    @GET("API.TICKER_URL")
+    fun getTicker(@Query(value = "markets") coinName: String): Single<UpbitTickerDataResponse>
 }
