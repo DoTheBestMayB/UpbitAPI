@@ -14,7 +14,7 @@ data class UpbitTickerDataResponse(
     @SerializedName("acc_trade_price_24h")
     val aacTradePrice24h: Double, // 24시간 누적 거래대금
 ) {
-    fun toData() : UpbitTickerData {
+    fun toData(): UpbitTickerData {
         return UpbitTickerData(market, openingPrice, tradePrice, signedChangePrice, aacTradePrice24h)
     }
 }

@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 
 internal class UpbitRepositoryImpl(
     private val retrofit: Retrofit
-) : UpbitRepository {
+): UpbitRepository {
     override fun getMarkets(
         onSuccess: (List<UpbitMarketData>) -> Unit,
         onFailure: (Throwable) -> Unit

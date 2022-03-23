@@ -12,7 +12,7 @@ data class UpbitMarketDataResponse(
     @SerializedName("market_warning")
     val marketWarning: String
 ) {
-    fun toData() : UpbitMarketData {
+    fun toData(): UpbitMarketData {
         return UpbitMarketData(market, koreanName, englishName, marketWarning)
     }
 }
