@@ -8,6 +8,7 @@ object Versions {
     const val appCompat = "1.4.1"
     const val material = "1.5.0"
     const val constraintLayout = "2.1.3"
+    const val fragmentKtx = "1.3.0"
 
     // Network
     const val retrofit = "2.9.0"

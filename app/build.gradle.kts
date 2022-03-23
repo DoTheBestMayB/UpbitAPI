@@ -32,6 +32,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -43,6 +47,7 @@ dependencies {
         implementation(appCompat)
         implementation(materialDesign)
         implementation(constraintLayout)
+        implementation(fragmentKtx)
     }
 
     Network.apply {
