@@ -17,8 +17,11 @@ internal class UpbitRepositoryImpl(
 
         singleMarketData.subscribeOn(Schedulers.io())
             .observeOn(Schedulers.computation())
-            .doOnSuccess { onSuccess(it.map { it.toData() }) }
-            .doOnError { onFailure(it) }
+            .subscribe({
+                onSuccess(it.map { it.toData() })
+            }, {
+                onFailure(it)
+            })
     }
 
     override fun getTicker(coinName: String, onSuccess: (List<UpbitTickerData>) -> Unit, onFailure: (Throwable) -> Unit) {
@@ -26,8 +29,11 @@ internal class UpbitRepositoryImpl(
 
         singleTickerData.subscribeOn(Schedulers.io())
             .observeOn(Schedulers.computation())
-            .doOnSuccess { onSuccess(it.toData()) }
-            .doOnError { onFailure(it) }
+            .subscribe({
+                onSuccess(it.map { it.toData() })
+            }, {
+                onFailure(it)
+            })
     }
 
 }
