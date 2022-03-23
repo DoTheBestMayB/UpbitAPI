@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">UpbitAPI</string>
     <string name="defaultTickerCoinName">KRW-BTC</string>
-    <string name="btnGetTickerText">코인 정보 가져오기</string>
+    <string name="btnGetTickerText">코인 시세 가져오기</string>
+    <string name="btnGetMarketsText">상장된 코인 목록 가져오기</string>
 </resources>

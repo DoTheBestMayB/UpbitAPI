@@ -22,4 +22,12 @@ class UpbitApiViewModel(
             _responseText.postValue(it.toString())
         })
     }
+
+    fun getMarkets() {
+        upbitRepository.getMarkets({
+            _responseText.postValue(it.toString())
+        }, {
+            _responseText.postValue(it.toString())
+        })
+    }
 }

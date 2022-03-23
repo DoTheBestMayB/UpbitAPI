@@ -13,22 +13,19 @@
         tools:context=".MainActivity"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/tickerCoinName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/defaultTickerCoinName"
-            android:autofillHints="KRW-BTC" />
-
-
         <Button
             android:id="@+id/btnGetTicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="@{() -> viewModel.getTicker(viewModel.defaultCoinName)}"
             android:text="@string/btnGetTickerText" />
+
+        <Button
+            android:id="@+id/btnGetMarkets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.getMarkets()}"
+            android:text="@string/btnGetMarketsText" />
 
         <TextView
             android:id="@+id/textView"
