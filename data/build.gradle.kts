@@ -24,4 +24,12 @@ dependencies {
         implementation(rxjava3)
         implementation(rxjava3RetrofitAdapter)
     }
+
+    Test.apply {
+        implementation(jUnit)
+        implementation(truth)
+
+        testImplementation(androidxJunit)
+        testImplementation(espressoCore)
+    }
 }
