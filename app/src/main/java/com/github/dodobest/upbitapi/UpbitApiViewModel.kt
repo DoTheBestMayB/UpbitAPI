@@ -17,9 +17,9 @@ class UpbitApiViewModel(
 
     fun getTicker(coinName: String) {
         upbitRepository.getTicker(coinName, {
-            _responseText.value = it.toString()
+            _responseText.postValue(it.toString())
         }, {
-            _responseText.value = it.toString()
+            _responseText.postValue(it.toString())
         })
     }
 }
