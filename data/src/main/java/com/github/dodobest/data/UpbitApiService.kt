@@ -10,5 +10,5 @@ interface UpbitApiService {
     fun getMarkets(@Query("isDetails") isDetails: Boolean = true): Single<List<UpbitMarketDataResponse>>
 
     @GET(API.TICKER_URL)
-    fun getTicker(@Query(value = "markets") coinName: String): Single<UpbitTickerDataResponse>
+    fun getTicker(@Query(value = "markets") coinName: String): Single<List<UpbitTickerDataResponse>>
 }

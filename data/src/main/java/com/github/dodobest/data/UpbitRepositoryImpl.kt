@@ -21,7 +21,7 @@ internal class UpbitRepositoryImpl(
             .doOnError { onFailure(it) }
     }
 
-    override fun getTicker(coinName: String, onSuccess: (UpbitTickerData) -> Unit, onFailure: (Throwable) -> Unit) {
+    override fun getTicker(coinName: String, onSuccess: (List<UpbitTickerData>) -> Unit, onFailure: (Throwable) -> Unit) {
         val singleTickerData = retrofit.create(UpbitApiService::class.java).getTicker(coinName)
 
         singleTickerData.subscribeOn(Schedulers.io())
