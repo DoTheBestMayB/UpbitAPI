@@ -9,6 +9,8 @@ java {
 }
 
 dependencies {
+    implementation(project(":domain"))
+
     Network.apply {
         implementation(retrofit)
         implementation(gson)
