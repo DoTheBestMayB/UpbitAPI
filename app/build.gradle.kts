@@ -45,6 +45,10 @@ dependencies {
         implementation(constraintLayout)
     }
 
+    Network.apply {
+        implementation(retrofit)
+    }
+
     Test.apply {
         testImplementation(jUnit)
         androidTestImplementation(androidxJunit)
