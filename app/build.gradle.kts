@@ -35,6 +35,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":data"))
+    implementation(project(":domain"))
+
     Androidx.apply {
         implementation(coreKtx)
         implementation(appCompat)
