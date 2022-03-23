@@ -1,5 +1,4 @@
 object Versions {
-    const val rxjava3 = "3.1.3"
     const val gradlePlugin = "7.1.2"
     const val kotlin = "1.5.21"
 
@@ -14,6 +13,10 @@ object Versions {
     const val retrofit = "2.9.0"
     const val gson = "2.9.0"
     const val okhttp3 = "4.9.3"
+
+    // RxJava3
+    const val rxjava3 = "3.1.3"
+    const val rxjava3RetrofitAdapter = "3.0.0"
 
     // Test
     const val jUnit = "4.13.2"

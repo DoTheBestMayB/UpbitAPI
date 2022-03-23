@@ -23,6 +23,7 @@ object Network {
 
 object RxJava {
     val rxjava3 by lazy { "io.reactivex.rxjava3:rxjava:${Versions.rxjava3}" }
+    val rxjava3RetrofitAdapter by lazy { "com.github.akarnokd:rxjava3-retrofit-adapter:${Versions.rxjava3RetrofitAdapter}" }
 }
 
 object Test {

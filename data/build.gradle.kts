@@ -22,5 +22,6 @@ dependencies {
 
     RxJava.apply {
         implementation(rxjava3)
+        implementation(rxjava3RetrofitAdapter)
     }
 }
