@@ -15,7 +15,8 @@ class GithubViewModelFactory : ViewModelProvider.Factory {
 
     private fun createUpbitApiViewModel(): UpbitApiViewModel {
         val retrofit = Injector.provideRetrofit()
-        val upbitRepository = Injector.provideUpbitRepository(retrofit)
-        return UpbitApiViewModel(upbitRepository)
+        val remoteUpbitDataSource = Injector.provideUpbitDataSource(retrofit)
+        val repository = Injector.provideDefaultRepository(remoteUpbitDataSource)
+        return UpbitApiViewModel(repository)
     }
 }

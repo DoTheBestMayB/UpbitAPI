@@ -1,6 +1,7 @@
 package com.github.dodobest.data
 
-import com.github.dodobest.domain.UpbitRepository
+import com.github.dodobest.domain.RemoteUpbitDataSource
+import com.github.dodobest.domain.Repository
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -21,7 +22,11 @@ object Injector {
             .build()
     }
 
-    fun provideUpbitRepository(retrofit: Retrofit): UpbitRepository {
-        return UpbitRepositoryImpl(retrofit)
+    fun provideUpbitDataSource(retrofit: Retrofit): RemoteUpbitDataSource {
+        return RemoteUpbitDataSourceImpl(retrofit)
+    }
+
+    fun provideDefaultRepository(remoteUpbitDataSource: RemoteUpbitDataSource): Repository {
+        return DefaultRepository(remoteUpbitDataSource)
     }
 }

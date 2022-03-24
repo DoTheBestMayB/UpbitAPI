@@ -3,10 +3,10 @@ package com.github.dodobest.upbitapi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.dodobest.domain.UpbitRepository
+import com.github.dodobest.domain.Repository
 
 class UpbitApiViewModel(
-    private val upbitRepository: UpbitRepository
+    private val repository: Repository
 ): ViewModel() {
     private val _responseText = MutableLiveData<String>()
         val responseText: LiveData<String>
@@ -16,7 +16,7 @@ class UpbitApiViewModel(
 
 
     fun getTicker(coinName: String) {
-        upbitRepository.getTicker(coinName, {
+        repository.getTicker(coinName, {
             _responseText.postValue(it.toString())
         }, {
             _responseText.postValue(it.toString())
@@ -24,7 +24,7 @@ class UpbitApiViewModel(
     }
 
     fun getMarkets() {
-        upbitRepository.getMarkets({
+        repository.getMarkets({
             _responseText.postValue(it.toString())
         }, {
             _responseText.postValue(it.toString())
