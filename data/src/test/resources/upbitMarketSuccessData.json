@@ -1,0 +1,20 @@
+[
+  {
+    "market_warning": "NONE",
+    "market": "KRW-BTC",
+    "korean_name": "비트코인",
+    "english_name": "Bitcoin"
+  },
+  {
+    "market_warning": "NONE",
+    "market": "KRW-ETH",
+    "korean_name": "이더리움",
+    "english_name": "Ethereum"
+  },
+  {
+    "market_warning": "CAUTION",
+    "market": "KRW-NU",
+    "korean_name": "누사이퍼",
+    "english_name": "Nucypher"
+  }
+]
