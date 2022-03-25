@@ -1,9 +1,8 @@
 package com.github.dodobest.data
 
-import com.github.dodobest.domain.UpbitTickerData
 import com.google.gson.annotations.SerializedName
 
-data class UpbitTickerDataResponse(
+data class UpbitTickerData(
     val market: String, // 종목 구분 코드
     @SerializedName("opening_price")
     val openingPrice: Double, // 시가
@@ -13,8 +12,4 @@ data class UpbitTickerDataResponse(
     val signedChangePrice: Double, // 부호가 있는 변화액
     @SerializedName("acc_trade_price_24h")
     val aacTradePrice24h: Double, // 24시간 누적 거래대금
-) {
-    fun toData(): UpbitTickerData {
-        return UpbitTickerData(market, openingPrice, tradePrice, signedChangePrice, aacTradePrice24h)
-    }
-}
+)

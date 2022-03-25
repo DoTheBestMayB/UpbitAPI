@@ -6,8 +6,8 @@ import retrofit2.http.Query
 
 interface UpbitApiService {
     @GET(API.MARKET_COIN_LIST_URL)
-    fun getMarkets(@Query("isDetails") isDetails: Boolean = true): Single<List<UpbitMarketDataResponse>>
+    fun getMarkets(@Query("isDetails") isDetails: Boolean = true): Single<List<UpbitMarketData>>
 
     @GET(API.TICKER_URL)
-    fun getTicker(@Query(value = "markets") coinName: String): Single<List<UpbitTickerDataResponse>>
+    fun getTicker(@Query(value = "markets") coinName: String): Single<List<UpbitTickerData>>
 }

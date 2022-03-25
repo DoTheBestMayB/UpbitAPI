@@ -47,7 +47,7 @@ class UpbitApiServiceTest {
             .awaitDone(3, TimeUnit.SECONDS)
 
         // then
-        val expected = listOf(UpbitTickerDataResponse("KRW-BTC", 100.0, 150.0, 50.0,1000.0))
+        val expected = listOf(UpbitTickerData("KRW-BTC", 100.0, 150.0, 50.0,1000.0))
         actual.assertResult(expected)
     }
 
@@ -65,9 +65,9 @@ class UpbitApiServiceTest {
             .awaitDone(3, TimeUnit.SECONDS)
 
         // then
-        val expected = listOf(UpbitMarketDataResponse("KRW-BTC", "비트코인", "Bitcoin", "NONE"),
-            UpbitMarketDataResponse("KRW-ETH", "이더리움", "Ethereum", "NONE"),
-            UpbitMarketDataResponse("KRW-NU", "누사이퍼", "Nucypher", "CAUTION")
+        val expected = listOf(UpbitMarketData("KRW-BTC", "비트코인", "Bitcoin", "NONE"),
+            UpbitMarketData("KRW-ETH", "이더리움", "Ethereum", "NONE"),
+            UpbitMarketData("KRW-NU", "누사이퍼", "Nucypher", "CAUTION")
         )
         actual.assertResult(expected)
 
