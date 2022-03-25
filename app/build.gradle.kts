@@ -32,26 +32,14 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        viewBinding = true
-        dataBinding = true
-    }
 }
 
 dependencies {
-    implementation(project(":data"))
-    implementation(project(":domain"))
-
     Androidx.apply {
         implementation(coreKtx)
         implementation(appCompat)
         implementation(materialDesign)
         implementation(constraintLayout)
-        implementation(fragmentKtx)
-    }
-
-    Network.apply {
-        implementation(retrofit)
     }
 
     Test.apply {
