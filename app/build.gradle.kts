@@ -35,14 +35,14 @@ android {
 }
 
 dependencies {
-    Androidx.apply {
+    with(Androidx) {
         implementation(coreKtx)
         implementation(appCompat)
         implementation(materialDesign)
         implementation(constraintLayout)
     }
 
-    Test.apply {
+    with(Test) {
         testImplementation(jUnit)
         androidTestImplementation(androidxJunit)
         androidTestImplementation(espressoCore)

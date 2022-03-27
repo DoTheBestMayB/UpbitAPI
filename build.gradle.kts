@@ -6,8 +6,10 @@ buildscript {
         maven("https://plugins.gradle.org/m2/")
     }
     dependencies {
-        classpath(BuildPlugins.android)
-        classpath(BuildPlugins.kotlin)
+        with(BuildPlugins) {
+            classpath(android)
+            classpath(kotlin)
+        }
     }
 }
 

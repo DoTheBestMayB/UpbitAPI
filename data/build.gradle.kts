@@ -9,7 +9,7 @@ java {
 }
 
 dependencies {
-    Network.apply {
+    with(Network) {
         implementation(retrofit)
         implementation(gson)
         implementation(converterGson)
@@ -18,12 +18,12 @@ dependencies {
         testImplementation(mockWebServer)
     }
 
-    RxJava.apply {
+    with(RxJava) {
         implementation(rxjava3)
         implementation(rxjava3RetrofitAdapter)
     }
 
-    Test.apply {
+    with(Test) {
         implementation(jUnit)
         implementation(truth)
 
