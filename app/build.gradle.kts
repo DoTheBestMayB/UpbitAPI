@@ -4,17 +4,20 @@ plugins {
 }
 
 android {
-    compileSdk = ConfigData.COMPILE_SDK_VERSION
+    with(ConfigData) {
+        compileSdk = COMPILE_SDK_VERSION
 
-    defaultConfig {
-        applicationId = "com.github.dodobest.upbitapi"
-        minSdk = ConfigData.MIN_SDK_VERSION
-        targetSdk = ConfigData.TARGET_SDK_VERSION
-        versionCode = ConfigData.VERSION_CODE
-        versionName = ConfigData.VERSION_NAME
+        defaultConfig {
+            applicationId = APPLICATION_ID
+            minSdk = MIN_SDK_VERSION
+            targetSdk = TARGET_SDK_VERSION
+            versionCode = VERSION_CODE
+            versionName = VERSION_NAME
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+            testInstrumentationRunner = ANDROID_JUNIT_RUNNER
+        }
     }
+
 
     buildTypes {
         getByName("release") {
