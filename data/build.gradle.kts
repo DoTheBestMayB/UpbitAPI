@@ -26,8 +26,5 @@ dependencies {
     with(Test) {
         implementation(JUNIT)
         implementation(TRUTH)
-
-        testImplementation(ANDROIDX_JUNIT)
-        testImplementation(ESPRESSO_CORE)
     }
 }

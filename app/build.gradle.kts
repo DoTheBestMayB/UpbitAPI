@@ -33,19 +33,3 @@ android {
         jvmTarget = "1.8"
     }
 }
-
-dependencies {
-    with(Androidx) {
-        implementation(CORE_KTX)
-        implementation(APP_COMPAT)
-        implementation(MATERIAL_DESIGN)
-        implementation(CONSTRAINT_LAYOUT)
-    }
-
-    with(Test) {
-        testImplementation(JUNIT)
-        androidTestImplementation(ANDROIDX_JUNIT)
-        androidTestImplementation(ESPRESSO_CORE)
-    }
-
-}
