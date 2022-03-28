@@ -43,15 +43,9 @@ object RxJava {
 
 object Test {
     private const val JUNIT_VERSION = "4.13.2"
-    private const val ANDROIDX_JUNIT_VERSION = "1.1.3"
-    private const val ESPRESSO_CORE_VERSION = "3.4.0"
     private const val TRUTH_VERSION = "1.1.3"
     private const val TEST_TRUTH_VERSION = "1.4.0"
 
     const val JUNIT = "junit:junit:${JUNIT_VERSION}"
     const val TRUTH = "com.google.truth:truth:${TRUTH_VERSION}"
-    const val TEST_TRUTH = "androidx.test.ext:truth:${TEST_TRUTH_VERSION}"
-
-    const val ANDROIDX_JUNIT = "androidx.test.ext:junit:${ANDROIDX_JUNIT_VERSION}"
-    const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${ESPRESSO_CORE_VERSION}"
 }
