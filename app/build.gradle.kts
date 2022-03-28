@@ -38,6 +38,7 @@ dependencies {
     with(Androidx) {
         implementation(APP_COMPAT)
         implementation(CONSTRAINT_LAYOUT)
+        implementation(MATERIAL_DESIGN)
         implementation(FRAGMENT_KTX)
     }
 }
