@@ -38,16 +38,12 @@ class UpbitAPITest {
         val response = MockResponse()
             .setBody(File("src/test/resources/upbitTickerSuccessData.json").readText())
         server.enqueue(response)
-
-        // when
-        val actual = api.getTicker("KRW-BTC").subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.newThread())
-            .test()
-            .awaitDone(3, TimeUnit.SECONDS)
-
-        // then
         val expected = listOf(UpbitTickerData("KRW-BTC", 100.0, 150.0, 50.0,1000.0))
-        actual.assertResult(expected)
+
+        // when - then
+        api.getTicker("KRW-BTC")
+            .test()
+            .assertValue(expected)
     }
 
     @Test
@@ -56,19 +52,14 @@ class UpbitAPITest {
         val response = MockResponse()
             .setBody(File("src/test/resources/upbitMarketSuccessData.json").readText())
         server.enqueue(response)
-
-        // when
-        val actual = api.getMarkets().subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.newThread())
-            .test()
-            .awaitDone(3, TimeUnit.SECONDS)
-
-        // then
         val expected = listOf(UpbitMarketData("KRW-BTC", "비트코인", "Bitcoin", "NONE"),
             UpbitMarketData("KRW-ETH", "이더리움", "Ethereum", "NONE"),
             UpbitMarketData("KRW-NU", "누사이퍼", "Nucypher", "CAUTION")
         )
-        actual.assertResult(expected)
 
+        // when - then
+        api.getMarkets()
+            .test()
+            .assertValue(expected)
     }
 }
