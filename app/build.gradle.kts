@@ -36,16 +36,16 @@ android {
 
 dependencies {
     with(Androidx) {
-        implementation(coreKtx)
-        implementation(appCompat)
-        implementation(materialDesign)
-        implementation(constraintLayout)
+        implementation(CORE_KTX)
+        implementation(APP_COMPAT)
+        implementation(MATERIAL_DESIGN)
+        implementation(CONSTRAINT_LAYOUT)
     }
 
     with(Test) {
-        testImplementation(jUnit)
-        androidTestImplementation(androidxJunit)
-        androidTestImplementation(espressoCore)
+        testImplementation(JUNIT)
+        androidTestImplementation(ANDROIDX_JUNIT)
+        androidTestImplementation(ESPRESSO_CORE)
     }
 
 }

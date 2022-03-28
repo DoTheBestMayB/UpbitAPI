@@ -7,8 +7,8 @@ buildscript {
     }
     dependencies {
         with(BuildPlugins) {
-            classpath(android)
-            classpath(kotlin)
+            classpath(ANDROID)
+            classpath(KOTLIN)
         }
     }
 }

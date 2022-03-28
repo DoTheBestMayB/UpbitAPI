@@ -10,24 +10,24 @@ java {
 
 dependencies {
     with(Network) {
-        implementation(retrofit)
-        implementation(gson)
-        implementation(converterGson)
-        implementation(okhttp3)
+        implementation(RETROFIT)
+        implementation(GSON)
+        implementation(CONVERTER_GSON)
+        implementation(OKHTTP3)
 
-        testImplementation(mockWebServer)
+        testImplementation(MOCK_WEB_SERVER)
     }
 
     with(RxJava) {
-        implementation(rxjava3)
-        implementation(rxjava3RetrofitAdapter)
+        implementation(RXJAVA3)
+        implementation(RXJAVA3_RETROFIT_ADAPTER)
     }
 
     with(Test) {
-        implementation(jUnit)
-        implementation(truth)
+        implementation(JUNIT)
+        implementation(TRUTH)
 
-        testImplementation(androidxJunit)
-        testImplementation(espressoCore)
+        testImplementation(ANDROIDX_JUNIT)
+        testImplementation(ESPRESSO_CORE)
     }
 }
