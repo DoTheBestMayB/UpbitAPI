@@ -1,4 +1,4 @@
-object Versions {
+object Version {
     const val GRADLE_PLUGIN = "7.1.2"
     const val KOTLIN = "1.5.21"
 
