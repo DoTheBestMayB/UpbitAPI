@@ -13,9 +13,9 @@ import retrofit2.create
 import java.io.File
 import java.util.concurrent.TimeUnit
 
-class UpbitApiServiceTest {
+class UpbitAPITest {
     private lateinit var server: MockWebServer
-    private lateinit var service: UpbitApiService
+    private lateinit var service: UpbitAPI
 
     @Before
     fun setUp() {

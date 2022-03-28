@@ -3,14 +3,14 @@ package com.github.dodobest.data
 import io.reactivex.rxjava3.core.Single
 
 internal class UpbitRemoteDataSourceImpl(
-    private val upbitApiService: UpbitApiService
+    private val upbitAPI: UpbitAPI
 ) : UpbitRemoteDataSource{
     override fun getMarkets(): Single<List<UpbitMarketData>> {
-        return upbitApiService.getMarkets()
+        return upbitAPI.getMarkets()
     }
 
     override fun getTicker(coinName: String): Single<List<UpbitTickerData>> {
-        return upbitApiService.getTicker(coinName)
+        return upbitAPI.getTicker(coinName)
     }
 
 }

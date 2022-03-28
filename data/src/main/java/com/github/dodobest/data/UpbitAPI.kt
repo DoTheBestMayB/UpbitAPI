@@ -4,7 +4,7 @@ import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface UpbitApiService {
+interface UpbitAPI {
     @GET(API.MARKET_COIN_LIST_URL)
     fun getMarkets(@Query("isDetails") isDetails: Boolean = true): Single<List<UpbitMarketData>>
 
