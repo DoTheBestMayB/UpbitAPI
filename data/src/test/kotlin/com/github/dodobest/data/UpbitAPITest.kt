@@ -15,12 +15,12 @@ import java.util.concurrent.TimeUnit
 
 class UpbitAPITest {
     private lateinit var server: MockWebServer
-    private lateinit var service: UpbitAPI
+    private lateinit var api: UpbitAPI
 
     @Before
     fun setUp() {
         server = MockWebServer()
-        service = Retrofit.Builder()
+        api = Retrofit.Builder()
             .baseUrl(server.url(""))
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
@@ -41,7 +41,7 @@ class UpbitAPITest {
         server.enqueue(response)
 
         // when
-        val actual = service.getTicker("KRW-BTC").subscribeOn(Schedulers.io())
+        val actual = api.getTicker("KRW-BTC").subscribeOn(Schedulers.io())
             .observeOn(Schedulers.newThread())
             .test()
             .awaitDone(3, TimeUnit.SECONDS)
@@ -59,7 +59,7 @@ class UpbitAPITest {
         server.enqueue(response)
 
         // when
-        val actual = service.getMarkets().subscribeOn(Schedulers.io())
+        val actual = api.getMarkets().subscribeOn(Schedulers.io())
             .observeOn(Schedulers.newThread())
             .test()
             .awaitDone(3, TimeUnit.SECONDS)
