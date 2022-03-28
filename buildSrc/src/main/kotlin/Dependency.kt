@@ -45,7 +45,9 @@ object Test {
     private const val JUNIT_VERSION = "4.13.2"
     private const val TRUTH_VERSION = "1.1.3"
     private const val TEST_TRUTH_VERSION = "1.4.0"
+    private const val MOCKK_VERSION = "1.12.3"
 
     const val JUNIT = "junit:junit:${JUNIT_VERSION}"
     const val TRUTH = "com.google.truth:truth:${TRUTH_VERSION}"
+    const val MOCKK = "io.mockk:mockk:${MOCKK_VERSION}"
 }
