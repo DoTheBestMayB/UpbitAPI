@@ -17,7 +17,6 @@ object Network {
     const val CONVERTER_GSON = "com.squareup.retrofit2:converter-gson:${Versions.GSON}"
     const val OKHTTP3 = "com.squareup.okhttp3:okhttp:${Versions.OKHTTP3}"
 
-    // testImplementation
     const val MOCK_WEB_SERVER = "com.squareup.okhttp3:mockwebserver:${Versions.OKHTTP3}"
 }
 
@@ -27,12 +26,10 @@ object RxJava {
 }
 
 object Test {
-    // testImplementation
     const val JUNIT = "junit:junit:${Versions.JUNIT}"
     const val TRUTH = "com.google.truth:truth:${Versions.TRUTH}"
     const val TEST_TRUTH = "androidx.test.ext:truth:${Versions.TEST_TRUTH}"
 
-    // androidTestImplementation
     const val ANDROIDX_JUNIT = "androidx.test.ext:junit:${Versions.ANDROIDX_JUNIT}"
     const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_CORE}"
 }
