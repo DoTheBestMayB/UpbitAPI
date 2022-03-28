@@ -3,6 +3,7 @@ package com.github.dodobest.data
 import com.google.gson.annotations.SerializedName
 
 data class UpbitTickerData(
+    @SerializedName("market")
     val market: String, // 종목 구분 코드
     @SerializedName("opening_price")
     val openingPrice: Double, // 시가
