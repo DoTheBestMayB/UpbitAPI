@@ -33,3 +33,11 @@ android {
         jvmTarget = "1.8"
     }
 }
+
+dependencies {
+    with(Androidx) {
+        implementation(APP_COMPAT)
+        implementation(CONSTRAINT_LAYOUT)
+        implementation(FRAGMENT_KTX)
+    }
+}
