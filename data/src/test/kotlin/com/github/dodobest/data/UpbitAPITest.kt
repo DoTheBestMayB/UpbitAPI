@@ -1,7 +1,6 @@
 package com.github.dodobest.data
 
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
-import io.reactivex.rxjava3.schedulers.Schedulers
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -14,12 +13,12 @@ import java.util.concurrent.TimeUnit
 
 class UpbitAPITest {
     private lateinit var server: MockWebServer
-    private lateinit var api: UpbitAPI
+    private lateinit var upbitAPI: UpbitAPI
 
     @Before
     fun setUp() {
         server = MockWebServer()
-        api = Retrofit.Builder()
+        upbitAPI = Retrofit.Builder()
             .baseUrl(server.url(""))
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
@@ -41,7 +40,7 @@ class UpbitAPITest {
         val expected = listOf(UpbitTickerData("KRW-BTC", 100.0, 150.0, 50.0,1000.0))
 
         // when - then
-        api.getTicker("KRW-BTC")
+        upbitAPI.getTicker("KRW-BTC")
             .test()
             .assertValue(expected)
     }
@@ -58,7 +57,7 @@ class UpbitAPITest {
         )
 
         // when - then
-        api.getMarkets()
+        upbitAPI.getMarkets()
             .test()
             .assertValue(expected)
     }
