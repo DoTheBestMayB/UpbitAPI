@@ -30,7 +30,7 @@ class UpbitAPITest {
                 .writeTimeout(UpbitClient.WRITE_TIMEOUT, TimeUnit.SECONDS)
                 .build())
             .build()
-            .create()
+            .create(UpbitAPI::class.java)
     }
 
     @Test
