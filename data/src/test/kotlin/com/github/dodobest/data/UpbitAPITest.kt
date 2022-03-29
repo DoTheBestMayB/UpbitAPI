@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
 
-class UpbitAPITest {
+internal class UpbitAPITest {
     private lateinit var server: MockWebServer
     private lateinit var upbitAPI: UpbitAPI
 
