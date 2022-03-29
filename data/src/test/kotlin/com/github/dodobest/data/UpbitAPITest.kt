@@ -23,9 +23,9 @@ class UpbitAPITest {
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(OkHttpClient.Builder()
-                .connectTimeout(UpbitClient.CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                .readTimeout(UpbitClient.READ_TIMEOUT, TimeUnit.SECONDS)
-                .writeTimeout(UpbitClient.WRITE_TIMEOUT, TimeUnit.SECONDS)
+                .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
+                .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
                 .build())
             .build()
             .create(UpbitAPI::class.java)
@@ -60,5 +60,11 @@ class UpbitAPITest {
         upbitAPI.getMarkets()
             .test()
             .assertValue(expected)
+    }
+
+    companion object {
+        private const val CONNECT_TIMEOUT: Long = 3L
+        private const val READ_TIMEOUT: Long = 3L
+        private const val WRITE_TIMEOUT: Long = 3L
     }
 }
