@@ -2,7 +2,7 @@ package com.github.dodobest.data
 
 import com.google.gson.annotations.SerializedName
 
-data class UpbitMarketData(
+internal data class UpbitMarketData(
     @SerializedName("market")
     val market: String,
     @SerializedName("korean_name")
