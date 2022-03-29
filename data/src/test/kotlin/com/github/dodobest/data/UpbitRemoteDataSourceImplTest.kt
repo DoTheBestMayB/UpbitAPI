@@ -20,7 +20,7 @@ internal class UpbitRemoteDataSourceImplTest {
 
     @Before
     fun setUp() {
-        upbitAPI = mockk()
+        upbitAPI = mockk(relaxed=true)
         upbitRemoteDataSource = UpbitRemoteDataSourceImpl(upbitAPI)
         upbitTickerDataMockk = mockk()
         upbitMarketDataMockk = mockk()
@@ -28,9 +28,6 @@ internal class UpbitRemoteDataSourceImplTest {
 
     @Test
     fun `upbitRemoteDataSource getMarkets()를 호출하면 UpbitAPI getMarkets()를 호출한다`() {
-        // given
-        every { upbitAPI.getMarkets() } returns upbitMarketDataMockk
-
         // when
         upbitRemoteDataSource.getMarkets()
 
@@ -40,9 +37,6 @@ internal class UpbitRemoteDataSourceImplTest {
 
     @Test
     fun `upbitRemoteDataSource getTicker()를 호출하면 UpbitAPI getTicker()를 호출한다`() {
-        // given
-        every { upbitAPI.getTicker("KRW-BTC") } returns upbitTickerDataMockk
-
         // when
         upbitRemoteDataSource.getTicker("KRW-BTC")
 
