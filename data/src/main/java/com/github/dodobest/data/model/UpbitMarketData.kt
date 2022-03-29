@@ -1,4 +1,4 @@
-package com.github.dodobest.data
+package com.github.dodobest.data.model
 
 import com.google.gson.annotations.SerializedName
 

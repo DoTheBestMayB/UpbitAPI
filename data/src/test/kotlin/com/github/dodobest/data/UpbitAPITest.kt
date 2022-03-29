@@ -1,5 +1,8 @@
 package com.github.dodobest.data
 
+import com.github.dodobest.data.model.UpbitMarketData
+import com.github.dodobest.data.model.UpbitTickerData
+import com.github.dodobest.data.remote.UpbitAPI
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
@@ -51,7 +54,8 @@ internal class UpbitAPITest {
         val response = MockResponse()
             .setBody(File("src/test/resources/upbitMarketSuccessData.json").readText())
         server.enqueue(response)
-        val expected = listOf(UpbitMarketData("KRW-BTC", "비트코인", "Bitcoin", "NONE"),
+        val expected = listOf(
+            UpbitMarketData("KRW-BTC", "비트코인", "Bitcoin", "NONE"),
             UpbitMarketData("KRW-ETH", "이더리움", "Ethereum", "NONE"),
             UpbitMarketData("KRW-NU", "누사이퍼", "Nucypher", "CAUTION")
         )
