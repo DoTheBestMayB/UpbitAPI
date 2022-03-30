@@ -1,11 +1,8 @@
 package com.github.dodobest.data.model
 
-import com.github.dodobest.data.model.UpbitMarketData
-import com.github.dodobest.data.model.UpbitTickerData
 import com.github.dodobest.data.remote.UpbitAPI
 import com.github.dodobest.data.remote.UpbitRemoteDataSource
 import com.github.dodobest.data.remote.UpbitRemoteDataSourceImpl
-import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import io.reactivex.rxjava3.core.Single
