@@ -1,8 +1,7 @@
-package com.github.dodobest.data
+package com.github.dodobest.data.remote
 
 import com.github.dodobest.data.model.UpbitMarketData
 import com.github.dodobest.data.model.UpbitTickerData
-import com.github.dodobest.data.remote.UpbitAPI
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
