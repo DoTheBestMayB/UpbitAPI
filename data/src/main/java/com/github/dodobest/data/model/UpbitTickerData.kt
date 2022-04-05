@@ -1,5 +1,6 @@
 package com.github.dodobest.data.model
 
+import com.github.dodobest.domain.model.UpbitTickerData
 import com.google.gson.annotations.SerializedName
 
 internal data class UpbitTickerData(
@@ -13,4 +14,8 @@ internal data class UpbitTickerData(
     val signedChangePrice: Double, // 부호가 있는 변화액
     @SerializedName("acc_trade_price_24h")
     val aacTradePrice24h: Double, // 24시간 누적 거래대금
-)
+) {
+    fun toDomainData() : UpbitTickerData {
+        return UpbitTickerData(market, openingPrice, tradePrice, signedChangePrice, aacTradePrice24h)
+    }
+}
