@@ -1,4 +1,4 @@
-package com.github.dodobest.data.Factory
+package com.github.dodobest.data.factory
 
 import com.github.dodobest.data.remote.UpbitAPI
 import com.github.dodobest.data.remote.UpbitRemoteDataSourceImpl
