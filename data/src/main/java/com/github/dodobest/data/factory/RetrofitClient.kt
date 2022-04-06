@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
     private lateinit var upbitRetrofitClient: Retrofit
+    private const val UPBIT_BASE_URL : String = "https://api.upbit.com/v1"
 
     fun getUpbitRetrofit() : Retrofit {
         if (::upbitRetrofitClient.isInitialized) {
@@ -16,7 +17,7 @@ object RetrofitClient {
         }
 
         upbitRetrofitClient = Retrofit.Builder()
-            .baseUrl(Constant.UPBIT_BASE_URL)
+            .baseUrl(UPBIT_BASE_URL)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(
