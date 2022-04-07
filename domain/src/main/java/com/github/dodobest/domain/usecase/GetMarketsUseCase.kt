@@ -4,5 +4,5 @@ import com.github.dodobest.domain.model.UpbitMarketData
 import io.reactivex.rxjava3.core.Single
 
 interface GetMarketsUseCase {
-    fun invoke() : Single<List<UpbitMarketData>>
+    operator fun invoke() : Single<List<UpbitMarketData>>
 }
