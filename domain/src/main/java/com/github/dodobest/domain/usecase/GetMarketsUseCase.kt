@@ -1,10 +1,8 @@
 package com.github.dodobest.domain.usecase
 
-import com.github.dodobest.domain.UpbitRepository
 import com.github.dodobest.domain.model.UpbitMarketData
+import io.reactivex.rxjava3.core.Single
 
-internal class GetMarketsUseCase(private val upbitRepository: UpbitRepository){
-    operator fun invoke(onSuccess: (List<UpbitMarketData>) -> Unit, onFailure: (Throwable) -> Unit) {
-        upbitRepository.getMarkets(onSuccess, onFailure)
-    }
+interface GetMarketsUseCase {
+    fun invoke() : Single<List<UpbitMarketData>>
 }

@@ -1,10 +1,8 @@
 package com.github.dodobest.domain.usecase
 
-import com.github.dodobest.domain.UpbitRepository
 import com.github.dodobest.domain.model.UpbitTickerData
+import io.reactivex.rxjava3.core.Single
 
-internal class GetTickerUseCase(private val upbitRepository: UpbitRepository) {
-    operator fun invoke(coinName: String, onSuccess: (List<UpbitTickerData>) -> Unit, onFailure: (Throwable) -> Unit) {
-        upbitRepository.getTicker(coinName, onSuccess, onFailure)
-    }
+interface GetTickerUseCase {
+    operator fun invoke(coinName: String) : Single<List<UpbitTickerData>>
 }
