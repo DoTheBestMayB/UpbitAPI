@@ -7,7 +7,7 @@ import com.github.dodobest.domain.usecase.GetMarketsUseCaseImpl
 object GetMarketsUseCaseFactory {
     private lateinit var getMarketsUseCase: GetMarketsUseCase
 
-    fun getGetMarketsUseCase(upbitRepository: UpbitRepository) : GetMarketsUseCase {
+    fun getGetMarketsUseCase(upbitRepository: UpbitRepository): GetMarketsUseCase {
         if (::getMarketsUseCase.isInitialized) {
             return getMarketsUseCase
         }

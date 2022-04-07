@@ -25,11 +25,13 @@ internal class UpbitAPITest {
             .baseUrl(server.url(""))
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
-            .client(OkHttpClient.Builder()
-                .connectTimeout(Constant.CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                .readTimeout(Constant.READ_TIMEOUT, TimeUnit.SECONDS)
-                .writeTimeout(Constant.WRITE_TIMEOUT, TimeUnit.SECONDS)
-                .build())
+            .client(
+                OkHttpClient.Builder()
+                    .connectTimeout(Constant.CONNECT_TIMEOUT, TimeUnit.SECONDS)
+                    .readTimeout(Constant.READ_TIMEOUT, TimeUnit.SECONDS)
+                    .writeTimeout(Constant.WRITE_TIMEOUT, TimeUnit.SECONDS)
+                    .build()
+            )
             .build()
             .create(UpbitAPI::class.java)
     }
@@ -40,12 +42,14 @@ internal class UpbitAPITest {
         val response = MockResponse()
             .setBody(File("src/test/resources/upbitTickerSuccessData.json").readText())
         server.enqueue(response)
-        val expected = listOf(UpbitTickerData(
-            market = "KRW-BTC",
-            openingPrice = 100.0,
-            tradePrice = 150.0,
-            signedChangePrice = 50.0,
-            aacTradePrice24h = 1000.0)
+        val expected = listOf(
+            UpbitTickerData(
+                market = "KRW-BTC",
+                openingPrice = 100.0,
+                tradePrice = 150.0,
+                signedChangePrice = 50.0,
+                aacTradePrice24h = 1000.0
+            )
         )
 
         // when - then
@@ -65,17 +69,20 @@ internal class UpbitAPITest {
                 market = "KRW-BTC",
                 koreanName = "비트코인",
                 englishName = "Bitcoin",
-                marketWarning = "NONE"),
+                marketWarning = "NONE"
+            ),
             UpbitMarketData(
                 market = "KRW-ETH",
                 koreanName = "이더리움",
                 englishName = "Ethereum",
-                marketWarning = "NONE"),
+                marketWarning = "NONE"
+            ),
             UpbitMarketData(
                 market = "KRW-NU",
                 koreanName = "누사이퍼",
                 englishName = "Nucypher",
-                marketWarning = "CAUTION")
+                marketWarning = "CAUTION"
+            )
         )
 
         // when - then

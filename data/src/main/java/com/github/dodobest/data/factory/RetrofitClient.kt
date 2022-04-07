@@ -9,9 +9,9 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
     private lateinit var upbitRetrofitClient: Retrofit
-    private const val UPBIT_BASE_URL : String = "https://api.upbit.com/v1"
+    private const val UPBIT_BASE_URL: String = "https://api.upbit.com/v1"
 
-    fun getUpbitRetrofit() : Retrofit {
+    fun getUpbitRetrofit(): Retrofit {
         if (::upbitRetrofitClient.isInitialized) {
             return upbitRetrofitClient
         }
@@ -22,10 +22,11 @@ object RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create())
             .client(
                 OkHttpClient.Builder()
-                .connectTimeout(Constant.CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                .readTimeout(Constant.READ_TIMEOUT, TimeUnit.SECONDS)
-                .writeTimeout(Constant.WRITE_TIMEOUT, TimeUnit.SECONDS)
-                .build())
+                    .connectTimeout(Constant.CONNECT_TIMEOUT, TimeUnit.SECONDS)
+                    .readTimeout(Constant.READ_TIMEOUT, TimeUnit.SECONDS)
+                    .writeTimeout(Constant.WRITE_TIMEOUT, TimeUnit.SECONDS)
+                    .build()
+            )
             .build()
         return upbitRetrofitClient
     }

@@ -10,11 +10,19 @@ import io.reactivex.rxjava3.core.Single
 internal class UpbitRepositoryImpl(
     private val upbitRemoteDataSource: UpbitRemoteDataSource
 ) : UpbitRepository {
-    override fun getMarkets() : Single<List<UpbitMarketData>> {
-        return upbitRemoteDataSource.getMarkets().map { it -> it.map { it.toDomainData() } }
+    override fun getMarkets(): Single<List<UpbitMarketData>> {
+        return upbitRemoteDataSource.getMarkets().map { it ->
+            it.map {
+                it.toDomainData()
+            }
+        }
     }
 
-    override fun getTicker(coinName: String) : Single<List<UpbitTickerData>> {
-        return upbitRemoteDataSource.getTicker(coinName).map { it -> it.map { it.toDomainData() } }
+    override fun getTicker(coinName: String): Single<List<UpbitTickerData>> {
+        return upbitRemoteDataSource.getTicker(coinName).map { it ->
+            it.map {
+                it.toDomainData()
+            }
+        }
     }
 }

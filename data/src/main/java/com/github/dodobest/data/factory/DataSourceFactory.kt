@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 
 internal interface DataSourceFactory {
     companion object {
-        fun newUpbitDataSource(retrofit: Retrofit) : UpbitRemoteDataSourceImpl {
+        fun newUpbitDataSource(retrofit: Retrofit): UpbitRemoteDataSourceImpl {
             return UpbitRemoteDataSourceImpl(retrofit.create(UpbitAPI::class.java))
         }
     }

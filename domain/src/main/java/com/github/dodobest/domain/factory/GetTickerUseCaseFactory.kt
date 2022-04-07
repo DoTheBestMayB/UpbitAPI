@@ -7,7 +7,7 @@ import com.github.dodobest.domain.usecase.GetTickerUseCaseImpl
 object GetTickerUseCaseFactory {
     private lateinit var getTickerUseCase: GetTickerUseCase
 
-    fun getGetTickerUseCase(upbitRepository: UpbitRepository) : GetTickerUseCase {
+    fun getGetTickerUseCase(upbitRepository: UpbitRepository): GetTickerUseCase {
         if (::getTickerUseCase.isInitialized) {
             return getTickerUseCase
         }

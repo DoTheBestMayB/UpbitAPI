@@ -1,6 +1,6 @@
 package com.github.dodobest.domain.model
 
-data class UpbitTickerData (
+data class UpbitTickerData(
     val market: String,
     val openingPrice: Double,
     val tradePrice: Double,

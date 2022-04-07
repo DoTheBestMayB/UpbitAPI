@@ -14,7 +14,7 @@ internal class UpbitRemoteDataSourceImplTest {
 
     @Before
     fun setUp() {
-        upbitAPI = mockk(relaxed=true)
+        upbitAPI = mockk(relaxed = true)
         upbitRemoteDataSource = UpbitRemoteDataSourceImpl(upbitAPI)
     }
 
