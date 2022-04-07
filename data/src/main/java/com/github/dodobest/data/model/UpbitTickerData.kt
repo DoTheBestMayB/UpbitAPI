@@ -16,6 +16,12 @@ internal data class UpbitTickerData(
     val aacTradePrice24h: Double, // 24시간 누적 거래대금
 ) {
     fun toDomainData() : UpbitTickerData {
-        return UpbitTickerData(market, openingPrice, tradePrice, signedChangePrice, aacTradePrice24h)
+        return UpbitTickerData(
+            market = market,
+            openingPrice = openingPrice,
+            tradePrice = tradePrice,
+            signedChangePrice = signedChangePrice,
+            aacTradePrice24h = aacTradePrice24h
+        )
     }
 }

@@ -40,7 +40,13 @@ internal class UpbitAPITest {
         val response = MockResponse()
             .setBody(File("src/test/resources/upbitTickerSuccessData.json").readText())
         server.enqueue(response)
-        val expected = listOf(UpbitTickerData("KRW-BTC", 100.0, 150.0, 50.0,1000.0))
+        val expected = listOf(UpbitTickerData(
+            market = "KRW-BTC",
+            openingPrice = 100.0,
+            tradePrice = 150.0,
+            signedChangePrice = 50.0,
+            aacTradePrice24h = 1000.0)
+        )
 
         // when - then
         upbitAPI.getTicker("KRW-BTC")
@@ -55,9 +61,21 @@ internal class UpbitAPITest {
             .setBody(File("src/test/resources/upbitMarketSuccessData.json").readText())
         server.enqueue(response)
         val expected = listOf(
-            UpbitMarketData("KRW-BTC", "비트코인", "Bitcoin", "NONE"),
-            UpbitMarketData("KRW-ETH", "이더리움", "Ethereum", "NONE"),
-            UpbitMarketData("KRW-NU", "누사이퍼", "Nucypher", "CAUTION")
+            UpbitMarketData(
+                market = "KRW-BTC",
+                koreanName = "비트코인",
+                englishName = "Bitcoin",
+                marketWarning = "NONE"),
+            UpbitMarketData(
+                market = "KRW-ETH",
+                koreanName = "이더리움",
+                englishName = "Ethereum",
+                marketWarning = "NONE"),
+            UpbitMarketData(
+                market = "KRW-NU",
+                koreanName = "누사이퍼",
+                englishName = "Nucypher",
+                marketWarning = "CAUTION")
         )
 
         // when - then

@@ -14,6 +14,11 @@ internal data class UpbitMarketData(
     val marketWarning: String
 ) {
     fun toDomainData() : UpbitMarketData {
-        return UpbitMarketData(market, koreanName, englishName, marketWarning)
+        return UpbitMarketData(
+            market = market,
+            koreanName = koreanName,
+            englishName = englishName,
+            marketWarning = marketWarning
+        )
     }
 }
