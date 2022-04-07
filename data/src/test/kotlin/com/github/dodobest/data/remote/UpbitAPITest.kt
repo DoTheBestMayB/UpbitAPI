@@ -1,5 +1,6 @@
 package com.github.dodobest.data.remote
 
+import com.github.dodobest.data.Constant
 import com.github.dodobest.data.model.UpbitMarketData
 import com.github.dodobest.data.model.UpbitTickerData
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
@@ -25,9 +26,9 @@ internal class UpbitAPITest {
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(OkHttpClient.Builder()
-                .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-                .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
+                .connectTimeout(Constant.CONNECT_TIMEOUT, TimeUnit.SECONDS)
+                .readTimeout(Constant.READ_TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(Constant.WRITE_TIMEOUT, TimeUnit.SECONDS)
                 .build())
             .build()
             .create(UpbitAPI::class.java)
@@ -63,11 +64,5 @@ internal class UpbitAPITest {
         upbitAPI.getMarkets()
             .test()
             .assertValue(expected)
-    }
-
-    companion object {
-        private const val CONNECT_TIMEOUT: Long = 3L
-        private const val READ_TIMEOUT: Long = 3L
-        private const val WRITE_TIMEOUT: Long = 3L
     }
 }
