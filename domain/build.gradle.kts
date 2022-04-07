@@ -12,4 +12,8 @@ dependencies {
     with(RxJava) {
         implementation(RXJAVA3)
     }
+
+    with(Test) {
+        implementation(JUNIT)
+    }
 }
