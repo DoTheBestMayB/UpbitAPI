@@ -4,7 +4,7 @@ import com.github.dodobest.domain.UpbitRepository
 import com.github.dodobest.domain.model.UpbitTickerData
 import io.reactivex.rxjava3.core.Single
 
-internal class GetTickerUseCaseImpl(
+class GetTickerUseCaseImpl(
     private val upbitRepository: UpbitRepository
 ) : GetTickerUseCase {
     override operator fun invoke(coinName: String): Single<List<UpbitTickerData>> {
