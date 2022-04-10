@@ -11,12 +11,9 @@ object RetrofitClient {
     private const val UPBIT_BASE_URL: String = "https://api.upbit.com/v1"
     private lateinit var upbitRetrofitClient: Retrofit
 
-    fun getUpbitRetrofit(): Retrofit {
-        if (::upbitRetrofitClient.isInitialized) {
-            return upbitRetrofitClient
-        }
-
-        upbitRetrofitClient = Retrofit.Builder()
+    private object RetrofitClientHolder {
+        @JvmField
+        val upbitRetrofitClient = Retrofit.Builder()
             .baseUrl(UPBIT_BASE_URL)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
@@ -28,7 +25,9 @@ object RetrofitClient {
                     .build()
             )
             .build()
-        return upbitRetrofitClient
     }
 
+    fun getUpbitRetrofit(): Retrofit {
+        return RetrofitClientHolder.upbitRetrofitClient
+    }
 }
