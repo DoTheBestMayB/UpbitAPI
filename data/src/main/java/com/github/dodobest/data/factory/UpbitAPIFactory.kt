@@ -3,16 +3,9 @@ package com.github.dodobest.data.factory
 import com.github.dodobest.data.remote.UpbitAPI
 import retrofit2.Retrofit
 
-internal object UpbitAPIFactory {
-    private lateinit var upbitAPI: UpbitAPI
+internal class UpbitAPIFactory private constructor(retrofit: Retrofit) {
+    companion object : SingletonHolder<UpbitAPI, Retrofit>({
+        it.create(UpbitAPI::class.java)
+    })
 
-    fun getUpbitAPI(retrofit: Retrofit): UpbitAPI {
-        if (::upbitAPI.isInitialized) {
-            return upbitAPI
-        }
-
-        upbitAPI = retrofit.create(UpbitAPI::class.java)
-
-        return upbitAPI
-    }
 }
