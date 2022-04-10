@@ -5,7 +5,7 @@ import com.github.dodobest.domain.model.UpbitTickerData
 import io.reactivex.rxjava3.core.Single
 
 interface GetTickerUseCase {
-    operator fun invoke(coinName: String): Single<List<UpbitTickerData>>
+    fun invoke(coinName: String): Single<List<UpbitTickerData>>
 
     companion object {
         fun of(upbitRepository: UpbitRepository): GetTickerUseCase {
