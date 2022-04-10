@@ -6,7 +6,6 @@ import com.github.dodobest.domain.model.UpbitMarketData
 import com.github.dodobest.domain.model.UpbitTickerData
 import io.reactivex.rxjava3.core.Single
 
-
 internal class UpbitRepositoryImpl(
     private val upbitRemoteDataSource: UpbitRemoteDataSource
 ) : UpbitRepository {

@@ -13,7 +13,6 @@ object GetTickerUseCaseFactory {
         }
 
         getTickerUseCase = GetTickerUseCaseImpl(upbitRepository)
-
         return getTickerUseCase
     }
 }

@@ -13,7 +13,6 @@ object GetMarketsUseCaseFactory {
         }
 
         getMarketsUseCase = GetMarketsUseCaseImpl(upbitRepository)
-
         return getMarketsUseCase
     }
 }
