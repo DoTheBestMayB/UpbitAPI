@@ -14,7 +14,7 @@ internal interface UpbitAPI {
     fun getTicker(@Query(value = "markets") coinName: String): Single<List<UpbitTickerData>>
 
     companion object {
-        private const val MARKET_COIN_LIST_URL: String = "market/all"
-        private const val TICKER_URL: String = "ticker"
+        private const val MARKET_COIN_LIST_URL = "market/all"
+        private const val TICKER_URL = "ticker"
     }
 }
