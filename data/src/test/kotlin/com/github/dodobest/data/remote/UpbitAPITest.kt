@@ -40,20 +40,20 @@ internal class UpbitAPITest {
     fun `getTicker 함수로 API 통신에 성공하면 UpbitTickerDataResponse 클래스로 변환된 데이터를 생성한다`() {
         // given
         val response = MockResponse()
-            .setBody(File("src/test/resources/upbitTickerSuccessData.json").readText())
+            .setBody(File(UPBIT_TICKER_SUCCESS_DATA_PATH).readText())
         server.enqueue(response)
         val expected = listOf(
             UpbitTickerData(
-                market = "KRW-BTC",
-                openingPrice = 100.0,
-                tradePrice = 150.0,
-                signedChangePrice = 50.0,
-                aacTradePrice24h = 1000.0
+                market = UPBIT_TICKER_DATA_COIN_NAME,
+                openingPrice = upbitTickerDataValue[0],
+                tradePrice = upbitTickerDataValue[1],
+                signedChangePrice = upbitTickerDataValue[2],
+                aacTradePrice24h = upbitTickerDataValue[3]
             )
         )
 
         // when - then
-        upbitAPI.getTicker("KRW-BTC")
+        upbitAPI.getTicker(UPBIT_TICKER_DATA_COIN_NAME)
             .test()
             .assertValue(expected)
     }
@@ -62,26 +62,26 @@ internal class UpbitAPITest {
     fun `getMarkets 함수로 API 통신에 성공하면 UpbitMarketDataResponse 클래스로 변환된 데이터를 생성한다`() {
         // given
         val response = MockResponse()
-            .setBody(File("src/test/resources/upbitMarketSuccessData.json").readText())
+            .setBody(File(UPBIT_MARKET_SUCCESS_DATA_PATH).readText())
         server.enqueue(response)
         val expected = listOf(
             UpbitMarketData(
-                market = "KRW-BTC",
-                koreanName = "비트코인",
-                englishName = "Bitcoin",
-                marketWarning = "NONE"
+                market = upbitMarketDataBTC[0],
+                koreanName = upbitMarketDataBTC[1],
+                englishName = upbitMarketDataBTC[2],
+                marketWarning = upbitMarketDataBTC[3]
             ),
             UpbitMarketData(
-                market = "KRW-ETH",
-                koreanName = "이더리움",
-                englishName = "Ethereum",
-                marketWarning = "NONE"
+                market = upbitMarketDataETH[0],
+                koreanName = upbitMarketDataETH[1],
+                englishName = upbitMarketDataETH[2],
+                marketWarning = upbitMarketDataETH[3]
             ),
             UpbitMarketData(
-                market = "KRW-NU",
-                koreanName = "누사이퍼",
-                englishName = "Nucypher",
-                marketWarning = "CAUTION"
+                market = upbitMarketDataNU[0],
+                koreanName = upbitMarketDataNU[1],
+                englishName = upbitMarketDataNU[2],
+                marketWarning = upbitMarketDataNU[3]
             )
         )
 
@@ -89,5 +89,15 @@ internal class UpbitAPITest {
         upbitAPI.getMarkets()
             .test()
             .assertValue(expected)
+    }
+
+    companion object {
+        const val UPBIT_TICKER_SUCCESS_DATA_PATH = "src/test/resources/upbitTickerSuccessData.json"
+        const val UPBIT_MARKET_SUCCESS_DATA_PATH = "src/test/resources/upbitMarketSuccessData.json"
+        const val UPBIT_TICKER_DATA_COIN_NAME = "KRW-BTC"
+        val upbitTickerDataValue = listOf(100.0, 150.0, 50.0, 1000.0)
+        val upbitMarketDataBTC = listOf("KRW-BTC", "비트코인", "Bitcoin", "NONE")
+        val upbitMarketDataETH = listOf("KRW-ETH", "이더리움", "Ethereum", "NONE")
+        val upbitMarketDataNU = listOf("KRW-NU", "누사이퍼", "Nucypher", "CAUTION")
     }
 }

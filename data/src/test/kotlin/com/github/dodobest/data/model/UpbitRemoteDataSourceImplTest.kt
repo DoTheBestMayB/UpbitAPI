@@ -30,9 +30,13 @@ internal class UpbitRemoteDataSourceImplTest {
     @Test
     fun `upbitRemoteDataSource getTicker()를 호출하면 UpbitAPI getTicker()를 호출한다`() {
         // when
-        upbitRemoteDataSource.getTicker("KRW-BTC")
+        upbitRemoteDataSource.getTicker(COIN_NAME)
 
         // then
-        verify { upbitAPI.getTicker("KRW-BTC") }
+        verify { upbitAPI.getTicker(COIN_NAME) }
+    }
+
+    companion object {
+        const val COIN_NAME = "KRW-BTC"
     }
 }
