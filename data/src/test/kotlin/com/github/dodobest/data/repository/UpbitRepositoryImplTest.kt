@@ -1,6 +1,7 @@
 package com.github.dodobest.data.repository
 
 import com.github.dodobest.data.remote.UpbitRemoteDataSource
+import com.github.dodobest.domain.UpbitRepository
 import io.mockk.mockk
 import io.mockk.verify
 
@@ -9,7 +10,7 @@ import org.junit.Test
 
 internal class UpbitRepositoryImplTest {
     lateinit var upbitRemoteDataSource: UpbitRemoteDataSource
-    lateinit var upbitRepository: UpbitRepositoryImpl
+    lateinit var upbitRepository: UpbitRepository
 
     @Before
     fun setUp() {
