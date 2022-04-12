@@ -36,6 +36,6 @@ internal class UpbitRepositoryImplTest {
     }
 
     companion object {
-        const val COIN_NAME = "KRW-BTC"
+        private const val COIN_NAME = "KRW-BTC"
     }
 }

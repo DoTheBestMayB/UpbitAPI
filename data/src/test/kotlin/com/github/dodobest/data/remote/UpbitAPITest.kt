@@ -92,12 +92,12 @@ internal class UpbitAPITest {
     }
 
     companion object {
-        const val UPBIT_TICKER_SUCCESS_DATA_PATH = "src/test/resources/upbitTickerSuccessData.json"
-        const val UPBIT_MARKET_SUCCESS_DATA_PATH = "src/test/resources/upbitMarketSuccessData.json"
-        const val UPBIT_TICKER_DATA_COIN_NAME = "KRW-BTC"
-        val upbitTickerDataValue = listOf(100.0, 150.0, 50.0, 1000.0)
-        val upbitMarketDataBTC = listOf("KRW-BTC", "비트코인", "Bitcoin", "NONE")
-        val upbitMarketDataETH = listOf("KRW-ETH", "이더리움", "Ethereum", "NONE")
-        val upbitMarketDataNU = listOf("KRW-NU", "누사이퍼", "Nucypher", "CAUTION")
+        private const val UPBIT_TICKER_SUCCESS_DATA_PATH = "src/test/resources/upbitTickerSuccessData.json"
+        private const val UPBIT_MARKET_SUCCESS_DATA_PATH = "src/test/resources/upbitMarketSuccessData.json"
+        private const val UPBIT_TICKER_DATA_COIN_NAME = "KRW-BTC"
+        private val upbitTickerDataValue = listOf(100.0, 150.0, 50.0, 1000.0)
+        private val upbitMarketDataBTC = listOf("KRW-BTC", "비트코인", "Bitcoin", "NONE")
+        private val upbitMarketDataETH = listOf("KRW-ETH", "이더리움", "Ethereum", "NONE")
+        private val upbitMarketDataNU = listOf("KRW-NU", "누사이퍼", "Nucypher", "CAUTION")
     }
 }
