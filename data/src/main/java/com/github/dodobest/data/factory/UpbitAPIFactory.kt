@@ -7,5 +7,4 @@ internal class UpbitAPIFactory private constructor(retrofit: Retrofit) {
     companion object : SingletonHolder<UpbitAPI, Retrofit>({
         it.create(UpbitAPI::class.java)
     })
-
 }
