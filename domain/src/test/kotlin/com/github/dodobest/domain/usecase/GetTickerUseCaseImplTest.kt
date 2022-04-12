@@ -14,7 +14,7 @@ class GetTickerUseCaseImplTest {
     @Before
     fun setUp() {
         upbitRepository = mockk(relaxed = true)
-        getTickerUseCase = GetTickerUseCaseImpl(upbitRepository)
+        getTickerUseCase = GetTickerUseCase.of(upbitRepository)
     }
 
     @Test

@@ -14,7 +14,7 @@ class GetMarketsUseCaseImplTest {
     @Before
     fun setUp() {
         upbitRepository = mockk(relaxed = true)
-        getMarketsUseCase = GetMarketsUseCaseImpl(upbitRepository)
+        getMarketsUseCase = GetMarketsUseCase.of(upbitRepository)
     }
 
     @Test
