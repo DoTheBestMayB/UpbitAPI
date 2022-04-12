@@ -10,16 +10,20 @@ internal class UpbitRepositoryImpl(
     private val upbitRemoteDataSource: UpbitRemoteDataSource
 ) : UpbitRepository {
     override fun getMarkets(): Single<List<UpbitMarketData>> {
-        return upbitRemoteDataSource.getMarkets().map { upbitMarketDataList ->
-            upbitMarketDataList.map { upbitMarketData ->
+        return upbitRemoteDataSource.getMarkets().map { upbitMarketDataList
+            ->
+            upbitMarketDataList.map { upbitMarketData
+                ->
                 upbitMarketData.toDomainData()
             }
         }
     }
 
     override fun getTicker(coinName: String): Single<List<UpbitTickerData>> {
-        return upbitRemoteDataSource.getTicker(coinName).map { upbitTickerDataList ->
-            upbitTickerDataList.map { upbitTickerData ->
+        return upbitRemoteDataSource.getTicker(coinName).map { upbitTickerDataList
+            ->
+            upbitTickerDataList.map { upbitTickerData
+                ->
                 upbitTickerData.toDomainData()
             }
         }
