@@ -7,7 +7,7 @@ import io.reactivex.rxjava3.core.Single
 class GetMarketsUseCaseImpl(
     private val upbitRepository: UpbitRepository
 ) : GetMarketsUseCase {
-    override operator fun invoke(): Single<List<UpbitMarketData>> {
+    override fun execute(): Single<List<UpbitMarketData>> {
         return upbitRepository.getMarkets()
     }
 }

@@ -7,7 +7,7 @@ import io.reactivex.rxjava3.core.Single
 class GetTickerUseCaseImpl(
     private val upbitRepository: UpbitRepository
 ) : GetTickerUseCase {
-    override operator fun invoke(coinName: String): Single<List<UpbitTickerData>> {
+    override fun execute(coinName: String): Single<List<UpbitTickerData>> {
         return upbitRepository.getTicker(coinName)
     }
 }
