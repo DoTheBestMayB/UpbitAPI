@@ -22,4 +22,17 @@ object RetrofitClient {
                 .build()
         )
         .build()
+
+    fun createRetrofitClientWith(url: String) : Retrofit = Retrofit.Builder()
+        .baseUrl(url)
+        .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(
+            OkHttpClient.Builder()
+                .connectTimeout(Constant.CONNECT_TIMEOUT, TimeUnit.SECONDS)
+                .readTimeout(Constant.READ_TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(Constant.WRITE_TIMEOUT, TimeUnit.SECONDS)
+                .build()
+        )
+        .build()
 }

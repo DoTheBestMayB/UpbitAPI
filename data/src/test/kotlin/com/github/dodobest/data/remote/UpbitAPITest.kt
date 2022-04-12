@@ -1,38 +1,26 @@
 package com.github.dodobest.data.remote
 
-import com.github.dodobest.data.Constant
+import com.github.dodobest.data.factory.RetrofitClient
 import com.github.dodobest.data.model.UpbitMarketData
 import com.github.dodobest.data.model.UpbitTickerData
-import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
-import okhttp3.OkHttpClient
+import okhttp3.HttpUrl
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.Before
 import org.junit.Test
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
-import java.util.concurrent.TimeUnit
 
 internal class UpbitAPITest {
     private lateinit var server: MockWebServer
+    private lateinit var baseUrl: HttpUrl
     private lateinit var upbitAPI: UpbitAPI
 
     @Before
     fun setUp() {
         server = MockWebServer()
-        upbitAPI = Retrofit.Builder()
-            .baseUrl(server.url(""))
-            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(
-                OkHttpClient.Builder()
-                    .connectTimeout(Constant.CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                    .readTimeout(Constant.READ_TIMEOUT, TimeUnit.SECONDS)
-                    .writeTimeout(Constant.WRITE_TIMEOUT, TimeUnit.SECONDS)
-                    .build()
-            )
-            .build()
+        baseUrl = server.url("")
+        upbitAPI = RetrofitClient
+            .createRetrofitClientWith(baseUrl.toString())
             .create(UpbitAPI::class.java)
     }
 
@@ -92,8 +80,10 @@ internal class UpbitAPITest {
     }
 
     companion object {
-        private const val UPBIT_TICKER_SUCCESS_DATA_PATH = "src/test/resources/upbitTickerSuccessData.json"
-        private const val UPBIT_MARKET_SUCCESS_DATA_PATH = "src/test/resources/upbitMarketSuccessData.json"
+        private const val UPBIT_TICKER_SUCCESS_DATA_PATH =
+            "src/test/resources/upbitTickerSuccessData.json"
+        private const val UPBIT_MARKET_SUCCESS_DATA_PATH =
+            "src/test/resources/upbitMarketSuccessData.json"
         private const val UPBIT_TICKER_DATA_COIN_NAME = "KRW-BTC"
         private val upbitTickerDataValue = listOf(100.0, 150.0, 50.0, 1000.0)
         private val upbitMarketDataBTC = listOf("KRW-BTC", "비트코인", "Bitcoin", "NONE")
