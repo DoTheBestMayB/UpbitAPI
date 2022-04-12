@@ -5,7 +5,6 @@ import com.github.dodobest.domain.UpbitRepository
 import io.mockk.mockk
 import io.mockk.verify
 
-import org.junit.Before
 import org.junit.Test
 
 internal class UpbitRepositoryImplTest {
