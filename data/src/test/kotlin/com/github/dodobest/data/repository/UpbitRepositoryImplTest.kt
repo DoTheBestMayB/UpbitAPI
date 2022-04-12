@@ -9,14 +9,8 @@ import org.junit.Before
 import org.junit.Test
 
 internal class UpbitRepositoryImplTest {
-    lateinit var upbitRemoteDataSource: UpbitRemoteDataSource
-    lateinit var upbitRepository: UpbitRepository
-
-    @Before
-    fun setUp() {
-        upbitRemoteDataSource = mockk(relaxed = true)
-        upbitRepository = UpbitRepositoryImpl(upbitRemoteDataSource)
-    }
+    private val upbitRemoteDataSource: UpbitRemoteDataSource = mockk(relaxed = true)
+    private val upbitRepository: UpbitRepository = UpbitRepositoryImpl.getInstance(upbitRemoteDataSource)
 
     @Test
     fun `upbitRepository getMarkets()를 호출하면 upbitRemoteDataSource getMarkets()를 호출한다`() {
