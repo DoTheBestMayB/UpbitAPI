@@ -48,7 +48,7 @@ internal class UpbitAPITest {
                 openingPrice = upbitTickerDataValue[0],
                 tradePrice = upbitTickerDataValue[1],
                 signedChangePrice = upbitTickerDataValue[2],
-                aacTradePrice24h = upbitTickerDataValue[3]
+                aacTradePrice24h = upbitTickerDataValue[3],
             )
         )
 
@@ -69,19 +69,19 @@ internal class UpbitAPITest {
                 market = upbitMarketDataBTC[0],
                 koreanName = upbitMarketDataBTC[1],
                 englishName = upbitMarketDataBTC[2],
-                marketWarning = upbitMarketDataBTC[3]
+                marketWarning = upbitMarketDataBTC[3],
             ),
             UpbitMarketData(
                 market = upbitMarketDataETH[0],
                 koreanName = upbitMarketDataETH[1],
                 englishName = upbitMarketDataETH[2],
-                marketWarning = upbitMarketDataETH[3]
+                marketWarning = upbitMarketDataETH[3],
             ),
             UpbitMarketData(
                 market = upbitMarketDataNU[0],
                 koreanName = upbitMarketDataNU[1],
                 englishName = upbitMarketDataNU[2],
-                marketWarning = upbitMarketDataNU[3]
+                marketWarning = upbitMarketDataNU[3],
             )
         )
 

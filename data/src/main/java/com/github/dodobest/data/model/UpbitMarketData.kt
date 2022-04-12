@@ -11,14 +11,14 @@ internal data class UpbitMarketData(
     @SerializedName("english_name")
     val englishName: String,
     @SerializedName("market_warning")
-    val marketWarning: String
+    val marketWarning: String,
 ) {
     fun toDomainData(): UpbitMarketData {
         return UpbitMarketData(
             market = market,
             koreanName = koreanName,
             englishName = englishName,
-            marketWarning = marketWarning
+            marketWarning = marketWarning,
         )
     }
 }

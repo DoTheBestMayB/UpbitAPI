@@ -21,7 +21,7 @@ internal data class UpbitTickerData(
             openingPrice = openingPrice,
             tradePrice = tradePrice,
             signedChangePrice = signedChangePrice,
-            aacTradePrice24h = aacTradePrice24h
+            aacTradePrice24h = aacTradePrice24h,
         )
     }
 }

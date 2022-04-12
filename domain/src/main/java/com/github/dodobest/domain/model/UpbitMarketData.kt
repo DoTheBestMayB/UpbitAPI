@@ -4,5 +4,5 @@ data class UpbitMarketData(
     val market: String,
     val koreanName: String,
     val englishName: String,
-    val marketWarning: String
+    val marketWarning: String,
 )
