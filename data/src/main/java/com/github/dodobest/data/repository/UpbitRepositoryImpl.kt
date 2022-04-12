@@ -1,5 +1,6 @@
 package com.github.dodobest.data.repository
 
+import com.github.dodobest.data.factory.SingletonHolder
 import com.github.dodobest.data.remote.UpbitRemoteDataSource
 import com.github.dodobest.domain.UpbitRepository
 import com.github.dodobest.domain.model.UpbitMarketData
@@ -28,4 +29,6 @@ internal class UpbitRepositoryImpl(
             }
         }
     }
+
+    companion object : SingletonHolder<UpbitRepository, UpbitRemoteDataSource>(::UpbitRepositoryImpl)
 }
