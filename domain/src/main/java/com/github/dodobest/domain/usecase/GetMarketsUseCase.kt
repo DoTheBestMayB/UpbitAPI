@@ -6,10 +6,4 @@ import io.reactivex.rxjava3.core.Single
 
 interface GetMarketsUseCase {
     fun execute(): Single<List<UpbitMarketData>>
-
-    companion object {
-        fun of(upbitRepository: UpbitRepository): GetMarketsUseCase {
-            return GetMarketsUseCaseImpl(upbitRepository)
-        }
-    }
 }
