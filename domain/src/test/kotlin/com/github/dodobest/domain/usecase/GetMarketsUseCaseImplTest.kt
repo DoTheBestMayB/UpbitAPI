@@ -13,14 +13,16 @@ class GetMarketsUseCaseImplTest {
 
     @Before
     fun setUp() {
+        GetMarketsUseCaseImpl.resetInstanceOnlyForTest()
+
         upbitRepository = mockk(relaxed = true)
-        getMarketsUseCase = GetMarketsUseCase.of(upbitRepository)
+        getMarketsUseCase = GetMarketsUseCaseImpl.getInstance(upbitRepository)
     }
 
     @Test
     fun `getMarketUseCase()를 호출하면 upbitRepository의 getMarkets()를 호출한다`() {
         // when
-        getMarketsUseCase()
+        getMarketsUseCase.execute()
 
         // then
         verify { upbitRepository.getMarkets() }

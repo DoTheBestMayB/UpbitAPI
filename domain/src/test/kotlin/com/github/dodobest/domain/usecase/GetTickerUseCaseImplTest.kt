@@ -13,14 +13,16 @@ class GetTickerUseCaseImplTest {
 
     @Before
     fun setUp() {
+        GetTickerUseCaseImpl.resetInstanceOnlyForTest()
+
         upbitRepository = mockk(relaxed = true)
-        getTickerUseCase = GetTickerUseCase.of(upbitRepository)
+        getTickerUseCase = GetTickerUseCaseImpl.getInstance(upbitRepository)
     }
 
     @Test
     fun `getTickerUseCase()를 호출하면 upbitRepository의 getTicker()를 호출한다`() {
         // when
-        getTickerUseCase("KRW-BTC")
+        getTickerUseCase.execute("KRW-BTC")
 
         // then
         verify { upbitRepository.getTicker("KRW-BTC") }
