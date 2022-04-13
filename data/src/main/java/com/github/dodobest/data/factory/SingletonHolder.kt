@@ -16,4 +16,17 @@ open class SingletonHolder<out T, in A>(val creator: (A) -> (T)) {
             instance!!
         }
     }
+
+    fun resetInstanceOnlyForTest() {
+        if (instance == null) {
+            return
+        }
+
+        synchronized(this) {
+            if (instance == null) {
+                return
+            }
+            instance = null
+        }
+    }
 }

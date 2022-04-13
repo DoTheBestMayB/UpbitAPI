@@ -4,12 +4,20 @@ import com.github.dodobest.data.remote.UpbitRemoteDataSource
 import com.github.dodobest.domain.UpbitRepository
 import io.mockk.mockk
 import io.mockk.verify
-
+import org.junit.Before
 import org.junit.Test
 
 internal class UpbitRepositoryImplTest {
-    private val upbitRemoteDataSource: UpbitRemoteDataSource = mockk(relaxed = true)
-    private val upbitRepository: UpbitRepository = UpbitRepositoryImpl.getInstance(upbitRemoteDataSource)
+    private lateinit var upbitRemoteDataSource: UpbitRemoteDataSource
+    private lateinit var upbitRepository: UpbitRepository
+
+    @Before
+    fun setUp() {
+        UpbitRepositoryImpl.resetInstanceOnlyForTest()
+
+        upbitRemoteDataSource = mockk(relaxed = true)
+        upbitRepository = UpbitRepositoryImpl.getInstance(upbitRemoteDataSource)
+    }
 
     @Test
     fun `upbitRepository getMarkets()를 호출하면 upbitRemoteDataSource getMarkets()를 호출한다`() {
