@@ -1,5 +1,6 @@
 package com.github.dodobest.data.model
 
+import com.github.dodobest.domain.model.UpbitMarketData
 import com.google.gson.annotations.SerializedName
 
 internal data class UpbitMarketData(
@@ -10,5 +11,14 @@ internal data class UpbitMarketData(
     @SerializedName("english_name")
     val englishName: String,
     @SerializedName("market_warning")
-    val marketWarning: String
-)
+    val marketWarning: String,
+) {
+    fun toDomainData(): UpbitMarketData {
+        return UpbitMarketData(
+            market = market,
+            koreanName = koreanName,
+            englishName = englishName,
+            marketWarning = marketWarning,
+        )
+    }
+}

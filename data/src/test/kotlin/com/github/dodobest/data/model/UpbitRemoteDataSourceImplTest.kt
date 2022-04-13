@@ -5,6 +5,7 @@ import com.github.dodobest.data.remote.UpbitRemoteDataSource
 import com.github.dodobest.data.remote.UpbitRemoteDataSourceImpl
 import io.mockk.mockk
 import io.mockk.verify
+
 import org.junit.Before
 import org.junit.Test
 
@@ -14,7 +15,7 @@ internal class UpbitRemoteDataSourceImplTest {
 
     @Before
     fun setUp() {
-        upbitAPI = mockk(relaxed=true)
+        upbitAPI = mockk(relaxed = true)
         upbitRemoteDataSource = UpbitRemoteDataSourceImpl(upbitAPI)
     }
 
@@ -30,9 +31,13 @@ internal class UpbitRemoteDataSourceImplTest {
     @Test
     fun `upbitRemoteDataSource getTicker()를 호출하면 UpbitAPI getTicker()를 호출한다`() {
         // when
-        upbitRemoteDataSource.getTicker("KRW-BTC")
+        upbitRemoteDataSource.getTicker(COIN_NAME)
 
         // then
-        verify { upbitAPI.getTicker("KRW-BTC") }
+        verify { upbitAPI.getTicker(COIN_NAME) }
+    }
+
+    companion object {
+        private const val COIN_NAME = "KRW-BTC"
     }
 }

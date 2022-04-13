@@ -9,6 +9,8 @@ java {
 }
 
 dependencies {
+    implementation(project(":domain"))
+
     with(Network) {
         implementation(RETROFIT)
         implementation(GSON)
