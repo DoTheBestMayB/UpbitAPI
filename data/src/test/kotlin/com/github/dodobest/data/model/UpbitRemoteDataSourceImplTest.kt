@@ -5,6 +5,7 @@ import com.github.dodobest.data.remote.UpbitRemoteDataSource
 import com.github.dodobest.data.remote.UpbitRemoteDataSourceImpl
 import io.mockk.mockk
 import io.mockk.verify
+
 import org.junit.Before
 import org.junit.Test
 

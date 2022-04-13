@@ -6,9 +6,10 @@ import com.github.dodobest.data.model.UpbitTickerData
 import okhttp3.HttpUrl
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
+import java.io.File
+
 import org.junit.Before
 import org.junit.Test
-import java.io.File
 
 internal class UpbitAPITest {
     private lateinit var server: MockWebServer
