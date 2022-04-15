@@ -46,6 +46,8 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":domain"))
 
+    implementation(RxJava.RXJAVA3)
+
     with(Androidx) {
         implementation(APP_COMPAT)
         implementation(CONSTRAINT_LAYOUT)
