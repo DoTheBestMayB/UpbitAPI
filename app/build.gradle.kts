@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("kapt")
 }
 
 android {
@@ -18,6 +19,10 @@ android {
         }
     }
 
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
 
     buildTypes {
         getByName("release") {
@@ -38,9 +43,13 @@ android {
 }
 
 dependencies {
+    implementation(project(":data"))
+    implementation(project(":domain"))
+
     with(Androidx) {
         implementation(APP_COMPAT)
         implementation(CONSTRAINT_LAYOUT)
         implementation(MATERIAL_DESIGN)
+        implementation(FRAGMENT_KTX)
     }
 }
