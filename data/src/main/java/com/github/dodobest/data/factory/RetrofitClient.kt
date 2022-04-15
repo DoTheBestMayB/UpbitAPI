@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object RetrofitClient {
+internal object RetrofitClient {
     private const val UPBIT_BASE_URL = "https://api.upbit.com/v1/"
 
     val upbitRetrofitClient: Retrofit = Retrofit.Builder()
