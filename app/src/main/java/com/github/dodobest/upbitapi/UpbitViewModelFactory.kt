@@ -6,7 +6,7 @@ import com.github.dodobest.data.Injector
 
 class UpbitViewModelFactory : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when (modelClass) {
             UpbitViewModel::class.java -> createViewModel()
             else -> throw IllegalArgumentException()
