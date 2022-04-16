@@ -1,6 +1,6 @@
 object BuildPlugins {
     private const val GRADLE_PLUGIN_VERSION = "7.1.2"
-    private const val KOTLIN_VERSION = "1.5.21"
+    private const val KOTLIN_VERSION = "1.6.20"
 
     const val ANDROID = "com.android.tools.build:gradle:${GRADLE_PLUGIN_VERSION}"
     const val KOTLIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${KOTLIN_VERSION}"
