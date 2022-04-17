@@ -38,7 +38,7 @@ class UpbitViewModelTest {
     }
 
     @Test
-    fun `getMarket을 호출하면 코인 데이터를 수신한다`() {
+    fun `getMarkets를 호출하면 코인 데이터를 수신한다`() {
         // when
         upbitViewModel.getMarkets()
 
@@ -53,10 +53,7 @@ class UpbitViewModelTest {
     }
 
     @Test
-    fun `getMarkets를 호출한 뒤, 수신 받은 코인에 대해 getTicker를 호출하면 KRW-BTC Ticker 데이터를 수신한다`() {
-        // given
-        upbitViewModel.getMarkets()
-
+    fun `서버에 있는 코인에 대해 getTicker를 호출하면 그 코인의 Ticker 데이터를 수신한다`() {
         // when
         upbitViewModel.getTicker(BTC_COIN_NAME)
 
@@ -71,10 +68,7 @@ class UpbitViewModelTest {
     }
 
     @Test
-    fun `getMarkets를 호출한 뒤, 수신 받지 않은 코인에 대해 getTicker를 호출하면 빈 데이터를 수신한다`() {
-        // given
-        upbitViewModel.getMarkets()
-
+    fun `서버에 없는 코인에 대해 getTicker를 호출하면 빈 데이터를 수신한다`() {
         // when
         upbitViewModel.getTicker(NO_EXIST_COIN_NAME)
 
