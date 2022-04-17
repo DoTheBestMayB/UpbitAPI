@@ -1,4 +1,4 @@
-package com.github.dodobest.data.remote
+package com.github.dodobest.data.data
 
 import com.github.dodobest.data.model.UpbitMarketData
 import com.github.dodobest.data.model.UpbitTickerData

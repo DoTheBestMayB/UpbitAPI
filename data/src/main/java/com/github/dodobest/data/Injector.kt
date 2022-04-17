@@ -3,8 +3,8 @@ package com.github.dodobest.data
 import com.github.dodobest.data.factory.DataSourceFactory
 import com.github.dodobest.data.factory.RetrofitClient
 import com.github.dodobest.data.factory.UpbitAPIFactory
-import com.github.dodobest.data.remote.UpbitAPI
-import com.github.dodobest.data.remote.UpbitRemoteDataSource
+import com.github.dodobest.data.data.UpbitAPI
+import com.github.dodobest.data.data.UpbitRemoteDataSource
 import com.github.dodobest.data.repository.UpbitRepositoryImpl
 import com.github.dodobest.domain.UpbitRepository
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
