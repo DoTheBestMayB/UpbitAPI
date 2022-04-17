@@ -36,9 +36,11 @@ object Network {
 object RxJava {
     private const val RXJAVA3_VERSION = "3.1.3"
     private const val RXJAVA3_RETROFIT_ADAPTER_VERSION = "3.0.0"
+    private const val RXJAVA3_RX_ANDROID_VERSION = "3.0.0"
 
     const val RXJAVA3 = "io.reactivex.rxjava3:rxjava:${RXJAVA3_VERSION}"
     const val RXJAVA3_RETROFIT_ADAPTER = "com.github.akarnokd:rxjava3-retrofit-adapter:${RXJAVA3_RETROFIT_ADAPTER_VERSION}"
+    const val RXJAVA3_RX_ANDROID = "io.reactivex.rxjava3:rxandroid:${RXJAVA3_RX_ANDROID_VERSION}"
 }
 
 object Test {

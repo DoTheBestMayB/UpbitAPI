@@ -46,8 +46,12 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":domain"))
 
-    implementation(RxJava.RXJAVA3)
     implementation(Network.RETROFIT)
+
+    with(RxJava) {
+        implementation(RXJAVA3_RX_ANDROID)
+        implementation(RXJAVA3)
+    }
 
     with(Androidx) {
         implementation(APP_COMPAT)
