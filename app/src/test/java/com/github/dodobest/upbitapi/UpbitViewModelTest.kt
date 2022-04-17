@@ -9,8 +9,7 @@ import com.github.dodobest.upbitapi.data.UpbitFakeRemoteDataSet
 import com.github.dodobest.upbitapi.data.UpbitFakeRemoteDataSource
 import com.github.dodobest.upbitapi.scheduler.SchedulerProvider
 import com.github.dodobest.upbitapi.scheduler.TrampolineSchedulerProvider
-import com.github.dodobest.upbitapi.util.getValue
-import com.google.common.truth.Truth.assertThat
+import com.github.dodobest.upbitapi.util.assertLiveData
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -45,9 +44,9 @@ class UpbitViewModelTest {
 
         // then
         try {
-            val actual = getValue(upbitViewModel.marketData)
+            val actual = upbitViewModel.marketData
             val expected = UpbitFakeRemoteDataSet.upbitMarketData.map { it.toDomainData() }
-            assertThat(actual).isEqualTo(expected)
+            assertLiveData(actual).isEqualTo(expected)
         } catch (exception: IllegalArgumentException) {
             println(exception)
         }
@@ -63,9 +62,9 @@ class UpbitViewModelTest {
 
         // then
         try {
-            val actual = getValue(upbitViewModel.tickerData)
+            val actual = upbitViewModel.tickerData
             val expected = mutableMapOf(BTC_COIN_NAME to UpbitFakeRemoteDataSet.upbitBTCTickerData[0].toDomainData())
-            assertThat(actual).isEqualTo(expected)
+            assertLiveData(actual).isEqualTo(expected)
         } catch (exception: IllegalArgumentException) {
             println(exception)
         }
@@ -81,9 +80,9 @@ class UpbitViewModelTest {
 
         // then
         try {
-            val actual = getValue(upbitViewModel.tickerData)
+            val actual = upbitViewModel.tickerData
             val expected = null
-            assertThat(actual).isEqualTo(expected)
+            assertLiveData(actual).isEqualTo(expected)
         } catch (exception: IllegalArgumentException) {
             println(exception)
         }
