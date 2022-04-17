@@ -46,8 +46,10 @@ object Test {
     private const val TRUTH_VERSION = "1.1.3"
     private const val TEST_TRUTH_VERSION = "1.4.0"
     private const val MOCKK_VERSION = "1.12.3"
+    private const val CORE_TESTING_VERSION = "2.1.0"
 
     const val JUNIT = "junit:junit:${JUNIT_VERSION}"
     const val TRUTH = "com.google.truth:truth:${TRUTH_VERSION}"
     const val MOCKK = "io.mockk:mockk:${MOCKK_VERSION}"
+    const val CORE_TEST = "androidx.arch.core:core-testing:${CORE_TESTING_VERSION}"
 }

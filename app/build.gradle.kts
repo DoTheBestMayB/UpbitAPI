@@ -59,5 +59,6 @@ dependencies {
     with(Test) {
         implementation(JUNIT)
         implementation(TRUTH)
+        implementation(CORE_TEST)
     }
 }
