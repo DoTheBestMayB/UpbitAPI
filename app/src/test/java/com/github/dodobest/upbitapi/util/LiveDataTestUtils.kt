@@ -1,4 +1,4 @@
-package com.github.dodobest.upbitapi.utils
+package com.github.dodobest.upbitapi.util
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
