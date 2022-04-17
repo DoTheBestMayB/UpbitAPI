@@ -7,6 +7,8 @@ import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
 import com.github.dodobest.upbitapi.data.UpbitFakeRemoteDataSet
 import com.github.dodobest.upbitapi.data.UpbitFakeRemoteDataSource
+import com.github.dodobest.upbitapi.scheduler.SchedulerProvider
+import com.github.dodobest.upbitapi.scheduler.TrampolineSchedulerProvider
 import com.github.dodobest.upbitapi.util.getValue
 import com.google.common.truth.Truth.assertThat
 import org.junit.Before
@@ -23,6 +25,7 @@ class UpbitViewModelTest {
     lateinit var upbitRepository: UpbitRepository
     lateinit var getMarketsUseCase: GetMarketsUseCase
     lateinit var getTickerUseCase: GetTickerUseCase
+    lateinit var schedulerProvider: SchedulerProvider
     lateinit var upbitViewModel: UpbitViewModel
 
     @Before
@@ -31,7 +34,8 @@ class UpbitViewModelTest {
         upbitRepository = Injector.provideUpbitRepository(upbitFakeRemoteDataSource)
         getMarketsUseCase = Injector.provideGetMarketsUseCase(upbitRepository)
         getTickerUseCase = Injector.provideGetTickerUseCase(upbitRepository)
-        upbitViewModel = UpbitViewModel(getMarketsUseCase, getTickerUseCase)
+        schedulerProvider = TrampolineSchedulerProvider()
+        upbitViewModel = UpbitViewModel(getMarketsUseCase, getTickerUseCase, schedulerProvider)
     }
 
     @Test
