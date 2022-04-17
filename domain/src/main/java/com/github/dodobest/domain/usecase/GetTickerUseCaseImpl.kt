@@ -8,8 +8,8 @@ import io.reactivex.rxjava3.core.Single
 class GetTickerUseCaseImpl(
     private val upbitRepository: UpbitRepository
 ) : GetTickerUseCase {
-    override fun execute(coinName: String): Single<List<UpbitTickerData>> {
-        return upbitRepository.getTicker(coinName)
+    override fun execute(market: String): Single<List<UpbitTickerData>> {
+        return upbitRepository.getTicker(market)
     }
 
     companion object : SingletonHolder<GetTickerUseCase, UpbitRepository>(::GetTickerUseCaseImpl)

@@ -5,5 +5,5 @@ import com.github.dodobest.domain.model.UpbitTickerData
 import io.reactivex.rxjava3.core.Single
 
 interface GetTickerUseCase {
-    fun execute(coinName: String): Single<List<UpbitTickerData>>
+    fun execute(market: String): Single<List<UpbitTickerData>>
 }

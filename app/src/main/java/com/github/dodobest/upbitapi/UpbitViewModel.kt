@@ -15,13 +15,13 @@ class UpbitViewModel(
     private val getMarketsUseCase: GetMarketsUseCase,
     private val getTickerUseCase: GetTickerUseCase,
 ) : ViewModel() {
-    private val _coinNameData = MutableLiveData<List<UpbitMarketData>>()
-    val coinNameData: LiveData<List<UpbitMarketData>>
-        get() = _coinNameData
+    private val _marketData = MutableLiveData<List<UpbitMarketData>>()
+    val marketData: LiveData<List<UpbitMarketData>>
+        get() = _marketData
 
-    private val _coinPriceData = MutableLiveData<MutableMap<String, UpbitTickerData>>()
-    val coinPriceData: LiveData<MutableMap<String, UpbitTickerData>>
-        get() = _coinPriceData
+    private val _tickerData = MutableLiveData<MutableMap<String, UpbitTickerData>>()
+    val tickerData: LiveData<MutableMap<String, UpbitTickerData>>
+        get() = _tickerData
 
     private val _errMessage = MutableLiveData<String>()
     val errMessage: LiveData<String>
@@ -29,7 +29,7 @@ class UpbitViewModel(
 
     fun getMarkets() {
         processSingleData(getMarketsUseCase.execute(), { upbitMarketDataList ->
-            _coinNameData.value = upbitMarketDataList
+            _marketData.value = upbitMarketDataList
             upbitMarketDataList.map { upbitMarketData ->
                 getTicker(upbitMarketData.englishName)
             }
@@ -39,13 +39,13 @@ class UpbitViewModel(
         })
     }
 
-    fun getTicker(coinName: String) {
-        processSingleData(getTickerUseCase.execute(coinName), { upbitTickerDataList ->
+    fun getTicker(market: String) {
+        processSingleData(getTickerUseCase.execute(market), { upbitTickerDataList ->
             upbitTickerDataList.map { upbitTickerData ->
-                if (_coinPriceData.value != null) {
-                    _coinPriceData.value!![coinName] = upbitTickerData
+                if (_tickerData.value != null) {
+                    _tickerData.value!![market] = upbitTickerData
                 }
-                _coinPriceData.value = mutableMapOf(coinName to upbitTickerData)
+                _tickerData.value = mutableMapOf(market to upbitTickerData)
             }
         }, {
             Log.d(TAG, it.message ?: "")

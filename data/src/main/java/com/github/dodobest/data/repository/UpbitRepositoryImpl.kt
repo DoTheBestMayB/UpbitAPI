@@ -18,8 +18,8 @@ internal class UpbitRepositoryImpl(
         }
     }
 
-    override fun getTicker(coinName: String): Single<List<UpbitTickerData>> {
-        return upbitRemoteDataSource.getTicker(coinName).map { upbitTickerDataList ->
+    override fun getTicker(market: String): Single<List<UpbitTickerData>> {
+        return upbitRemoteDataSource.getTicker(market).map { upbitTickerDataList ->
             upbitTickerDataList.map { upbitTickerData ->
                 upbitTickerData.toDomainData()
             }

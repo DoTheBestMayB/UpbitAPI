@@ -11,8 +11,8 @@ internal class UpbitRemoteDataSourceImpl(
         return upbitAPI.getMarkets()
     }
 
-    override fun getTicker(coinName: String): Single<List<UpbitTickerData>> {
-        return upbitAPI.getTicker(coinName)
+    override fun getTicker(market: String): Single<List<UpbitTickerData>> {
+        return upbitAPI.getTicker(market)
     }
 
 }
