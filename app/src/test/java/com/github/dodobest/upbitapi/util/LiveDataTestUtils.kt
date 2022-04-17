@@ -12,7 +12,7 @@ fun <T> assertLiveData(liveData: LiveData<T>): Subject {
 }
 
 @Throws(InterruptedException::class)
-private fun <T> getValue(liveData: LiveData<T>): T? {
+fun <T> getValue(liveData: LiveData<T>): T? {
     var data: T? = null
     val latch = CountDownLatch(1)
     val observer = object : Observer<T> {
