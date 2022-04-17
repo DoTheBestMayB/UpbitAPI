@@ -55,4 +55,9 @@ dependencies {
         implementation(MATERIAL_DESIGN)
         implementation(FRAGMENT_KTX)
     }
+
+    with(Test) {
+        implementation(JUNIT)
+        implementation(TRUTH)
+    }
 }
