@@ -20,12 +20,12 @@ class UpbitViewModelTest {
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 
-    lateinit var upbitFakeRemoteDataSource: UpbitFakeRemoteDataSource
-    lateinit var upbitRepository: UpbitRepository
-    lateinit var getMarketsUseCase: GetMarketsUseCase
-    lateinit var getTickerUseCase: GetTickerUseCase
-    lateinit var schedulerProvider: SchedulerProvider
-    lateinit var upbitViewModel: UpbitViewModel
+    private lateinit var upbitFakeRemoteDataSource: UpbitFakeRemoteDataSource
+    private lateinit var upbitRepository: UpbitRepository
+    private lateinit var getMarketsUseCase: GetMarketsUseCase
+    private lateinit var getTickerUseCase: GetTickerUseCase
+    private lateinit var schedulerProvider: SchedulerProvider
+    private lateinit var upbitViewModel: UpbitViewModel
 
     @Before
     fun setUp() {
