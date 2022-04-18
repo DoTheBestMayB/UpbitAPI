@@ -1,5 +1,6 @@
 package com.github.dodobest.upbitapi
 
+import android.text.Editable
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -24,9 +25,17 @@ class UpbitViewModel(
     val tickerData: LiveData<MutableMap<String, UpbitTickerData>>
         get() = _tickerData
 
+    private val _tickerSearchName = MutableLiveData<String>()
+    val tickerSearchName: LiveData<String>
+        get() = _tickerSearchName
+
     private val _errMessage = MutableLiveData<String>()
     val errMessage: LiveData<String>
         get() = _errMessage
+
+    fun setTickerSearchName(inputSearchName: Editable) {
+        _tickerSearchName.value = inputSearchName.toString()
+    }
 
     fun getMarkets() {
         processSingleData(getMarketsUseCase.execute(), { upbitMarketDataList ->
