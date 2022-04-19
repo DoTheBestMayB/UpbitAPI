@@ -11,7 +11,6 @@ import com.github.dodobest.upbitapi.util.assertLiveData
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.lang.IllegalArgumentException
 
 
 class UpbitViewModelTest {
@@ -37,47 +36,43 @@ class UpbitViewModelTest {
 
     @Test
     fun `getMarkets를 호출하면 코인 데이터를 수신한다`() {
+        // given
+        val expected = UpbitFakeRemoteDataSet.upbitMarketData.map { it.toDomainData() }
+
         // when
         upbitViewModel.getMarkets()
 
         // then
-        try {
-            val actual = upbitViewModel.marketData
-            val expected = UpbitFakeRemoteDataSet.upbitMarketData.map { it.toDomainData() }
-            assertLiveData(actual).isEqualTo(expected)
-        } catch (exception: IllegalArgumentException) {
-            println(exception)
-        }
+        val actual = upbitViewModel.marketData
+        assertLiveData(actual).isEqualTo(expected)
     }
 
     @Test
     fun `서버에 있는 코인에 대해 getTicker를 호출하면 그 코인의 Ticker 데이터를 수신한다`() {
+        // given
+        val expected = mutableMapOf(BTC_COIN_NAME to UpbitFakeRemoteDataSet.upbitBTCTickerData[0].toDomainData())
+
         // when
         upbitViewModel.getTicker(BTC_COIN_NAME)
 
         // then
-        try {
-            val actual = upbitViewModel.tickerData
-            val expected = mutableMapOf(BTC_COIN_NAME to UpbitFakeRemoteDataSet.upbitBTCTickerData[0].toDomainData())
-            assertLiveData(actual).isEqualTo(expected)
-        } catch (exception: IllegalArgumentException) {
-            println(exception)
-        }
+        val actual = upbitViewModel.tickerData
+        assertLiveData(actual).isEqualTo(expected)
+
     }
 
     @Test
     fun `서버에 없는 코인에 대해 getTicker를 호출하면 빈 데이터를 수신한다`() {
+        // given
+        val expected = null
+
         // when
         upbitViewModel.getTicker(NO_EXIST_COIN_NAME)
 
         // then
-        try {
-            val actual = upbitViewModel.tickerData
-            val expected = null
-            assertLiveData(actual).isEqualTo(expected)
-        } catch (exception: IllegalArgumentException) {
-            println(exception)
-        }
+        val actual = upbitViewModel.tickerData
+        assertLiveData(actual).isEqualTo(expected)
+
     }
 
     companion object {
