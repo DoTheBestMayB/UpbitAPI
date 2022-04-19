@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="@{() -> viewModel.getMarkets()}"
-            android:text="@string/getMarketsButton" />
+            android:text="@string/get_markets_button" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:layout_height="match_parent"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="@string/editTextTickerNameHint"
+                android:hint="@string/edit_text_ticker_name_hint"
                 android:afterTextChanged="@{viewModel::setTickerSearchName}"
                 android:text="@{viewModel.tickerSearchName}"/>
 
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:onClick="@{() -> viewModel.getTicker(viewModel.tickerSearchName)}"
-                android:text="@string/getTickerButton" />
+                android:text="@string/get_ticker_button" />
 
         </LinearLayout>
 
