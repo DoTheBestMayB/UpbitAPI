@@ -2,14 +2,8 @@ package com.github.dodobest.upbitapi.util
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import com.google.common.truth.Subject
-import com.google.common.truth.Truth.assertThat
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
-
-fun <T> assertLiveData(liveData: LiveData<T>): Subject {
-    return assertThat(getValue(liveData))
-}
 
 @Throws(InterruptedException::class)
 fun <T> getValue(liveData: LiveData<T>): T? {
