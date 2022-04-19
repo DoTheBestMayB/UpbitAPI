@@ -3,6 +3,7 @@ package com.github.dodobest.upbitapi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.github.dodobest.data.Injector
+import com.github.dodobest.domain.InjectorDomain
 
 class UpbitViewModelFactory : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
@@ -18,8 +19,8 @@ class UpbitViewModelFactory : ViewModelProvider.Factory {
         val upbitAPI = Injector.provideUpbitAPI(upbitRetrofit)
         val upbitRemoteDataSource = Injector.provideUpbitRemoteDataSource(upbitAPI)
         val upbitRepository = Injector.provideUpbitRepository(upbitRemoteDataSource)
-        val getMarketsUseCase = Injector.provideGetMarketsUseCase(upbitRepository)
-        val getTickerUseCase = Injector.provideGetTickerUseCase(upbitRepository)
+        val getMarketsUseCase = InjectorDomain.provideGetMarketsUseCase(upbitRepository)
+        val getTickerUseCase = InjectorDomain.provideGetTickerUseCase(upbitRepository)
 
         return UpbitViewModel(getMarketsUseCase, getTickerUseCase)
     }

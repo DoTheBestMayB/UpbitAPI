@@ -3,6 +3,7 @@ package com.github.dodobest.upbitapi
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.github.dodobest.data.Injector
 import com.github.dodobest.data.data.UpbitRemoteDataSource
+import com.github.dodobest.domain.InjectorDomain
 import com.github.dodobest.domain.UpbitRepository
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
@@ -29,8 +30,8 @@ class UpbitViewModelTest {
     fun setUp() {
         upbitRemoteDataSource = mockk(relaxed = true)
         upbitRepository = Injector.provideUpbitRepository(upbitRemoteDataSource)
-        getMarketsUseCase = Injector.provideGetMarketsUseCase(upbitRepository)
-        getTickerUseCase = Injector.provideGetTickerUseCase(upbitRepository)
+        getMarketsUseCase = InjectorDomain.provideGetMarketsUseCase(upbitRepository)
+        getTickerUseCase = InjectorDomain.provideGetTickerUseCase(upbitRepository)
         upbitViewModel = UpbitViewModel(getMarketsUseCase, getTickerUseCase)
     }
 
