@@ -38,37 +38,29 @@ class UpbitViewModel(
     }
 
     fun getMarkets() {
-        processSingleData(getMarketsUseCase.execute(), { upbitMarketDataList ->
-            _marketData.value = upbitMarketDataList
-            upbitMarketDataList.map { upbitMarketData ->
-                getTicker(upbitMarketData.englishName)
-            }
-        }, {
-            Log.d(TAG, it.message ?: "")
-            _errMessage.value = it.message
-        })
+        getMarketsUseCase.execute().observeOn(schedulerProvider.ui())
+            .subscribe({ upbitMarketDataList ->
+                _marketData.value = upbitMarketDataList
+                upbitMarketDataList.map { upbitMarketData ->
+                    getTicker(upbitMarketData.englishName)
+                }
+            }, {
+                Log.d(TAG, it.message ?: "")
+                _errMessage.value = it.message
+            })
     }
 
     fun getTicker(market: String) {
-        processSingleData(getTickerUseCase.execute(market), { upbitTickerDataList ->
-            upbitTickerDataList.map { upbitTickerData ->
-                _tickerData.value = _tickerData.value ?: mapOf<String, UpbitTickerData>() +
-                        mapOf(market to upbitTickerData)
-            }
-        }, {
-            Log.d(TAG, it.message ?: "")
-            _errMessage.value = it.message
-        })
-    }
-
-    private fun <T> processSingleData(
-        singleData: Single<List<T>>,
-        onSuccess: (List<T>) -> Unit,
-        onFailure: (Throwable) -> Unit,
-    ) {
-        singleData.subscribeOn(schedulerProvider.io())
-            .observeOn(schedulerProvider.ui())
-            .subscribe(onSuccess, onFailure)
+        getTickerUseCase.execute(market).observeOn(schedulerProvider.ui())
+            .subscribe({ upbitTickerDataList ->
+                upbitTickerDataList.map { upbitTickerData ->
+                    _tickerData.value = _tickerData.value ?: mapOf<String, UpbitTickerData>() +
+                            mapOf(market to upbitTickerData)
+                }
+            }, {
+                Log.d(TAG, it.message ?: "")
+                _errMessage.value = it.message
+            })
     }
 
     companion object {
