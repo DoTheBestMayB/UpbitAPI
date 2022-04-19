@@ -21,8 +21,8 @@ class UpbitViewModel(
     val marketData: LiveData<List<UpbitMarketData>>
         get() = _marketData
 
-    private val _tickerData = MutableLiveData<MutableMap<String, UpbitTickerData>>()
-    val tickerData: LiveData<MutableMap<String, UpbitTickerData>>
+    private val _tickerData = MutableLiveData<Map<String, UpbitTickerData>>()
+    val tickerData: LiveData<Map<String, UpbitTickerData>>
         get() = _tickerData
 
     private val _tickerSearchName = MutableLiveData<String>()
@@ -52,10 +52,8 @@ class UpbitViewModel(
     fun getTicker(market: String) {
         processSingleData(getTickerUseCase.execute(market), { upbitTickerDataList ->
             upbitTickerDataList.map { upbitTickerData ->
-                if (_tickerData.value != null) {
-                    _tickerData.value!![market] = upbitTickerData
-                }
-                _tickerData.value = mutableMapOf(market to upbitTickerData)
+                _tickerData.value = _tickerData.value ?: mapOf<String, UpbitTickerData>() +
+                        mapOf(market to upbitTickerData)
             }
         }, {
             Log.d(TAG, it.message ?: "")
