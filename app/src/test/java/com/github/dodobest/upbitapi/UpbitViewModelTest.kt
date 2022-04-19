@@ -7,8 +7,6 @@ import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
 import com.github.dodobest.upbitapi.data.UpbitFakeRemoteDataSet
 import com.github.dodobest.upbitapi.data.UpbitFakeRemoteDataSource
-import com.github.dodobest.upbitapi.scheduler.SchedulerProvider
-import com.github.dodobest.upbitapi.scheduler.TrampolineSchedulerProvider
 import com.github.dodobest.upbitapi.util.assertLiveData
 import org.junit.Before
 import org.junit.Rule
@@ -19,12 +17,13 @@ import java.lang.IllegalArgumentException
 class UpbitViewModelTest {
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
+    @get:Rule
+    val testSchedulerRule = RxImmediateSchedulerRule()
 
     private lateinit var upbitFakeRemoteDataSource: UpbitFakeRemoteDataSource
     private lateinit var upbitRepository: UpbitRepository
     private lateinit var getMarketsUseCase: GetMarketsUseCase
     private lateinit var getTickerUseCase: GetTickerUseCase
-    private lateinit var schedulerProvider: SchedulerProvider
     private lateinit var upbitViewModel: UpbitViewModel
 
     @Before
@@ -33,8 +32,7 @@ class UpbitViewModelTest {
         upbitRepository = Injector.provideUpbitRepository(upbitFakeRemoteDataSource)
         getMarketsUseCase = Injector.provideGetMarketsUseCase(upbitRepository)
         getTickerUseCase = Injector.provideGetTickerUseCase(upbitRepository)
-        schedulerProvider = TrampolineSchedulerProvider()
-        upbitViewModel = UpbitViewModel(getMarketsUseCase, getTickerUseCase, schedulerProvider)
+        upbitViewModel = UpbitViewModel(getMarketsUseCase, getTickerUseCase)
     }
 
     @Test
