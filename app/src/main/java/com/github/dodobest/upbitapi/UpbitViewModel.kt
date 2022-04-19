@@ -9,13 +9,11 @@ import com.github.dodobest.domain.model.UpbitMarketData
 import com.github.dodobest.domain.model.UpbitTickerData
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
-import com.github.dodobest.upbitapi.scheduler.SchedulerProvider
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 
 class UpbitViewModel(
     private val getMarketsUseCase: GetMarketsUseCase,
     private val getTickerUseCase: GetTickerUseCase,
-    private val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
     private val _marketData = MutableLiveData<List<UpbitMarketData>>()
     val marketData: LiveData<List<UpbitMarketData>>
@@ -38,7 +36,7 @@ class UpbitViewModel(
     }
 
     fun getMarkets() {
-        getMarketsUseCase.execute().observeOn(schedulerProvider.ui())
+        getMarketsUseCase.execute().observeOn(AndroidSchedulers.mainThread())
             .subscribe({ upbitMarketDataList ->
                 _marketData.value = upbitMarketDataList
                 upbitMarketDataList.map { upbitMarketData ->
@@ -51,7 +49,7 @@ class UpbitViewModel(
     }
 
     fun getTicker(market: String) {
-        getTickerUseCase.execute(market).observeOn(schedulerProvider.ui())
+        getTickerUseCase.execute(market).observeOn(AndroidSchedulers.mainThread())
             .subscribe({ upbitTickerDataList ->
                 upbitTickerDataList.map { upbitTickerData ->
                     _tickerData.value = _tickerData.value ?: mapOf<String, UpbitTickerData>() +

@@ -3,7 +3,6 @@ package com.github.dodobest.upbitapi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.github.dodobest.data.Injector
-import com.github.dodobest.upbitapi.scheduler.UpbitSchedulerProvider
 
 class UpbitViewModelFactory : ViewModelProvider.Factory {
     @Suppress("UNCHECKED_CAST")
@@ -21,8 +20,7 @@ class UpbitViewModelFactory : ViewModelProvider.Factory {
         val upbitRepository = Injector.provideUpbitRepository(upbitRemoteDataSource)
         val getMarketsUseCase = Injector.provideGetMarketsUseCase(upbitRepository)
         val getTickerUseCase = Injector.provideGetTickerUseCase(upbitRepository)
-        val upbitSchedulerProvider = UpbitSchedulerProvider()
 
-        return UpbitViewModel(getMarketsUseCase, getTickerUseCase, upbitSchedulerProvider)
+        return UpbitViewModel(getMarketsUseCase, getTickerUseCase)
     }
 }
