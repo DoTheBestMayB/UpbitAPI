@@ -63,5 +63,6 @@ dependencies {
         implementation(JUNIT)
         implementation(TRUTH)
         implementation(CORE_TEST)
+        implementation(MOCKK)
     }
 }
