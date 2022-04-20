@@ -54,7 +54,7 @@ class UpbitViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ tickers ->
                 tickers.map { ticker ->
-                    _tickers.value = _tickers.value ?: mapOf<String, UpbitTickerData>() +
+                    _tickers.value = (_tickers.value ?: mapOf()) +
                             mapOf(marketCodeName to ticker)
                 }
             }, {
