@@ -46,6 +46,7 @@ dependencies {
     implementation(project(":domain"))
 
     implementation(Network.RETROFIT)
+    implementation(Etc.TIMBER)
 
     with(RxJava) {
         implementation(RXJAVA3_RX_ANDROID)
