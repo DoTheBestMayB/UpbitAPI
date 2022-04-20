@@ -1,7 +1,6 @@
 package com.github.dodobest.upbitapi
 
 import android.text.Editable
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +9,7 @@ import com.github.dodobest.domain.model.UpbitTickerData
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import timber.log.Timber
 
 class UpbitViewModel(
     private val getMarketsUseCase: GetMarketsUseCase,
@@ -44,7 +44,7 @@ class UpbitViewModel(
                     getTicker(marketCoinName.market)
                 }
             }, {
-                Log.d(TAG, it.message ?: "")
+                Timber.e(it.message ?: "")
                 _errMessage.value = it.message
             })
     }
@@ -58,12 +58,8 @@ class UpbitViewModel(
                             mapOf(marketCodeName to ticker)
                 }
             }, {
-                Log.d(TAG, it.message ?: "")
+                Timber.e(it.message ?: "")
                 _errMessage.value = it.message
             })
-    }
-
-    companion object {
-        private const val TAG = "UpbitViewModel"
     }
 }
