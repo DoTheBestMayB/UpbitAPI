@@ -36,7 +36,8 @@ class UpbitViewModel(
     }
 
     fun getMarkets() {
-        getMarketsUseCase.execute().observeOn(AndroidSchedulers.mainThread())
+        getMarketsUseCase.execute()
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ marketCoinNames ->
                 _marketCoinNames.value = marketCoinNames
                 marketCoinNames.map { marketCoinName ->
@@ -49,7 +50,8 @@ class UpbitViewModel(
     }
 
     fun getTicker(marketCodeName: String) {
-        getTickerUseCase.execute(marketCodeName).observeOn(AndroidSchedulers.mainThread())
+        getTickerUseCase.execute(marketCodeName)
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ tickers ->
                 tickers.map { ticker ->
                     _tickers.value = _tickers.value ?: mapOf<String, UpbitTickerData>() +
