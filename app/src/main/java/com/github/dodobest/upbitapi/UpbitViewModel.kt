@@ -15,13 +15,13 @@ class UpbitViewModel(
     private val getMarketsUseCase: GetMarketsUseCase,
     private val getTickerUseCase: GetTickerUseCase,
 ) : ViewModel() {
-    private val _marketData = MutableLiveData<List<UpbitMarketData>>()
-    val marketData: LiveData<List<UpbitMarketData>>
-        get() = _marketData
+    private val _marketCoinNames = MutableLiveData<List<UpbitMarketData>>()
+    val marketCoinNames: LiveData<List<UpbitMarketData>>
+        get() = _marketCoinNames
 
-    private val _tickerData = MutableLiveData<Map<String, UpbitTickerData>>()
-    val tickerData: LiveData<Map<String, UpbitTickerData>>
-        get() = _tickerData
+    private val _tickers = MutableLiveData<Map<String, UpbitTickerData>>()
+    val tickers: LiveData<Map<String, UpbitTickerData>>
+        get() = _tickers
 
     private val _tickerSearchName = MutableLiveData<String>()
     val tickerSearchName: LiveData<String>
@@ -37,10 +37,10 @@ class UpbitViewModel(
 
     fun getMarkets() {
         getMarketsUseCase.execute().observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ upbitMarketDataList ->
-                _marketData.value = upbitMarketDataList
-                upbitMarketDataList.map { upbitMarketData ->
-                    getTicker(upbitMarketData.englishName)
+            .subscribe({ marketCoinNames ->
+                _marketCoinNames.value = marketCoinNames
+                marketCoinNames.map { marketCoinName ->
+                    getTicker(marketCoinName.englishName)
                 }
             }, {
                 Log.d(TAG, it.message ?: "")
@@ -48,12 +48,12 @@ class UpbitViewModel(
             })
     }
 
-    fun getTicker(market: String) {
-        getTickerUseCase.execute(market).observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ upbitTickerDataList ->
-                upbitTickerDataList.map { upbitTickerData ->
-                    _tickerData.value = _tickerData.value ?: mapOf<String, UpbitTickerData>() +
-                            mapOf(market to upbitTickerData)
+    fun getTicker(marketCodeName: String) {
+        getTickerUseCase.execute(marketCodeName).observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ tickers ->
+                tickers.map { ticker ->
+                    _tickers.value = _tickers.value ?: mapOf<String, UpbitTickerData>() +
+                            mapOf(marketCodeName to ticker)
                 }
             }, {
                 Log.d(TAG, it.message ?: "")

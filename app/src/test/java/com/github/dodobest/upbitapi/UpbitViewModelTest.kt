@@ -47,13 +47,13 @@ class UpbitViewModelTest {
     @Test
     fun `UpbitViewModel getTicker를 호출하면 UpbitRepository getTicker를 호출한다`() {
         // when
-        upbitViewModel.getTicker(BTC_COIN_NAME)
+        upbitViewModel.getTicker(BTC_CODE_NAME)
 
         // then
-        verify { upbitRepository.getTicker(BTC_COIN_NAME) }
+        verify { upbitRepository.getTicker(BTC_CODE_NAME) }
     }
 
     companion object {
-        private const val BTC_COIN_NAME = "KRW-BTC"
+        private const val BTC_CODE_NAME = "KRW-BTC"
     }
 }

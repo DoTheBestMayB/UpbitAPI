@@ -47,12 +47,12 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.marketData.toString()}" />
+            android:text="@{viewModel.marketCoinNames.toString()}" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.tickerData.toString()}" />
+            android:text="@{viewModel.tickers.toString()}" />
 
     </LinearLayout>
 </layout>
