@@ -40,7 +40,7 @@ class UpbitViewModel(
             .subscribe({ marketCoinNames ->
                 _marketCoinNames.value = marketCoinNames
                 marketCoinNames.map { marketCoinName ->
-                    getTicker(marketCoinName.englishName)
+                    getTicker(marketCoinName.market)
                 }
             }, {
                 Log.d(TAG, it.message ?: "")
