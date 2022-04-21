@@ -8,7 +8,7 @@ import com.github.dodobest.domain.UpbitRepository
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
 import com.github.dodobest.upbitapi.model.UpbitFakeRemoteDataSet
-import com.github.dodobest.upbitapi.util.getValue
+import com.github.dodobest.upbitapi.util.getOrAwaitValue
 import com.google.common.truth.Truth.assertThat
 import io.mockk.every
 import io.mockk.mockk
@@ -60,12 +60,12 @@ class UpbitViewModelTest {
         upbitViewModel.getMarkets()
 
         // then
-        assertThat(getValue(upbitViewModel.marketCoinNames)).isEqualTo(
+        assertThat(upbitViewModel.marketCoinNames.getOrAwaitValue()).isEqualTo(
             UpbitFakeRemoteDataSet.upbitMarketData.map {
                 it.toDomainData()
             }
         )
-        assertThat(getValue(upbitViewModel.tickers)).isEqualTo(
+        assertThat(upbitViewModel.tickers.getOrAwaitValue()).isEqualTo(
             UpbitFakeRemoteDataSet.upbitTickerData
         )
     }
@@ -81,7 +81,7 @@ class UpbitViewModelTest {
         upbitViewModel.getTicker(BTC_CODE_NAME)
 
         // then
-        assertThat(getValue(upbitViewModel.tickers)).isEqualTo(
+        assertThat(upbitViewModel.tickers.getOrAwaitValue()).isEqualTo(
             mapOf(BTC_CODE_NAME to UpbitFakeRemoteDataSet.upbitBTCTickerData[0].toDomainData())
         )
     }
