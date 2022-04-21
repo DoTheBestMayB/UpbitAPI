@@ -60,14 +60,14 @@ class UpbitViewModelTest {
         upbitViewModel.getMarkets()
 
         // then
-        assertThat(upbitViewModel.marketCoinNames.getOrAwaitValue()).isEqualTo(
-            UpbitFakeRemoteDataSet.upbitMarketData.map {
-                it.toDomainData()
-            }
-        )
-        assertThat(upbitViewModel.tickers.getOrAwaitValue()).isEqualTo(
-            UpbitFakeRemoteDataSet.upbitTickerData
-        )
+        assertThat(upbitViewModel.marketCoinNames.getOrAwaitValue())
+            .isEqualTo(
+                UpbitFakeRemoteDataSet.upbitMarketData.map { it.toDomainData() }
+            )
+        assertThat(upbitViewModel.tickers.getOrAwaitValue())
+            .isEqualTo(
+                UpbitFakeRemoteDataSet.upbitTickerData
+            )
     }
 
     @Test
@@ -81,9 +81,10 @@ class UpbitViewModelTest {
         upbitViewModel.getTicker(BTC_CODE_NAME)
 
         // then
-        assertThat(upbitViewModel.tickers.getOrAwaitValue()).isEqualTo(
-            mapOf(BTC_CODE_NAME to UpbitFakeRemoteDataSet.upbitBTCTickerData[0].toDomainData())
-        )
+        assertThat(upbitViewModel.tickers.getOrAwaitValue())
+            .isEqualTo(
+                mapOf(BTC_CODE_NAME to UpbitFakeRemoteDataSet.upbitBTCTickerData[0].toDomainData())
+            )
     }
 
     companion object {
