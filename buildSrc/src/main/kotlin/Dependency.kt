@@ -1,6 +1,6 @@
 object BuildPlugins {
     private const val GRADLE_PLUGIN_VERSION = "7.1.2"
-    private const val KOTLIN_VERSION = "1.5.21"
+    private const val KOTLIN_VERSION = "1.6.20"
 
     const val ANDROID = "com.android.tools.build:gradle:${GRADLE_PLUGIN_VERSION}"
     const val KOTLIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${KOTLIN_VERSION}"
@@ -11,11 +11,13 @@ object Androidx {
     private const val APP_COMPAT_VERSION = "1.4.1"
     private const val MATERIAL_VERSION = "1.5.0"
     private const val CONSTRAINT_LAYOUT_VERSION = "2.1.3"
+    private const val FRAGMENT_KTX_VERSION = "1.4.1"
 
     const val CORE_KTX = "androidx.core:core-ktx:${CORE_KTX_VERSION}"
     const val APP_COMPAT = "androidx.appcompat:appcompat:${APP_COMPAT_VERSION}"
     const val MATERIAL_DESIGN = "com.google.android.material:material:${MATERIAL_VERSION}"
     const val CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${CONSTRAINT_LAYOUT_VERSION}"
+    const val FRAGMENT_KTX = "androidx.fragment:fragment-ktx:${FRAGMENT_KTX_VERSION}"
 }
 
 object Network {
@@ -34,9 +36,11 @@ object Network {
 object RxJava {
     private const val RXJAVA3_VERSION = "3.1.3"
     private const val RXJAVA3_RETROFIT_ADAPTER_VERSION = "3.0.0"
+    private const val RXJAVA3_RX_ANDROID_VERSION = "3.0.0"
 
     const val RXJAVA3 = "io.reactivex.rxjava3:rxjava:${RXJAVA3_VERSION}"
     const val RXJAVA3_RETROFIT_ADAPTER = "com.github.akarnokd:rxjava3-retrofit-adapter:${RXJAVA3_RETROFIT_ADAPTER_VERSION}"
+    const val RXJAVA3_RX_ANDROID = "io.reactivex.rxjava3:rxandroid:${RXJAVA3_RX_ANDROID_VERSION}"
 }
 
 object Test {
@@ -44,8 +48,16 @@ object Test {
     private const val TRUTH_VERSION = "1.1.3"
     private const val TEST_TRUTH_VERSION = "1.4.0"
     private const val MOCKK_VERSION = "1.12.3"
+    private const val CORE_TESTING_VERSION = "2.1.0"
 
     const val JUNIT = "junit:junit:${JUNIT_VERSION}"
     const val TRUTH = "com.google.truth:truth:${TRUTH_VERSION}"
     const val MOCKK = "io.mockk:mockk:${MOCKK_VERSION}"
+    const val CORE_TEST = "androidx.arch.core:core-testing:${CORE_TESTING_VERSION}"
+}
+
+object Etc {
+    private const val TIMBER_VERSION = "5.0.1"
+
+    const val TIMBER = "com.jakewharton.timber:timber:${TIMBER_VERSION}"
 }

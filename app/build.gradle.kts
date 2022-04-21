@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("kapt")
 }
 
 android {
@@ -18,6 +19,9 @@ android {
         }
     }
 
+    buildFeatures {
+        dataBinding = true
+    }
 
     buildTypes {
         getByName("release") {
@@ -38,9 +42,28 @@ android {
 }
 
 dependencies {
+    implementation(project(":data"))
+    implementation(project(":domain"))
+
+    implementation(Network.RETROFIT)
+    implementation(Etc.TIMBER)
+
+    with(RxJava) {
+        implementation(RXJAVA3_RX_ANDROID)
+        implementation(RXJAVA3)
+    }
+
     with(Androidx) {
         implementation(APP_COMPAT)
         implementation(CONSTRAINT_LAYOUT)
         implementation(MATERIAL_DESIGN)
+        implementation(FRAGMENT_KTX)
+    }
+
+    with(Test) {
+        implementation(JUNIT)
+        implementation(TRUTH)
+        implementation(CORE_TEST)
+        implementation(MOCKK)
     }
 }

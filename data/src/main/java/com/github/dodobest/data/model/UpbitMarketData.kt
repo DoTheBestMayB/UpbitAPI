@@ -3,7 +3,7 @@ package com.github.dodobest.data.model
 import com.github.dodobest.domain.model.UpbitMarketData
 import com.google.gson.annotations.SerializedName
 
-internal data class UpbitMarketData(
+data class UpbitMarketData(
     @SerializedName("market")
     val market: String,
     @SerializedName("korean_name")

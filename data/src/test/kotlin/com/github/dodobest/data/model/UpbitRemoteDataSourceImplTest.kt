@@ -1,8 +1,8 @@
 package com.github.dodobest.data.model
 
-import com.github.dodobest.data.remote.UpbitAPI
-import com.github.dodobest.data.remote.UpbitRemoteDataSource
-import com.github.dodobest.data.remote.UpbitRemoteDataSourceImpl
+import com.github.dodobest.data.data.UpbitAPI
+import com.github.dodobest.data.data.UpbitRemoteDataSource
+import com.github.dodobest.data.data.UpbitRemoteDataSourceImpl
 import io.mockk.mockk
 import io.mockk.verify
 
