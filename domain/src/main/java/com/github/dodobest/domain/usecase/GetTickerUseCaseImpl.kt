@@ -5,7 +5,7 @@ import com.github.dodobest.domain.model.UpbitTickerData
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
-class GetTickerUseCaseImpl @Inject constructor(
+internal class GetTickerUseCaseImpl @Inject constructor(
     private val upbitRepository: UpbitRepository
 ) : GetTickerUseCase {
     override fun execute(market: String): Single<List<UpbitTickerData>> {
