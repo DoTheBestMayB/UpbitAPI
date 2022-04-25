@@ -7,8 +7,9 @@ import com.github.dodobest.domain.model.UpbitMarketData
 import com.github.dodobest.domain.model.UpbitTickerData
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-internal class UpbitRepositoryImpl(
+internal class UpbitRepositoryImpl @Inject constructor(
     private val upbitRemoteDataSource: UpbitRemoteDataSource
 ) : UpbitRepository {
     override fun getMarkets(): Single<List<UpbitMarketData>> {
