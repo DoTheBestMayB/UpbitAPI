@@ -10,6 +10,7 @@ import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class UpbitViewModel @Inject constructor(
@@ -41,9 +42,6 @@ class UpbitViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ marketCoinNames ->
                 _marketCoinNames.value = marketCoinNames
-                marketCoinNames.map { marketCoinName ->
-                    getTicker(marketCoinName.market)
-                }
             }, {
                 Timber.e(it.message ?: "")
                 _errMessage.value = it.message
