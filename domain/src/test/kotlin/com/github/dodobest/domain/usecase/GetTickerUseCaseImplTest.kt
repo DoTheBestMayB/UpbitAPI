@@ -1,6 +1,7 @@
 package com.github.dodobest.domain.usecase
 
 import com.github.dodobest.domain.UpbitRepository
+import com.github.dodobest.domain.hilt.UpbitDomainModule
 import io.mockk.mockk
 import io.mockk.verify
 
@@ -16,7 +17,7 @@ class GetTickerUseCaseImplTest {
         GetTickerUseCaseImpl.resetInstanceOnlyForTest()
 
         upbitRepository = mockk(relaxed = true)
-        getTickerUseCase = GetTickerUseCaseImpl.getInstance(upbitRepository)
+        getTickerUseCase = UpbitDomainModule.provideGetTickerUseCase(upbitRepository)
     }
 
     @Test

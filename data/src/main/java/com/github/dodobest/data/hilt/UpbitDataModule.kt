@@ -18,12 +18,10 @@ import java.util.concurrent.TimeUnit
 @Module
 @InstallIn(SingletonComponent::class)
 object UpbitDataModule {
-    private const val UPBIT_BASE_URL = "https://api.upbit.com/v1/"
-
     @Provides
     fun provideUpbitRepository(
         upbitRemoteDataSource: UpbitRemoteDataSource
-    ) : UpbitRepository {
+    ): UpbitRepository {
         return UpbitRepositoryImpl(upbitRemoteDataSource)
     }
 
@@ -36,9 +34,10 @@ object UpbitDataModule {
 
     @Provides
     fun provideUpbitRetrofit(
-    ) : Retrofit {
+        baseUrl: String = Constant.UPBIT_BASE_URL
+    ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(UPBIT_BASE_URL)
+            .baseUrl(baseUrl)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(
@@ -49,5 +48,10 @@ object UpbitDataModule {
                     .build()
             )
             .build()
+    }
+
+    @Provides
+    fun provideUpbitBaseUrl(): String {
+        return Constant.UPBIT_BASE_URL
     }
 }

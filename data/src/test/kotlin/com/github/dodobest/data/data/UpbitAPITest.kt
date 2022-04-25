@@ -1,6 +1,6 @@
 package com.github.dodobest.data.data
 
-import com.github.dodobest.data.factory.RetrofitClient
+import com.github.dodobest.data.hilt.UpbitDataModule
 import com.github.dodobest.data.model.UpbitMarketData
 import com.github.dodobest.data.model.UpbitTickerData
 import okhttp3.HttpUrl
@@ -10,19 +10,20 @@ import java.io.File
 
 import org.junit.Before
 import org.junit.Test
+import retrofit2.Retrofit
 
 internal class UpbitAPITest {
     private lateinit var server: MockWebServer
     private lateinit var baseUrl: HttpUrl
+    private lateinit var retrofit: Retrofit
     private lateinit var upbitAPI: UpbitAPI
 
     @Before
     fun setUp() {
         server = MockWebServer()
         baseUrl = server.url("")
-        upbitAPI = RetrofitClient
-            .createRetrofitClientWith(baseUrl.toString())
-            .create(UpbitAPI::class.java)
+        retrofit = UpbitDataModule.provideUpbitRetrofit(baseUrl.toString())
+        upbitAPI = UpbitDataModule.provideUpbitAPI(retrofit)
     }
 
     @Test
