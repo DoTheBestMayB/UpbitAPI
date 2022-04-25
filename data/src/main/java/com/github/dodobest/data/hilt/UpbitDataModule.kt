@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
 @InstallIn(SingletonComponent::class)
 object UpbitDataModule {
     @Provides
-    internal fun provideUpbitRepository(
+    fun provideUpbitRepository(
         upbitRemoteDataSource: UpbitRemoteDataSource
     ): UpbitRepository {
         return UpbitRepositoryImpl(upbitRemoteDataSource)
