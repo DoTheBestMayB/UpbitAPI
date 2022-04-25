@@ -49,7 +49,9 @@ object Hilt {
     private const val HILT_VERSION = "2.41"
 
     const val HILT_ANDROID = "com.google.dagger:hilt-android:${HILT_VERSION}"
+    const val HILT_CORE = "com.google.dagger:hilt-core:${HILT_VERSION}"
     const val HILT_ANDROID_COMPILER = "com.google.dagger:hilt-android-compiler:${HILT_VERSION}"
+    const val HILT_COMPILER = "com.google.dagger:hilt-compiler:${HILT_VERSION}"
 }
 
 object Test {

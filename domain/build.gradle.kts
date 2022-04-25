@@ -1,6 +1,7 @@
 plugins {
     id("java-library")
     kotlin("jvm")
+    kotlin("kapt")
 }
 
 java {
@@ -10,6 +11,11 @@ java {
 
 dependencies {
     implementation(RxJava.RXJAVA3)
+
+    with(Hilt) {
+        implementation(HILT_CORE)
+        kapt(HILT_COMPILER)
+    }
 
     with(Test) {
         implementation(JUNIT)
