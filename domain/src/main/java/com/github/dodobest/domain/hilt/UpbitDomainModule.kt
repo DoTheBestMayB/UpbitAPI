@@ -16,14 +16,14 @@ object UpbitDomainModule {
     @Provides
     fun provideGetMarketsUseCase(
         upbitRepository: UpbitRepository
-    ) : GetMarketsUseCase {
+    ): GetMarketsUseCase {
         return GetMarketsUseCaseImpl(upbitRepository)
     }
 
     @Provides
     fun provideGetTickerUseCase(
         upbitRepository: UpbitRepository
-    ) : GetTickerUseCase {
+    ): GetTickerUseCase {
         return GetTickerUseCaseImpl(upbitRepository)
     }
 }
