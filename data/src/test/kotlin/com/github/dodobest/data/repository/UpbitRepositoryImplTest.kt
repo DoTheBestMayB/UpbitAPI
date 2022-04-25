@@ -15,8 +15,6 @@ internal class UpbitRepositoryImplTest {
 
     @Before
     fun setUp() {
-        UpbitRepositoryImpl.resetInstanceOnlyForTest()
-
         upbitRemoteDataSource = mockk(relaxed = true)
         upbitRepository = UpbitDataModule.provideUpbitRepository(upbitRemoteDataSource)
     }
