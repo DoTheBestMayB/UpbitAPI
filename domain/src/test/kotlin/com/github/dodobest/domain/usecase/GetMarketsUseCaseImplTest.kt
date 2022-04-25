@@ -14,8 +14,6 @@ class GetMarketsUseCaseImplTest {
 
     @Before
     fun setUp() {
-        GetMarketsUseCaseImpl.resetInstanceOnlyForTest()
-
         upbitRepository = mockk(relaxed = true)
         getMarketsUseCase = UpbitDomainModule.provideGetMarketsUseCase(upbitRepository)
     }

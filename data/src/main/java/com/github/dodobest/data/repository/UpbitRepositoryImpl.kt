@@ -1,6 +1,5 @@
 package com.github.dodobest.data.repository
 
-import com.github.dodobest.data.factory.SingletonHolder
 import com.github.dodobest.data.data.UpbitRemoteDataSource
 import com.github.dodobest.domain.UpbitRepository
 import com.github.dodobest.domain.model.UpbitMarketData
@@ -27,7 +26,4 @@ internal class UpbitRepositoryImpl @Inject constructor(
             }
         }.subscribeOn(Schedulers.io())
     }
-
-    companion object :
-        SingletonHolder<UpbitRepository, UpbitRemoteDataSource>(::UpbitRepositoryImpl)
 }
