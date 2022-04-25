@@ -7,12 +7,12 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class UpbitRepositoryModule {
-
-    @Binds
-    internal abstract fun bindUpbitRepository(
-        upbitRepositoryImpl: UpbitRepositoryImpl
-    ) : UpbitRepository
-}
+//@Module
+//@InstallIn(SingletonComponent::class)
+//abstract class UpbitRepositoryModule {
+//
+//    @Binds
+//    internal abstract fun bindUpbitRepository(
+//        upbitRepositoryImpl: UpbitRepositoryImpl
+//    ) : UpbitRepository
+//}

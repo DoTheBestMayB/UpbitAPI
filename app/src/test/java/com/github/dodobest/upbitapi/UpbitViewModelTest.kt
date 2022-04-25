@@ -1,10 +1,11 @@
 package com.github.dodobest.upbitapi
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.github.dodobest.data.Injector
 import com.github.dodobest.data.data.UpbitRemoteDataSource
+import com.github.dodobest.data.hilt.UpbitDataModule
 import com.github.dodobest.domain.InjectorDomain
 import com.github.dodobest.domain.UpbitRepository
+import com.github.dodobest.domain.hilt.UpbitDomainModule
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
 import com.github.dodobest.upbitapi.model.UpbitFakeRemoteDataSet
@@ -16,7 +17,6 @@ import io.reactivex.rxjava3.core.Single
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-
 
 class UpbitViewModelTest {
     @get:Rule
@@ -34,9 +34,9 @@ class UpbitViewModelTest {
     @Before
     fun setUp() {
         upbitRemoteDataSource = mockk()
-        upbitRepository = Injector.provideUpbitRepository(upbitRemoteDataSource)
-        getMarketsUseCase = InjectorDomain.provideGetMarketsUseCase(upbitRepository)
-        getTickerUseCase = InjectorDomain.provideGetTickerUseCase(upbitRepository)
+        upbitRepository = UpbitDataModule.provideUpbitRepository(upbitRemoteDataSource)
+        getMarketsUseCase = UpbitDomainModule.provideGetMarketsUseCase(upbitRepository)
+        getTickerUseCase = UpbitDomainModule.provideGetTickerUseCase(upbitRepository)
         upbitViewModel = UpbitViewModel(getMarketsUseCase, getTickerUseCase)
     }
 

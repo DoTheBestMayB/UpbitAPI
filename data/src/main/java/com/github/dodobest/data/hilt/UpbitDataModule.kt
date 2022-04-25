@@ -2,6 +2,8 @@ package com.github.dodobest.data.hilt
 
 import com.github.dodobest.data.Constant
 import com.github.dodobest.data.data.UpbitAPI
+import com.github.dodobest.data.data.UpbitRemoteDataSource
+import com.github.dodobest.data.repository.UpbitRepositoryImpl
 import com.github.dodobest.domain.UpbitRepository
 import dagger.Module
 import dagger.Provides
@@ -15,8 +17,15 @@ import java.util.concurrent.TimeUnit
 
 @Module
 @InstallIn(SingletonComponent::class)
-object UpbitModule {
+object UpbitDataModule {
     private const val UPBIT_BASE_URL = "https://api.upbit.com/v1/"
+
+    @Provides
+    fun provideUpbitRepository(
+        upbitRemoteDataSource: UpbitRemoteDataSource
+    ) : UpbitRepository {
+        return UpbitRepositoryImpl(upbitRemoteDataSource)
+    }
 
     @Provides
     fun provideUpbitAPI(
