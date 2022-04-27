@@ -1,10 +1,6 @@
 package com.github.dodobest.upbitapi
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.github.dodobest.data.data.UpbitRemoteDataSource
-import com.github.dodobest.data.di.UpbitDataModule
-import com.github.dodobest.domain.UpbitRepository
-import com.github.dodobest.domain.di.UpbitDomainModule
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
 import com.github.dodobest.upbitapi.model.UpbitFakeRemoteDataSet
@@ -24,35 +20,22 @@ class UpbitViewModelTest {
     @get:Rule
     val testSchedulerRule = RxImmediateSchedulerRule()
 
-    private lateinit var upbitRemoteDataSource: UpbitRemoteDataSource
-    private lateinit var upbitRepository: UpbitRepository
     private lateinit var getMarketsUseCase: GetMarketsUseCase
     private lateinit var getTickerUseCase: GetTickerUseCase
     private lateinit var upbitViewModel: UpbitViewModel
 
     @Before
     fun setUp() {
-        upbitRemoteDataSource = mockk()
-        upbitRepository = UpbitDataModule.provideUpbitRepository(upbitRemoteDataSource)
-        getMarketsUseCase = UpbitDomainModule.provideGetMarketsUseCase(upbitRepository)
-        getTickerUseCase = UpbitDomainModule.provideGetTickerUseCase(upbitRepository)
+        getMarketsUseCase = mockk()
+        getTickerUseCase = mockk()
         upbitViewModel = UpbitViewModel(getMarketsUseCase, getTickerUseCase)
     }
 
     @Test
     fun `UpbitViewModel getMarkets를 호출하면 코인 데이터를 수신한다`() {
         // given
-        every { upbitRemoteDataSource.getMarkets() } returns Single.just(
-            UpbitFakeRemoteDataSet.upbitMarketData
-        )
-        every { upbitRemoteDataSource.getTicker(BTC_CODE_NAME) } returns Single.just(
-            UpbitFakeRemoteDataSet.upbitBTCTickerData
-        )
-        every { upbitRemoteDataSource.getTicker(ETH_CODE_NAME) } returns Single.just(
-            UpbitFakeRemoteDataSet.upbitETHTickerData
-        )
-        every { upbitRemoteDataSource.getTicker(NU_CODE_NAME) } returns Single.just(
-            UpbitFakeRemoteDataSet.upbitNUTickerData
+        every { getMarketsUseCase.execute() } returns Single.just(
+            UpbitFakeRemoteDataSet.upbitMarketData.map { it.toDomainData() }
         )
 
         // when
@@ -63,17 +46,13 @@ class UpbitViewModelTest {
             .isEqualTo(
                 UpbitFakeRemoteDataSet.upbitMarketData.map { it.toDomainData() }
             )
-        assertThat(upbitViewModel.tickers.getOrAwaitValue())
-            .isEqualTo(
-                UpbitFakeRemoteDataSet.upbitTickerData
-            )
     }
 
     @Test
     fun `서버에 있는 코인에 대해 getTicker를 호출하면 그 코인의 Ticker 데이터를 수신한다`() {
         // given
-        every { upbitRemoteDataSource.getTicker(BTC_CODE_NAME) } returns Single.just(
-            UpbitFakeRemoteDataSet.upbitBTCTickerData
+        every { getTickerUseCase.execute(BTC_CODE_NAME) } returns Single.just(
+            UpbitFakeRemoteDataSet.upbitBTCTickerData.map { it.toDomainData() }
         )
 
         // when
@@ -88,7 +67,5 @@ class UpbitViewModelTest {
 
     companion object {
         private const val BTC_CODE_NAME = "KRW-BTC"
-        private const val ETH_CODE_NAME = "KRW-ETH"
-        private const val NU_CODE_NAME = "KRW-NU"
     }
 }
