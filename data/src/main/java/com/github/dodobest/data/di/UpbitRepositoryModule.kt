@@ -7,11 +7,13 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 internal object UpbitRepositoryModule {
     @Provides
+    @Singleton
     internal fun provideUpbitRepository(
         upbitRemoteDataSource: UpbitRemoteDataSource
     ): UpbitRepository {

@@ -9,11 +9,13 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 internal object UpbitDomainModule {
     @Provides
+    @Singleton
     fun provideGetMarketsUseCase(
         upbitRepository: UpbitRepository
     ): GetMarketsUseCase {
@@ -21,6 +23,7 @@ internal object UpbitDomainModule {
     }
 
     @Provides
+    @Singleton
     fun provideGetTickerUseCase(
         upbitRepository: UpbitRepository
     ): GetTickerUseCase {

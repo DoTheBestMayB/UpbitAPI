@@ -14,6 +14,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -21,6 +22,7 @@ internal object UpbitDataModule {
     private const val UPBIT_BASE_URL = "https://api.upbit.com/v1/"
 
     @Provides
+    @Singleton
     fun provideUpbitRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(UPBIT_BASE_URL)
