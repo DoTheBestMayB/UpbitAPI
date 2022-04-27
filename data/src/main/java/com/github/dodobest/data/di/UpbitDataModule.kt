@@ -17,22 +17,8 @@ import java.util.concurrent.TimeUnit
 
 @Module
 @InstallIn(SingletonComponent::class)
-object UpbitDataModule {
+internal object UpbitDataModule {
     private const val UPBIT_BASE_URL = "https://api.upbit.com/v1/"
-
-    @Provides
-    fun provideUpbitRepository(
-        upbitRemoteDataSource: UpbitRemoteDataSource
-    ): UpbitRepository {
-        return UpbitRepositoryImpl(upbitRemoteDataSource)
-    }
-
-    @Provides
-    internal fun provideUpbitAPI(
-        retrofit: Retrofit
-    ): UpbitAPI {
-        return retrofit.create(UpbitAPI::class.java)
-    }
 
     @Provides
     fun provideUpbitRetrofit(): Retrofit {

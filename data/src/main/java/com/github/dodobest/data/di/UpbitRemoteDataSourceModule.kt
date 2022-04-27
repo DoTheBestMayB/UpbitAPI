@@ -9,7 +9,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class UpbitRemoteDataSourceModule {
+internal abstract class UpbitRemoteDataSourceModule {
 
     @Binds
     internal abstract fun bindUpbitRemoteDataSource(

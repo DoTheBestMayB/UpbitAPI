@@ -12,7 +12,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-object UpbitDomainModule {
+internal object UpbitDomainModule {
     @Provides
     fun provideGetMarketsUseCase(
         upbitRepository: UpbitRepository
