@@ -13,8 +13,8 @@ dependencies {
     implementation(RxJava.RXJAVA3)
 
     with(Hilt) {
-        implementation(HILT_CORE)
-        kapt(HILT_COMPILER)
+        implementation(CORE)
+        kapt(COMPILER)
     }
 
     with(Test) {

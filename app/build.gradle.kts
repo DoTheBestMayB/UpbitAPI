@@ -50,8 +50,8 @@ dependencies {
     implementation(Etc.TIMBER)
 
     with(Hilt) {
-        implementation(HILT_ANDROID)
-        kapt(HILT_ANDROID_COMPILER)
+        implementation(ANDROID)
+        kapt(ANDROID_COMPILER)
     }
 
     with(RxJava) {
