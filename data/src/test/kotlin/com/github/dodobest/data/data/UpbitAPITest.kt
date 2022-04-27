@@ -1,9 +1,11 @@
 package com.github.dodobest.data.data
 
-import com.github.dodobest.data.di.UpbitDataModule
+import com.github.dodobest.data.Constant
 import com.github.dodobest.data.model.UpbitMarketData
 import com.github.dodobest.data.model.UpbitTickerData
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.HttpUrl
+import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import java.io.File
@@ -11,6 +13,8 @@ import java.io.File
 import org.junit.Before
 import org.junit.Test
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 internal class UpbitAPITest {
     private lateinit var server: MockWebServer
@@ -22,8 +26,19 @@ internal class UpbitAPITest {
     fun setUp() {
         server = MockWebServer()
         baseUrl = server.url("")
-        retrofit = UpbitDataModule.provideUpbitRetrofit(baseUrl.toString())
-        upbitAPI = UpbitDataModule.provideUpbitAPI(retrofit)
+        retrofit = Retrofit.Builder()
+            .baseUrl(baseUrl.toString())
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(
+                OkHttpClient.Builder()
+                    .connectTimeout(Constant.CONNECT_TIMEOUT, TimeUnit.SECONDS)
+                    .readTimeout(Constant.READ_TIMEOUT, TimeUnit.SECONDS)
+                    .writeTimeout(Constant.WRITE_TIMEOUT, TimeUnit.SECONDS)
+                    .build()
+            )
+            .build()
+        upbitAPI = retrofit.create(UpbitAPI::class.java)
     }
 
     @Test
