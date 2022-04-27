@@ -1,4 +1,4 @@
-package com.github.dodobest.data.hilt
+package com.github.dodobest.data.di
 
 import com.github.dodobest.data.data.UpbitRemoteDataSource
 import com.github.dodobest.data.data.UpbitRemoteDataSourceImpl

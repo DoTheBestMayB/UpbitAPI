@@ -2,9 +2,9 @@ package com.github.dodobest.upbitapi
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.github.dodobest.data.data.UpbitRemoteDataSource
-import com.github.dodobest.data.hilt.UpbitDataModule
+import com.github.dodobest.data.di.UpbitDataModule
 import com.github.dodobest.domain.UpbitRepository
-import com.github.dodobest.domain.hilt.UpbitDomainModule
+import com.github.dodobest.domain.di.UpbitDomainModule
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
 import com.github.dodobest.upbitapi.model.UpbitFakeRemoteDataSet

@@ -1,4 +1,4 @@
-package com.github.dodobest.domain.hilt
+package com.github.dodobest.domain.di
 
 import com.github.dodobest.domain.UpbitRepository
 import com.github.dodobest.domain.usecase.GetMarketsUseCase

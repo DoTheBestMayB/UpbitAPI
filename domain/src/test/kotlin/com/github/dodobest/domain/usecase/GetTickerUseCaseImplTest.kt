@@ -1,7 +1,7 @@
 package com.github.dodobest.domain.usecase
 
 import com.github.dodobest.domain.UpbitRepository
-import com.github.dodobest.domain.hilt.UpbitDomainModule
+import com.github.dodobest.domain.di.UpbitDomainModule
 import io.mockk.mockk
 import io.mockk.verify
 

@@ -1,6 +1,6 @@
 package com.github.dodobest.data.data
 
-import com.github.dodobest.data.hilt.UpbitDataModule
+import com.github.dodobest.data.di.UpbitDataModule
 import com.github.dodobest.data.model.UpbitMarketData
 import com.github.dodobest.data.model.UpbitTickerData
 import okhttp3.HttpUrl

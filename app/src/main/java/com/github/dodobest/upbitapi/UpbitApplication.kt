@@ -1,4 +1,4 @@
-package com.github.dodobest.upbitapi.hilt
+package com.github.dodobest.upbitapi
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

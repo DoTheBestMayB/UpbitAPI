@@ -1,7 +1,7 @@
 package com.github.dodobest.data.repository
 
 import com.github.dodobest.data.data.UpbitRemoteDataSource
-import com.github.dodobest.data.hilt.UpbitDataModule
+import com.github.dodobest.data.di.UpbitDataModule
 import com.github.dodobest.domain.UpbitRepository
 import io.mockk.mockk
 import io.mockk.verify
