@@ -1,10 +1,6 @@
 package com.github.dodobest.data.di
 
 import com.github.dodobest.data.Constant
-import com.github.dodobest.data.data.UpbitAPI
-import com.github.dodobest.data.data.UpbitRemoteDataSource
-import com.github.dodobest.data.repository.UpbitRepositoryImpl
-import com.github.dodobest.domain.UpbitRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +14,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal object UpbitDataModule {
+internal object UpbitRetrofitModule {
     private const val UPBIT_BASE_URL = "https://api.upbit.com/v1/"
 
     @Provides
