@@ -8,11 +8,13 @@ import com.github.dodobest.domain.model.UpbitMarketData
 import com.github.dodobest.domain.model.UpbitTickerData
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
+@HiltViewModel
 class UpbitViewModel @Inject constructor(
     private val getMarketsUseCase: GetMarketsUseCase,
     private val getTickerUseCase: GetTickerUseCase,
