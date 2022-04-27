@@ -35,11 +35,9 @@ object UpbitDataModule {
     }
 
     @Provides
-    fun provideUpbitRetrofit(
-        baseUrl: String = Constant.UPBIT_BASE_URL
-    ): Retrofit {
+    fun provideUpbitRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(UPBIT_BASE_URL)
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .client(
@@ -50,10 +48,5 @@ object UpbitDataModule {
                     .build()
             )
             .build()
-    }
-
-    @Provides
-    fun provideUpbitBaseUrl(): String {
-        return Constant.UPBIT_BASE_URL
     }
 }
