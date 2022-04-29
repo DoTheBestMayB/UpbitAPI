@@ -34,9 +34,11 @@ class UpbitViewModelTest {
     @Test
     fun `UpbitViewModel getMarkets를 호출하면 코인 데이터를 수신한다`() {
         // given
-        every { getMarketsUseCase.execute() } returns Single.just(
-            UpbitFakeRemoteDataSet.upbitMarketData.map { it.toDomainData() }
-        )
+        every {
+            getMarketsUseCase.execute()
+        } returns Single.just(UpbitFakeRemoteDataSet.upbitMarketData.map {
+            it.toDomainData()
+        })
 
         // when
         upbitViewModel.getMarkets()
@@ -51,9 +53,11 @@ class UpbitViewModelTest {
     @Test
     fun `서버에 있는 코인에 대해 getTicker를 호출하면 그 코인의 Ticker 데이터를 수신한다`() {
         // given
-        every { getTickerUseCase.execute(BTC_CODE_NAME) } returns Single.just(
-            UpbitFakeRemoteDataSet.upbitBTCTickerData.map { it.toDomainData() }
-        )
+        every {
+            getTickerUseCase.execute(BTC_CODE_NAME)
+        } returns Single.just(UpbitFakeRemoteDataSet.upbitBTCTickerData.map {
+            it.toDomainData()
+        })
 
         // when
         upbitViewModel.getTicker(BTC_CODE_NAME)
