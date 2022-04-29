@@ -9,9 +9,9 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal abstract class UpbitRepositoryModule {
+internal interface UpbitRepositoryModule {
     @Binds
-    internal abstract fun provideUpbitRepository(
+    fun provideUpbitRepository(
         upbitRepositoryImpl: UpbitRepositoryImpl
     ): UpbitRepository
 }

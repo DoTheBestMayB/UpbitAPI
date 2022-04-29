@@ -9,9 +9,9 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal abstract class GetTickerUseCaseModule {
+internal interface GetTickerUseCaseModule {
     @Binds
-    internal abstract fun bindGetTickerUseCase(
+    fun bindGetTickerUseCase(
         getTickerUseCaseImpl: GetTickerUseCaseImpl
     ): GetTickerUseCase
 }
