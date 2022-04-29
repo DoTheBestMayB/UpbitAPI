@@ -1,12 +1,10 @@
-private const val HILT_VERSION = "2.41"
-
 object BuildPlugins {
     private const val GRADLE_PLUGIN_VERSION = "7.1.2"
     private const val KOTLIN_VERSION = "1.6.20"
 
     const val ANDROID = "com.android.tools.build:gradle:${GRADLE_PLUGIN_VERSION}"
     const val KOTLIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${KOTLIN_VERSION}"
-    const val HILT_ANDROID = "com.google.dagger:hilt-android-gradle-plugin:${HILT_VERSION}"
+    const val HILT_ANDROID = "com.google.dagger:hilt-android-gradle-plugin:${Hilt.VERSION}"
 }
 
 object Androidx {
@@ -47,10 +45,12 @@ object RxJava {
 }
 
 object Hilt {
-    const val ANDROID = "com.google.dagger:hilt-android:${HILT_VERSION}"
-    const val CORE = "com.google.dagger:hilt-core:${HILT_VERSION}"
-    const val ANDROID_COMPILER = "com.google.dagger:hilt-android-compiler:${HILT_VERSION}"
-    const val COMPILER = "com.google.dagger:hilt-compiler:${HILT_VERSION}"
+    const val VERSION = "2.41"
+
+    const val ANDROID = "com.google.dagger:hilt-android:${VERSION}"
+    const val CORE = "com.google.dagger:hilt-core:${VERSION}"
+    const val ANDROID_COMPILER = "com.google.dagger:hilt-android-compiler:${VERSION}"
+    const val COMPILER = "com.google.dagger:hilt-compiler:${VERSION}"
 }
 
 object Test {
