@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 @Module
 @InstallIn(SingletonComponent::class)
-object OkHttpClientModule {
+internal object OkHttpClientModule {
 
     @Provides
     fun provideOkHttpClient() : OkHttpClient {

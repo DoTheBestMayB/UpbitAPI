@@ -9,7 +9,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RxJava3CallAdapterModule {
+internal object RxJava3CallAdapterModule {
 
     @Provides
     @Singleton
