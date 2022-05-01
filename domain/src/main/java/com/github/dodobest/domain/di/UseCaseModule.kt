@@ -8,13 +8,16 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 internal interface UseCaseModule {
     @Binds
+    @Singleton
     fun provideGetMarketsUseCase(getMarketsUseCaseImpl: GetMarketsUseCaseImpl): GetMarketsUseCase
 
     @Binds
+    @Singleton
     fun provideGetTickerUseCase(getTickerUseCaseImpl: GetTickerUseCaseImpl): GetTickerUseCase
 }
