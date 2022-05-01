@@ -11,7 +11,7 @@ import dagger.hilt.components.SingletonComponent
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal interface UpbitUseCaseModule {
+internal interface UseCaseModule {
     @Binds
     fun provideGetMarketsUseCase(
         getMarketsUseCaseImpl: GetMarketsUseCaseImpl
