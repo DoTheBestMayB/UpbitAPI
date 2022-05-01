@@ -1,6 +1,5 @@
 package com.github.dodobest.data.di
 
-import com.github.dodobest.data.Constant
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,6 +14,10 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object NetworkModule {
+    private const val CONNECT_TIMEOUT = 3L
+    private const val READ_TIMEOUT = 3L
+    private const val WRITE_TIMEOUT = 3L
+
     @Provides
     @Singleton
     fun provideGsonConverter(): GsonConverterFactory {
@@ -25,9 +28,9 @@ internal object NetworkModule {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-            .connectTimeout(Constant.CONNECT_TIMEOUT, TimeUnit.SECONDS)
-            .readTimeout(Constant.READ_TIMEOUT, TimeUnit.SECONDS)
-            .writeTimeout(Constant.WRITE_TIMEOUT, TimeUnit.SECONDS)
+            .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
+            .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+            .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
             .build()
     }
 
