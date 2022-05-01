@@ -21,13 +21,11 @@ internal object NetworkModule {
     private const val UPBIT_BASE_URL = "https://api.upbit.com/v1/"
 
     @Provides
-    @Singleton
     fun provideGsonConverter(): GsonConverterFactory {
         return GsonConverterFactory.create()
     }
 
     @Provides
-    @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
@@ -37,7 +35,6 @@ internal object NetworkModule {
     }
 
     @Provides
-    @Singleton
     fun provideRxJava3CallAdapter(): RxJava3CallAdapterFactory {
         return RxJava3CallAdapterFactory.create()
     }
