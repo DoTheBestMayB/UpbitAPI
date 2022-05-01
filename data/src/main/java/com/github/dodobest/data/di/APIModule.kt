@@ -13,9 +13,7 @@ import javax.inject.Singleton
 internal object APIModule {
     @Provides
     @Singleton
-    fun provideUpbitAPI(
-        retrofit: Retrofit
-    ): UpbitAPI {
+    fun provideUpbitAPI(retrofit: Retrofit): UpbitAPI {
         return retrofit.create(UpbitAPI::class.java)
     }
 }
