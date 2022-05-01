@@ -11,9 +11,8 @@ import java.util.concurrent.TimeUnit
 @Module
 @InstallIn(SingletonComponent::class)
 internal object OkHttpClientModule {
-
     @Provides
-    fun provideOkHttpClient() : OkHttpClient {
+    fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(Constant.CONNECT_TIMEOUT, TimeUnit.SECONDS)
             .readTimeout(Constant.READ_TIMEOUT, TimeUnit.SECONDS)

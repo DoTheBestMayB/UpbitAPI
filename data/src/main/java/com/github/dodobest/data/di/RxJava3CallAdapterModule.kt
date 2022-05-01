@@ -10,7 +10,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object RxJava3CallAdapterModule {
-
     @Provides
     @Singleton
     fun provideRxJava3CallAdapter(): RxJava3CallAdapterFactory {

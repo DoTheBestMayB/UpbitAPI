@@ -15,10 +15,10 @@ internal interface UpbitUseCaseModule {
     @Binds
     fun provideGetMarketsUseCase(
         getMarketsUseCaseImpl: GetMarketsUseCaseImpl
-    ) : GetMarketsUseCase
+    ): GetMarketsUseCase
 
     @Binds
     fun provideGetTickerUseCase(
         getTickerUseCaseImpl: GetTickerUseCaseImpl
-    ) : GetTickerUseCase
+    ): GetTickerUseCase
 }
