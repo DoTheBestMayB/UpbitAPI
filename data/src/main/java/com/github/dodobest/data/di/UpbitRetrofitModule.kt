@@ -19,11 +19,14 @@ internal object UpbitRetrofitModule {
 
     @Provides
     @Singleton
-    fun provideUpbitRetrofit(): Retrofit {
+    fun provideUpbitRetrofit(
+        rxJava3CallAdapterFactory: RxJava3CallAdapterFactory,
+        gsonConverterFactory: GsonConverterFactory,
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(UPBIT_BASE_URL)
-            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(rxJava3CallAdapterFactory)
+            .addConverterFactory(gsonConverterFactory)
             .client(
                 OkHttpClient.Builder()
                     .connectTimeout(Constant.CONNECT_TIMEOUT, TimeUnit.SECONDS)
