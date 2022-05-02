@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("dagger.hilt.android.plugin")
     kotlin("android")
     kotlin("kapt")
 }
@@ -48,6 +49,11 @@ dependencies {
     implementation(Network.RETROFIT)
     implementation(Etc.TIMBER)
 
+    with(Hilt) {
+        implementation(ANDROID)
+        kapt(ANDROID_COMPILER)
+    }
+
     with(RxJava) {
         implementation(RXJAVA3_RX_ANDROID)
         implementation(RXJAVA3)
@@ -66,4 +72,8 @@ dependencies {
         implementation(CORE_TEST)
         implementation(MOCKK)
     }
+}
+
+kapt {
+    correctErrorTypes = true
 }

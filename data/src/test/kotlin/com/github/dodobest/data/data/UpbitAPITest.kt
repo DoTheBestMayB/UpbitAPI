@@ -1,28 +1,36 @@
 package com.github.dodobest.data.data
 
-import com.github.dodobest.data.factory.RetrofitClient
 import com.github.dodobest.data.model.UpbitMarketData
 import com.github.dodobest.data.model.UpbitTickerData
+import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.HttpUrl
+import okhttp3.OkHttpClient
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import java.io.File
 
 import org.junit.Before
 import org.junit.Test
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 internal class UpbitAPITest {
     private lateinit var server: MockWebServer
     private lateinit var baseUrl: HttpUrl
+    private lateinit var retrofit: Retrofit
     private lateinit var upbitAPI: UpbitAPI
 
     @Before
     fun setUp() {
         server = MockWebServer()
         baseUrl = server.url("")
-        upbitAPI = RetrofitClient
-            .createRetrofitClientWith(baseUrl.toString())
-            .create(UpbitAPI::class.java)
+        retrofit = Retrofit.Builder()
+            .baseUrl(baseUrl.toString())
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(OkHttpClient.Builder().build())
+            .build()
+        upbitAPI = retrofit.create(UpbitAPI::class.java)
     }
 
     @Test

@@ -1,6 +1,7 @@
 plugins {
     id("java-library")
     kotlin("jvm")
+    kotlin("kapt")
 }
 
 java {
@@ -10,6 +11,11 @@ java {
 
 dependencies {
     implementation(project(":domain"))
+
+    with(Hilt) {
+        implementation(CORE)
+        kapt(COMPILER)
+    }
 
     with(Network) {
         implementation(RETROFIT)

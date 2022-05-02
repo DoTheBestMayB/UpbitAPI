@@ -9,6 +9,7 @@ buildscript {
         with(BuildPlugins) {
             classpath(ANDROID)
             classpath(KOTLIN)
+            classpath(HILT_ANDROID)
         }
     }
 }

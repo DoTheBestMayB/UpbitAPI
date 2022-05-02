@@ -13,10 +13,8 @@ class GetTickerUseCaseImplTest {
 
     @Before
     fun setUp() {
-        GetTickerUseCaseImpl.resetInstanceOnlyForTest()
-
         upbitRepository = mockk(relaxed = true)
-        getTickerUseCase = GetTickerUseCaseImpl.getInstance(upbitRepository)
+        getTickerUseCase = GetTickerUseCaseImpl(upbitRepository)
     }
 
     @Test

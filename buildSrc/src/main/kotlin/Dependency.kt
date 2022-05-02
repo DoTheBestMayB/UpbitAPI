@@ -4,6 +4,7 @@ object BuildPlugins {
 
     const val ANDROID = "com.android.tools.build:gradle:${GRADLE_PLUGIN_VERSION}"
     const val KOTLIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:${KOTLIN_VERSION}"
+    const val HILT_ANDROID = "com.google.dagger:hilt-android-gradle-plugin:${Hilt.VERSION}"
 }
 
 object Androidx {
@@ -34,13 +35,22 @@ object Network {
 }
 
 object RxJava {
-    private const val RXJAVA3_VERSION = "3.1.3"
-    private const val RXJAVA3_RETROFIT_ADAPTER_VERSION = "3.0.0"
-    private const val RXJAVA3_RX_ANDROID_VERSION = "3.0.0"
+    private const val VERSION = "3.1.3"
+    private const val RETROFIT_ADAPTER_VERSION = "3.0.0"
+    private const val RX_ANDROID_VERSION = "3.0.0"
 
-    const val RXJAVA3 = "io.reactivex.rxjava3:rxjava:${RXJAVA3_VERSION}"
-    const val RXJAVA3_RETROFIT_ADAPTER = "com.github.akarnokd:rxjava3-retrofit-adapter:${RXJAVA3_RETROFIT_ADAPTER_VERSION}"
-    const val RXJAVA3_RX_ANDROID = "io.reactivex.rxjava3:rxandroid:${RXJAVA3_RX_ANDROID_VERSION}"
+    const val RXJAVA3 = "io.reactivex.rxjava3:rxjava:${VERSION}"
+    const val RXJAVA3_RETROFIT_ADAPTER = "com.github.akarnokd:rxjava3-retrofit-adapter:${RETROFIT_ADAPTER_VERSION}"
+    const val RXJAVA3_RX_ANDROID = "io.reactivex.rxjava3:rxandroid:${RX_ANDROID_VERSION}"
+}
+
+object Hilt {
+    const val VERSION = "2.41"
+
+    const val ANDROID = "com.google.dagger:hilt-android:${VERSION}"
+    const val CORE = "com.google.dagger:hilt-core:${VERSION}"
+    const val ANDROID_COMPILER = "com.google.dagger:hilt-android-compiler:${VERSION}"
+    const val COMPILER = "com.google.dagger:hilt-compiler:${VERSION}"
 }
 
 object Test {

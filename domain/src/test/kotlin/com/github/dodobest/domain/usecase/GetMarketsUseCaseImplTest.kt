@@ -13,10 +13,8 @@ class GetMarketsUseCaseImplTest {
 
     @Before
     fun setUp() {
-        GetMarketsUseCaseImpl.resetInstanceOnlyForTest()
-
         upbitRepository = mockk(relaxed = true)
-        getMarketsUseCase = GetMarketsUseCaseImpl.getInstance(upbitRepository)
+        getMarketsUseCase = GetMarketsUseCaseImpl(upbitRepository)
     }
 
     @Test

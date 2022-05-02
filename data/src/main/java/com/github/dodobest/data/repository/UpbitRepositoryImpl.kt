@@ -1,14 +1,14 @@
 package com.github.dodobest.data.repository
 
-import com.github.dodobest.data.factory.SingletonHolder
 import com.github.dodobest.data.data.UpbitRemoteDataSource
 import com.github.dodobest.domain.UpbitRepository
 import com.github.dodobest.domain.model.UpbitMarketData
 import com.github.dodobest.domain.model.UpbitTickerData
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-internal class UpbitRepositoryImpl(
+internal class UpbitRepositoryImpl @Inject constructor(
     private val upbitRemoteDataSource: UpbitRemoteDataSource
 ) : UpbitRepository {
     override fun getMarkets(): Single<List<UpbitMarketData>> {
@@ -26,7 +26,4 @@ internal class UpbitRepositoryImpl(
             }
         }.subscribeOn(Schedulers.io())
     }
-
-    companion object :
-        SingletonHolder<UpbitRepository, UpbitRemoteDataSource>(::UpbitRepositoryImpl)
 }
