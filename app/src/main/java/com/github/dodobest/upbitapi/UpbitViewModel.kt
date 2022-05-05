@@ -41,7 +41,9 @@ class UpbitViewModel @Inject constructor(
 
         _marketCoinData.value?.let { upbitMarkets ->
             upbitMarkets.map { upbitMarketData ->
-                coinName.add(upbitMarketData.market)
+                if(upbitMarketData.market.contains("KRW-")) {
+                    coinName.add(upbitMarketData.market)
+                }
             }
         }
         tickerQuery = coinName.toString().replace(" ", "")
