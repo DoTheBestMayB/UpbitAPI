@@ -44,7 +44,7 @@ internal class UpbitAPITest {
                 market = UPBIT_TICKER_DATA_COIN_NAME,
                 openingPrice = upbitTickerDataValue[0],
                 tradePrice = upbitTickerDataValue[1],
-                signedChangePrice = upbitTickerDataValue[2],
+                signedChangeRate = upbitTickerDataValue[2],
                 aacTradePrice24h = upbitTickerDataValue[3],
             )
         )
