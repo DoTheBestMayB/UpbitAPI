@@ -4,10 +4,6 @@ import com.github.dodobest.data.model.UpbitMarketData
 import com.github.dodobest.data.model.UpbitTickerData
 
 object UpbitFakeRemoteDataSet {
-    private const val BTC_CODE_NAME = "KRW-BTC"
-    private const val ETH_CODE_NAME = "KRW-ETH"
-    private const val NU_CODE_NAME = "KRW-NU"
-
     val upbitMarketData = listOf(
         UpbitMarketData(
             "KRW-BTC",
@@ -59,9 +55,9 @@ object UpbitFakeRemoteDataSet {
         ),
     )
 
-    val upbitTickerData = mapOf(
-        BTC_CODE_NAME to upbitBTCTickerData[0].toDomainData(),
-        ETH_CODE_NAME to upbitETHTickerData[0].toDomainData(),
-        NU_CODE_NAME to upbitNUTickerData[0].toDomainData(),
+    val upbitTickerData = listOf(
+        upbitBTCTickerData[0].toDomainData(),
+        upbitETHTickerData[0].toDomainData(),
+        upbitNUTickerData[0].toDomainData(),
     )
 }

@@ -11,7 +11,6 @@ import com.github.dodobest.domain.usecase.GetTickerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import timber.log.Timber
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,12 +18,14 @@ class UpbitViewModel @Inject constructor(
     private val getMarketsUseCase: GetMarketsUseCase,
     private val getTickerUseCase: GetTickerUseCase,
 ) : ViewModel() {
-    private val _marketCoinNames = MutableLiveData<List<UpbitMarketData>>()
-    val marketCoinNames: LiveData<List<UpbitMarketData>>
-        get() = _marketCoinNames
+    private val _marketCoinData = MutableLiveData<List<UpbitMarketData>>()
+    val marketCoinData: LiveData<List<UpbitMarketData>>
+        get() = _marketCoinData
 
-    private val _tickers = MutableLiveData<Map<String, UpbitTickerData>>()
-    val tickers: LiveData<Map<String, UpbitTickerData>>
+    private var tickerQuery: String = ""
+
+    private val _tickers = MutableLiveData<List<UpbitTickerData>>()
+    val tickers: LiveData<List<UpbitTickerData>>
         get() = _tickers
 
     private val _tickerSearchName = MutableLiveData<String>()
@@ -35,6 +36,18 @@ class UpbitViewModel @Inject constructor(
     val errMessage: LiveData<String>
         get() = _errMessage
 
+    private fun extractTickerQuery() {
+        val coinName: ArrayList<String> = arrayListOf()
+
+        _marketCoinData.value?.let { upbitMarkets ->
+            upbitMarkets.map { upbitMarketData ->
+                coinName.add(upbitMarketData.market)
+            }
+        }
+        tickerQuery = coinName.toString().replace(" ", "")
+        tickerQuery = tickerQuery.slice(IntRange(1, tickerQuery.length-2))
+    }
+
     fun setTickerSearchName(inputSearchName: Editable) {
         _tickerSearchName.value = inputSearchName.toString()
     }
@@ -43,21 +56,23 @@ class UpbitViewModel @Inject constructor(
         getMarketsUseCase.execute()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ marketCoinNames ->
-                _marketCoinNames.value = marketCoinNames
+                _marketCoinData.value = marketCoinNames
+                extractTickerQuery()
+                getTicker(tickerQuery)
             }, {
                 Timber.e(it.message ?: "")
                 _errMessage.value = it.message
             })
     }
 
-    fun getTicker(marketCodeName: String) {
-        getTickerUseCase.execute(marketCodeName)
+    fun getTicker(query: String) {
+        if (query == "") {
+            return
+        }
+        getTickerUseCase.execute(query)
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ tickers ->
-                tickers.map { ticker ->
-                    _tickers.value = (_tickers.value ?: mapOf()) +
-                            mapOf(marketCodeName to ticker)
-                }
+            .subscribe({
+                _tickers.value = it
             }, {
                 Timber.e(it.message ?: "")
                 _errMessage.value = it.message

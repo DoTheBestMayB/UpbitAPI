@@ -44,32 +44,28 @@ class UpbitViewModelTest {
         upbitViewModel.getMarkets()
 
         // then
-        assertThat(upbitViewModel.marketCoinNames.getOrAwaitValue())
+        assertThat(upbitViewModel.marketCoinData.getOrAwaitValue())
             .isEqualTo(
                 UpbitFakeRemoteDataSet.upbitMarketData.map { it.toDomainData() }
             )
     }
 
     @Test
-    fun `서버에 있는 코인에 대해 getTicker를 호출하면 그 코인의 Ticker 데이터를 수신한다`() {
+    fun `getTicker를 호출하면 코인의 Ticker 데이터를 수신한다`() {
         // given
         every {
-            getTickerUseCase.execute(BTC_CODE_NAME)
-        } returns Single.just(UpbitFakeRemoteDataSet.upbitBTCTickerData.map {
-            it.toDomainData()
-        })
+            getTickerUseCase.execute(TICKER_QUERY)
+        } returns Single.just(UpbitFakeRemoteDataSet.upbitTickerData)
 
         // when
-        upbitViewModel.getTicker(BTC_CODE_NAME)
+        upbitViewModel.getTicker(TICKER_QUERY)
 
         // then
         assertThat(upbitViewModel.tickers.getOrAwaitValue())
-            .isEqualTo(
-                mapOf(BTC_CODE_NAME to UpbitFakeRemoteDataSet.upbitBTCTickerData[0].toDomainData())
-            )
+            .isEqualTo(UpbitFakeRemoteDataSet.upbitTickerData)
     }
 
     companion object {
-        private const val BTC_CODE_NAME = "KRW-BTC"
+        private const val TICKER_QUERY = "KRW-BTC,KRW-ETH,KRW-NU"
     }
 }
