@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.github.dodobest.upbitapi.UpbitViewModel" />
@@ -29,25 +31,25 @@
                 android:id="@+id/editTextTickerName"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:ems="10"
-                android:inputType="text"
-                android:hint="@string/coin_name"
                 android:afterTextChanged="@{viewModel::setTickerSearchName}"
-                android:text="@{viewModel.tickerSearchName}"/>
+                android:ems="10"
+                android:hint="@string/coin_name"
+                android:inputType="text"
+                android:text="@{viewModel.tickerSearchName}" />
 
             <Button
                 android:id="@+id/getTickerButton"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:onClick="@{() -> viewModel.getTicker(viewModel.tickerSearchName)}"
                 android:text="@string/call_get_ticker_function" />
 
         </LinearLayout>
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.marketCoinNames.toString()}" />
+            android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="match_parent"
