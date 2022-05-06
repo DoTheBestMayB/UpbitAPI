@@ -3,15 +3,18 @@ package com.github.dodobest.upbitapi
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.github.dodobest.domain.model.UpbitMarketData
 import com.github.dodobest.domain.model.UpbitTickerData
+import com.github.dodobest.domain.model.UpbitTickerDataWithKoreanName
 import com.github.dodobest.upbitapi.databinding.CoinItemBinding
 import java.text.DecimalFormat
 
 class UpbitAdapter : RecyclerView.Adapter<UpbitViewHolder>() {
-    private val result: MutableList<UpbitTickerData> = mutableListOf()
+    private val tickerResult: MutableList<UpbitTickerDataWithKoreanName> = mutableListOf()
+
     private val coinPriceFormat = DecimalFormat("#,###.########")
     private val changeRateFormat = DecimalFormat("#,###.##%")
-    private val aacTradePriceFormat = DecimalFormat("#,###.##백만")
+    private val aacTradePriceFormat = DecimalFormat("#,###백만")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpbitViewHolder {
         val binding = CoinItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,29 +22,29 @@ class UpbitAdapter : RecyclerView.Adapter<UpbitViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: UpbitViewHolder, position: Int) {
-        holder.coinName.text = result[position].market
-        holder.coinPrice.text = coinPriceFormat.format(result[position].tradePrice)
+        holder.coinMarket.text = tickerResult[position].market
+        holder.coinName.text = tickerResult[position].koreanName
+        holder.coinPrice.text = coinPriceFormat.format(tickerResult[position].tradePrice)
         holder.changeRate.text =
-            changeRateFormat.format(result[position].signedChangeRate).toString()
+            changeRateFormat.format(tickerResult[position].signedChangeRate).toString()
         holder.aacTradePrice.text =
-            aacTradePriceFormat.format(result[position].aacTradePrice24h / 1000000).toString()
+            aacTradePriceFormat.format(tickerResult[position].aacTradePrice24h / 1000000).toString()
     }
 
     override fun getItemCount(): Int {
-        return result.size
+        return tickerResult.size
     }
 
-    fun setResult(newResult: List<UpbitTickerData>) {
-        if (result == newResult) {
-            return
-        }
-        newResult.forEach {
-            if (result.indexOf(it) == -1) {
-                result.add(it)
-                notifyItemInserted(result.size - 1)
-            } else if (result[result.indexOf(it)] != it) {
-                result[result.indexOf(it)] = it
-                notifyItemChanged(result.indexOf(it))
+    fun setResult(tickerData: List<UpbitTickerDataWithKoreanName>) {
+        if (tickerData == tickerResult) return
+
+        tickerData.forEach {
+            if (tickerResult.indexOf(it) == -1) {
+                tickerResult.add(it)
+                notifyItemInserted(tickerResult.size - 1)
+            } else if (tickerResult[tickerResult.indexOf(it)] != it) {
+                tickerResult[tickerResult.indexOf(it)] = it
+                notifyItemChanged(tickerResult.indexOf(it))
             }
         }
     }

@@ -3,6 +3,8 @@ package com.github.dodobest.upbitapi
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.dodobest.upbitapi.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setTimber()
         setDataBinding()
+        setRecyclerView()
         setAdapter()
         setLiveDataObserve()
     }
@@ -30,10 +33,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setAdapter() {
+    private fun setRecyclerView() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        upbitAdapter = UpbitAdapter()
 
+        val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
+        divider.setDrawable(AppCompatResources.getDrawable(this, R.drawable.divider)!!)
+        binding.recyclerView.addItemDecoration(divider)
+    }
+
+    private fun setAdapter() {
+        upbitAdapter = UpbitAdapter()
         binding.recyclerView.adapter = upbitAdapter
     }
 
