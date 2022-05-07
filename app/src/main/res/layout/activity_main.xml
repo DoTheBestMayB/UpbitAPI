@@ -15,37 +15,6 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
-        <Button
-            android:id="@+id/get_markets_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.getMarkets()}"
-            android:text="@string/call_get_markets_function" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/edit_text_ticker_name"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:afterTextChanged="@{viewModel::setTickerSearchName}"
-                android:ems="10"
-                android:hint="@string/coin_name"
-                android:inputType="text"
-                android:text="@{viewModel.tickerSearchName}" />
-
-            <Button
-                android:id="@+id/get_ticker_button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:onClick="@{() -> viewModel.getTicker(viewModel.tickerSearchName)}"
-                android:text="@string/call_get_ticker_function" />
-
-        </LinearLayout>
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
