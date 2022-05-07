@@ -1,6 +1,5 @@
 package com.github.dodobest.upbitapi
 
-import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,14 +29,6 @@ class UpbitViewModel @Inject constructor(
     val tickers: LiveData<List<UpbitTickerDataWithKoreanName>>
         get() = _tickers
 
-    private val _tickerSearchName = MutableLiveData<String>()
-    val tickerSearchName: LiveData<String>
-        get() = _tickerSearchName
-
-    private val _errMessage = MutableLiveData<String>()
-    val errMessage: LiveData<String>
-        get() = _errMessage
-
     private fun extractTickerQuery() {
         val coinName: ArrayList<String> = arrayListOf()
 
@@ -51,10 +42,6 @@ class UpbitViewModel @Inject constructor(
         tickerQuery = tickerQuery.slice(IntRange(1, tickerQuery.length - 2))
     }
 
-    fun setTickerSearchName(inputSearchName: Editable) {
-        _tickerSearchName.value = inputSearchName.toString()
-    }
-
     fun getMarkets() {
         getMarketsUseCase.execute()
             .observeOn(AndroidSchedulers.mainThread())
@@ -65,7 +52,6 @@ class UpbitViewModel @Inject constructor(
                 getTicker(tickerQuery)
             }, {
                 Timber.e(it.message ?: "")
-                _errMessage.value = it.message
             })
     }
 
@@ -88,7 +74,6 @@ class UpbitViewModel @Inject constructor(
                 }
             }, {
                 Timber.e(it.message ?: "")
-                _errMessage.value = it.message
             })
     }
 }
