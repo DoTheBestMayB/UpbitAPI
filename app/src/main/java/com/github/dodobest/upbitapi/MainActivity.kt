@@ -25,6 +25,11 @@ class MainActivity : AppCompatActivity() {
         setRecyclerView()
         setAdapter()
         setLiveDataObserve()
+        startViewModel()
+    }
+
+    private fun startViewModel() {
+        viewModel.getMarkets()
     }
 
     private fun setLiveDataObserve() {
