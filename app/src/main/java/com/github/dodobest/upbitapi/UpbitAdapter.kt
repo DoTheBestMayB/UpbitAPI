@@ -3,8 +3,6 @@ package com.github.dodobest.upbitapi
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.github.dodobest.domain.model.UpbitMarketData
-import com.github.dodobest.domain.model.UpbitTickerData
 import com.github.dodobest.domain.model.UpbitTickerDataWithKoreanName
 import com.github.dodobest.upbitapi.databinding.CoinItemBinding
 import java.text.DecimalFormat
@@ -17,7 +15,9 @@ class UpbitAdapter : RecyclerView.Adapter<UpbitViewHolder>() {
     private val aacTradePriceFormat = DecimalFormat("#,###백만")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpbitViewHolder {
-        val binding = CoinItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = CoinItemBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
         return UpbitViewHolder(binding)
     }
 
@@ -28,7 +28,8 @@ class UpbitAdapter : RecyclerView.Adapter<UpbitViewHolder>() {
         holder.changeRate.text =
             changeRateFormat.format(tickerResult[position].signedChangeRate).toString()
         holder.aacTradePrice.text =
-            aacTradePriceFormat.format(tickerResult[position].aacTradePrice24h / 1000000).toString()
+            aacTradePriceFormat.format(tickerResult[position].aacTradePrice24h / 1000000)
+                .toString()
     }
 
     override fun getItemCount(): Int {
