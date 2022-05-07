@@ -28,14 +28,15 @@ class MainActivity : AppCompatActivity() {
         startViewModel()
     }
 
-    private fun startViewModel() {
-        viewModel.getMarkets()
+    private fun setTimber() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 
-    private fun setLiveDataObserve() {
-        viewModel.tickers.observe(this) {
-            upbitAdapter.setResult(it)
-        }
+    private fun setDataBinding() {
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
     }
 
     private fun setRecyclerView() {
@@ -51,14 +52,13 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = upbitAdapter
     }
 
-    private fun setTimber() {
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
+    private fun setLiveDataObserve() {
+        viewModel.tickers.observe(this) {
+            upbitAdapter.setResult(it)
         }
     }
 
-    private fun setDataBinding() {
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
+    private fun startViewModel() {
+        viewModel.getMarkets()
     }
 }
