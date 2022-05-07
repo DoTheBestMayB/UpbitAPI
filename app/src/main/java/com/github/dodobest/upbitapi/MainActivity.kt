@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.dodobest.upbitapi.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -20,18 +19,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTimber()
         setDataBinding()
         setRecyclerView()
         setAdapter()
         setLiveDataObserve()
         startViewModel()
-    }
-
-    private fun setTimber() {
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
-        }
     }
 
     private fun setDataBinding() {
