@@ -39,7 +39,7 @@ class UpbitViewModel @Inject constructor(
         }
 
         tickerQuery = coinName.toString().replace(" ", "")
-        tickerQuery = tickerQuery.slice(IntRange(1, tickerQuery.length - 2))
+            .slice(IntRange(1, tickerQuery.length - 2))
     }
 
     fun getMarkets() {
