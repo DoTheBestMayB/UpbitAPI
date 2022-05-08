@@ -5,14 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.dodobest.domain.model.UpbitTickerDataWithKoreanName
 import com.github.dodobest.upbitapi.databinding.CoinItemBinding
-import java.text.DecimalFormat
+import javax.inject.Inject
 
-class UpbitAdapter : RecyclerView.Adapter<UpbitViewHolder>() {
+class UpbitAdapter @Inject constructor(
+    private val dataFormatHandler: DataFormatHandler,
+) : RecyclerView.Adapter<UpbitViewHolder>() {
     private val tickerResult: MutableList<UpbitTickerDataWithKoreanName> = mutableListOf()
-
-    private val coinPriceFormat = DecimalFormat("#,###.########")
-    private val changeRateFormat = DecimalFormat("#,###.##%")
-    private val aacTradePriceFormat = DecimalFormat("#,###백만")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpbitViewHolder {
         val binding = CoinItemBinding.inflate(
@@ -24,12 +22,13 @@ class UpbitAdapter : RecyclerView.Adapter<UpbitViewHolder>() {
     override fun onBindViewHolder(holder: UpbitViewHolder, position: Int) {
         holder.coinMarket.text = tickerResult[position].market
         holder.coinName.text = tickerResult[position].koreanName
-        holder.coinPrice.text = coinPriceFormat.format(tickerResult[position].tradePrice)
-        holder.changeRate.text =
-            changeRateFormat.format(tickerResult[position].signedChangeRate).toString()
-        holder.aacTradePrice.text =
-            aacTradePriceFormat.format(tickerResult[position].aacTradePrice24h / 1000000)
-                .toString()
+        holder.coinPrice.text = dataFormatHandler.formatCoinPrice(tickerResult[position].tradePrice)
+        holder.changeRate.text = dataFormatHandler.formatChangeRate(
+            tickerResult[position].signedChangeRate
+        )
+        holder.aacTradePrice.text = dataFormatHandler.formatAacTradePrice(
+            tickerResult[position].aacTradePrice24h / 1000000
+        )
     }
 
     override fun getItemCount(): Int {
