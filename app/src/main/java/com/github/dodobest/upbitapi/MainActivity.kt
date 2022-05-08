@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setRecyclerView()
         setAdapter()
         setLiveDataObserve()
-        startViewModel()
+        loadInitialContent()
     }
 
     private fun setDataBinding() {
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun startViewModel() {
+    private fun loadInitialContent() {
         viewModel.getMarkets()
     }
 }
