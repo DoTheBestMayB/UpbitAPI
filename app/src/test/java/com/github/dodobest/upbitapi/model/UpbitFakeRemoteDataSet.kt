@@ -28,20 +28,20 @@ object UpbitFakeRemoteDataSet {
     val upbitBTCTickerData = listOf(
         UpbitTickerData(
             "KRW-BTC",
-            8450000.0,
-            8621000.0,
-            171000.0,
-            232702901371.09308,
+            8_450_000.0,
+            8_621_000.0,
+            171_000.0,
+            232_702_901_371.093_08,
         ),
     )
 
     val upbitETHTickerData = listOf(
         UpbitTickerData(
             "KRW-ETH",
-            1000.0,
-            1500.0,
+            1_000.0,
+            1_500.0,
             500.0,
-            6000.0,
+            6_000.0,
         ),
     )
 
@@ -51,7 +51,7 @@ object UpbitFakeRemoteDataSet {
             10.0,
             5.0,
             -5.0,
-            20000.0,
+            20_000.0,
         ),
     )
 

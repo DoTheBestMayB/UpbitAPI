@@ -27,7 +27,7 @@ class UpbitAdapter @Inject constructor(
             tickerResult[position].signedChangeRate
         )
         holder.aacTradePrice.text = dataFormatHandler.formatAacTradePrice(
-            tickerResult[position].aacTradePrice24h / 1000000
+            tickerResult[position].aacTradePrice24h / 1_000_000
         )
     }
 
