@@ -33,7 +33,7 @@ class UpbitAdapter @Inject constructor(
         tickerData.forEach {
             if (tickerResult.indexOf(it) == -1) {
                 tickerResult.add(it)
-                notifyItemInserted(tickerResult.size - 1)
+                notifyItemInserted(tickerResult.lastIndex)
             } else if (tickerResult[tickerResult.indexOf(it)] != it) {
                 tickerResult[tickerResult.indexOf(it)] = it
                 notifyItemChanged(tickerResult.indexOf(it))
