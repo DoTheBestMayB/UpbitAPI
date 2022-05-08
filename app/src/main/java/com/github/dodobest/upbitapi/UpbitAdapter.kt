@@ -16,19 +16,11 @@ class UpbitAdapter @Inject constructor(
         val binding = CoinItemBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return UpbitViewHolder(binding)
+        return UpbitViewHolder(binding, dataFormatHandler)
     }
 
     override fun onBindViewHolder(holder: UpbitViewHolder, position: Int) {
-        holder.coinMarket.text = tickerResult[position].market
-        holder.coinName.text = tickerResult[position].koreanName
-        holder.coinPrice.text = dataFormatHandler.formatCoinPrice(tickerResult[position].tradePrice)
-        holder.changeRate.text = dataFormatHandler.formatChangeRate(
-            tickerResult[position].signedChangeRate
-        )
-        holder.aacTradePrice.text = dataFormatHandler.formatAacTradePrice(
-            tickerResult[position].aacTradePrice24h / 1_000_000
-        )
+        holder.setData(tickerResult[position])
     }
 
     override fun getItemCount(): Int {
