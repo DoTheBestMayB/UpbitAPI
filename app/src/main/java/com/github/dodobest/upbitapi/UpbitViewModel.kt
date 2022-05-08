@@ -69,10 +69,16 @@ class UpbitViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ upbitTickerDataSet ->
                 _tickers.value = upbitTickerDataSet.map { upbitTickerData ->
-                    upbitTickerData.addKoreanName(marketToKoreanName[upbitTickerData.market]!!)
+                    marketToKoreanName[upbitTickerData.market]?.let { koreanName ->
+                        upbitTickerData.addKoreanName(koreanName)
+                    } ?: upbitTickerData.addKoreanName(NO_NAME_NONE)
                 }
             }, {
                 Timber.e(it.message ?: "")
             })
+    }
+
+    companion object {
+        private const val NO_NAME_NONE = "None"
     }
 }

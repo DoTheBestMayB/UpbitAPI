@@ -35,7 +35,9 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
         val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        divider.setDrawable(AppCompatResources.getDrawable(this, R.drawable.divider)!!)
+        AppCompatResources.getDrawable(this, R.drawable.divider)?.let {
+            divider.setDrawable(it)
+        }
         binding.recyclerView.addItemDecoration(divider)
     }
 
