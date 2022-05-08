@@ -35,17 +35,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setRecyclerView() {
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.coinPriceRecyclerView.layoutManager = LinearLayoutManager(this)
 
         val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         AppCompatResources.getDrawable(this, R.drawable.divider)?.let {
             divider.setDrawable(it)
         }
-        binding.recyclerView.addItemDecoration(divider)
+        binding.coinPriceRecyclerView.addItemDecoration(divider)
     }
 
     private fun setAdapter() {
-        binding.recyclerView.adapter = upbitAdapter
+        binding.coinPriceRecyclerView.adapter = upbitAdapter
     }
 
     private fun setLiveDataObserve() {
