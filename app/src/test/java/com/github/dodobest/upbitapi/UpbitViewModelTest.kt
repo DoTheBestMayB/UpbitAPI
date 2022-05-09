@@ -32,25 +32,6 @@ class UpbitViewModelTest {
     }
 
     @Test
-    fun `UpbitViewModel getMarkets를 호출하면 코인 데이터를 수신한다`() {
-        // given
-        every {
-            getMarketsUseCase.execute()
-        } returns Single.just(UpbitFakeRemoteDataSet.upbitMarketData.map {
-            it.toDomainData()
-        })
-
-        // when
-        upbitViewModel.getMarkets()
-
-        // then
-        assertThat(upbitViewModel.marketCoinData.getOrAwaitValue())
-            .isEqualTo(
-                UpbitFakeRemoteDataSet.upbitMarketData.map { it.toDomainData() }
-            )
-    }
-
-    @Test
     fun `getTicker를 호출하면 코인의 Ticker 데이터를 수신한다`() {
         // given
         every {
@@ -58,11 +39,11 @@ class UpbitViewModelTest {
         } returns Single.just(UpbitFakeRemoteDataSet.upbitTickerData)
 
         // when
-        upbitViewModel.getTicker(TICKER_QUERY)
+        upbitViewModel.getTicker(UpbitFakeRemoteDataSet.upbitMarketData.map { it.toDomainData() })
 
         // then
         assertThat(upbitViewModel.tickers.getOrAwaitValue())
-            .isEqualTo(UpbitFakeRemoteDataSet.upbitTickerData)
+            .isEqualTo(UpbitFakeRemoteDataSet.upbitTickerDataWithKoreanName)
     }
 
     companion object {
