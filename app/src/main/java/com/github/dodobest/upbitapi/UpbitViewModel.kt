@@ -19,10 +19,6 @@ class UpbitViewModel @Inject constructor(
 ) : ViewModel() {
     private val marketToKoreanName: HashMap<String, String> = hashMapOf()
 
-    private val _marketCoinData = MutableLiveData<List<UpbitMarketData>>()
-    val marketCoinData: LiveData<List<UpbitMarketData>>
-        get() = _marketCoinData
-
     private var tickerQuery: String = ""
 
     private val _tickers = MutableLiveData<List<UpbitTickerDataWithKoreanName>>()
@@ -33,7 +29,6 @@ class UpbitViewModel @Inject constructor(
         getMarketsUseCase.execute()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ marketCoinNames ->
-                _marketCoinData.value = marketCoinNames
                 setMarketToKoreanName(marketCoinNames)
                 extractTickerQuery()
                 getTicker(tickerQuery)
@@ -44,9 +39,6 @@ class UpbitViewModel @Inject constructor(
 
 
     fun getTicker(query: String) {
-        if (query == "") {
-            return
-        }
         getTickerUseCase.execute(query)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ upbitTickerDataSet ->

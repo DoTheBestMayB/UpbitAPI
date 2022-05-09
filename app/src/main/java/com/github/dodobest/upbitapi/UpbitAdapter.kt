@@ -1,5 +1,6 @@
 package com.github.dodobest.upbitapi
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +11,7 @@ import javax.inject.Inject
 class UpbitAdapter @Inject constructor(
     private val dataFormatHandler: DataFormatHandler,
 ) : RecyclerView.Adapter<UpbitViewHolder>() {
-    private val tickerResult: MutableList<UpbitTickerDataWithKoreanName> = mutableListOf()
+    private var tickerResult: List<UpbitTickerDataWithKoreanName> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpbitViewHolder {
         val binding = CoinItemBinding.inflate(
@@ -27,17 +28,9 @@ class UpbitAdapter @Inject constructor(
         return tickerResult.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setResult(tickerData: List<UpbitTickerDataWithKoreanName>) {
-        if (tickerData == tickerResult) return
-
-        tickerData.forEach {
-            if (tickerResult.indexOf(it) == -1) {
-                tickerResult.add(it)
-                notifyItemInserted(tickerResult.lastIndex)
-            } else if (tickerResult[tickerResult.indexOf(it)] != it) {
-                tickerResult[tickerResult.indexOf(it)] = it
-                notifyItemChanged(tickerResult.indexOf(it))
-            }
-        }
+        tickerResult = tickerData
+        notifyDataSetChanged()
     }
 }
