@@ -19,8 +19,6 @@ class UpbitViewModel @Inject constructor(
 ) : ViewModel() {
     private val marketToKoreanName: HashMap<String, String> = hashMapOf()
 
-    private var tickerQuery: String = ""
-
     private val _tickers = MutableLiveData<List<UpbitTickerDataWithKoreanName>>()
     val tickers: LiveData<List<UpbitTickerDataWithKoreanName>>
         get() = _tickers
@@ -30,8 +28,7 @@ class UpbitViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ marketCoinNames ->
                 setMarketToKoreanName(marketCoinNames)
-                extractTickerQuery()
-                getTicker(tickerQuery)
+                getTicker(extractTickerQuery())
             }, {
                 Timber.e(it.message ?: "")
             })
@@ -52,7 +49,7 @@ class UpbitViewModel @Inject constructor(
             })
     }
 
-    private fun extractTickerQuery() {
+    private fun extractTickerQuery(): String {
         val coinName: ArrayList<String> = arrayListOf()
 
         for (marketName in marketToKoreanName.keys) {
@@ -60,8 +57,8 @@ class UpbitViewModel @Inject constructor(
                 coinName.add(marketName)
             }
         }
-        tickerQuery = coinName.toString().replace(" ", "")
-        tickerQuery = tickerQuery.slice(IntRange(1, tickerQuery.length - 2))
+        val tickerQuery = coinName.toString().replace(" ", "")
+        return tickerQuery.slice(IntRange(1, tickerQuery.length - 2))
     }
 
     private fun setMarketToKoreanName(marketCoinNames: List<UpbitMarketData>) {
