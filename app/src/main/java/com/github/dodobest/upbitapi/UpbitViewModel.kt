@@ -17,8 +17,6 @@ class UpbitViewModel @Inject constructor(
     private val getMarketsUseCase: GetMarketsUseCase,
     private val getTickerUseCase: GetTickerUseCase,
 ) : ViewModel() {
-    private val marketToKoreanName: HashMap<String, String> = hashMapOf()
-
     private val _tickers = MutableLiveData<List<UpbitTickerDataWithKoreanName>>()
     val tickers: LiveData<List<UpbitTickerDataWithKoreanName>>
         get() = _tickers
@@ -26,46 +24,39 @@ class UpbitViewModel @Inject constructor(
     fun getMarkets() {
         getMarketsUseCase.execute()
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ marketCoinNames ->
-                setMarketToKoreanName(marketCoinNames)
-                getTicker(extractTickerQuery())
+            .subscribe({
+                getTicker(it)
             }, {
                 Timber.e(it.message ?: "")
             })
     }
 
 
-    fun getTicker(query: String) {
-        getTickerUseCase.execute(query)
+    fun getTicker(marketCoinNames: List<UpbitMarketData>) {
+        getTickerUseCase.execute(extractTickerQuery(marketCoinNames))
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ upbitTickerDataSet ->
                 _tickers.value = upbitTickerDataSet.map { upbitTickerData ->
-                    marketToKoreanName[upbitTickerData.market]?.let { koreanName ->
-                        upbitTickerData.addKoreanName(koreanName)
-                    } ?: upbitTickerData.addKoreanName(NO_NAME_NONE)
+                    val koreanName = marketCoinNames.find { upbitMarketData ->
+                        upbitMarketData.market == upbitTickerData.market
+                    }?.koreanName ?: NO_NAME_NONE
+                    upbitTickerData.addKoreanName(koreanName)
                 }
             }, {
                 Timber.e(it.message ?: "")
             })
     }
 
-    private fun extractTickerQuery(): String {
+    private fun extractTickerQuery(marketCoinNames: List<UpbitMarketData>): String {
         val coinName: ArrayList<String> = arrayListOf()
 
-        for (marketName in marketToKoreanName.keys) {
-            if (marketName.contains("KRW-")) {
-                coinName.add(marketName)
+        for (marketCoinName in marketCoinNames) {
+            if (marketCoinName.market.contains("KRW-")) {
+                coinName.add(marketCoinName.market)
             }
         }
         val tickerQuery = coinName.toString().replace(" ", "")
         return tickerQuery.slice(IntRange(1, tickerQuery.length - 2))
-    }
-
-    private fun setMarketToKoreanName(marketCoinNames: List<UpbitMarketData>) {
-        marketToKoreanName.clear()
-        for (marketCoinName in marketCoinNames) {
-            marketToKoreanName[marketCoinName.market] = marketCoinName.koreanName
-        }
     }
 
     companion object {
