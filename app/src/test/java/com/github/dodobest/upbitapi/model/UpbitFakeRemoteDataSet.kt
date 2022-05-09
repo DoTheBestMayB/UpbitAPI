@@ -25,7 +25,7 @@ object UpbitFakeRemoteDataSet {
         ),
     )
 
-    val upbitBTCTickerData = listOf(
+    private val upbitBTCTickerData = listOf(
         UpbitTickerData(
             "KRW-BTC",
             8_450_000.0,
@@ -35,7 +35,7 @@ object UpbitFakeRemoteDataSet {
         ),
     )
 
-    val upbitETHTickerData = listOf(
+    private val upbitETHTickerData = listOf(
         UpbitTickerData(
             "KRW-ETH",
             1_000.0,
@@ -45,7 +45,7 @@ object UpbitFakeRemoteDataSet {
         ),
     )
 
-    val upbitNUTickerData = listOf(
+    private val upbitNUTickerData = listOf(
         UpbitTickerData(
             "KRW-NU",
             10.0,
@@ -56,8 +56,8 @@ object UpbitFakeRemoteDataSet {
     )
 
     val upbitTickerData = listOf(
-        upbitBTCTickerData[0].toDomainData(),
-        upbitETHTickerData[0].toDomainData(),
-        upbitNUTickerData[0].toDomainData(),
+        upbitBTCTickerData.first().toDomainData(),
+        upbitETHTickerData.first().toDomainData(),
+        upbitNUTickerData.first().toDomainData(),
     )
 }
