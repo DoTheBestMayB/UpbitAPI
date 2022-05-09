@@ -35,8 +35,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setRecyclerView() {
-        binding.coinPriceRecyclerView.layoutManager = LinearLayoutManager(this)
-
         val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         AppCompatResources.getDrawable(this, R.drawable.divider)?.let {
             divider.setDrawable(it)
