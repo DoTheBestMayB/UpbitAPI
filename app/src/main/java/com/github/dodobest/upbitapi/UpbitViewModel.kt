@@ -21,8 +21,6 @@ class UpbitViewModel @Inject constructor(
     val tickers: LiveData<List<UpbitTickerDataWithKoreanName>>
         get() = _tickers
 
-    private val noNameNone = "None"
-
     fun getMarkets() {
         getMarketsUseCase.execute()
             .observeOn(AndroidSchedulers.mainThread())
@@ -41,7 +39,7 @@ class UpbitViewModel @Inject constructor(
                 _tickers.value = upbitTickerDataSet.map { upbitTickerData ->
                     val koreanName = marketCoinNames.find { upbitMarketData ->
                         upbitMarketData.market == upbitTickerData.market
-                    }?.koreanName ?: noNameNone
+                    }?.koreanName ?: NO_NAME_NONE
                     upbitTickerData.addKoreanName(koreanName)
                 }
             }, {
@@ -59,5 +57,9 @@ class UpbitViewModel @Inject constructor(
         }
         val tickerQuery = coinName.toString().replace(" ", "")
         return tickerQuery.slice(IntRange(1, tickerQuery.length - 2))
+    }
+
+    companion object {
+        private const val NO_NAME_NONE = "None"
     }
 }

@@ -23,7 +23,6 @@ class UpbitViewModelTest {
     private lateinit var getMarketsUseCase: GetMarketsUseCase
     private lateinit var getTickerUseCase: GetTickerUseCase
     private lateinit var upbitViewModel: UpbitViewModel
-    private val tickerQuery = "KRW-BTC,KRW-ETH,KRW-NU"
 
     @Before
     fun setUp() {
@@ -36,7 +35,7 @@ class UpbitViewModelTest {
     fun `getTicker를 호출하면 코인의 Ticker 데이터를 수신한다`() {
         // given
         every {
-            getTickerUseCase.execute(tickerQuery)
+            getTickerUseCase.execute(TICKER_QUERY)
         } returns Single.just(UpbitFakeRemoteDataSet.upbitTickerData)
 
         // when
@@ -45,5 +44,9 @@ class UpbitViewModelTest {
         // then
         assertThat(upbitViewModel.tickers.getOrAwaitValue())
             .isEqualTo(UpbitFakeRemoteDataSet.upbitTickerDataWithKoreanName)
+    }
+
+    companion object {
+        private const val TICKER_QUERY = "KRW-BTC,KRW-ETH,KRW-NU"
     }
 }

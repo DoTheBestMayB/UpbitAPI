@@ -25,10 +25,6 @@ internal class UpbitAPITest {
     private val upbitMarketDataETH = listOf("KRW-ETH", "이더리움", "Ethereum", "NONE")
     private val upbitMarketDataNU = listOf("KRW-NU", "누사이퍼", "Nucypher", "CAUTION")
 
-    private val upbitTickerSuccessDataPath = "src/test/resources/upbitTickerSuccessData.json"
-    private val upbitMarketSuccessDataPath = "src/test/resources/upbitMarketSuccessData.json"
-    private val upbitTickerDataCoinName = "KRW-BTC"
-
     @Before
     fun setUp() {
         server = MockWebServer()
@@ -46,11 +42,11 @@ internal class UpbitAPITest {
     fun `getTicker 함수로 API 통신에 성공하면 UpbitTickerDataResponse 클래스로 변환된 데이터를 생성한다`() {
         // given
         val response = MockResponse()
-            .setBody(File(upbitTickerSuccessDataPath).readText())
+            .setBody(File(UPBIT_TICKER_SUCCESS_DATA_PATH).readText())
         server.enqueue(response)
         val expected = listOf(
             UpbitTickerData(
-                market = upbitTickerDataCoinName,
+                market = UPBIT_TICKER_DATA_COIN_NAME,
                 openingPrice = upbitTickerDataValue[0],
                 tradePrice = upbitTickerDataValue[1],
                 signedChangeRate = upbitTickerDataValue[2],
@@ -59,7 +55,7 @@ internal class UpbitAPITest {
         )
 
         // when - then
-        upbitAPI.getTicker(upbitTickerDataCoinName)
+        upbitAPI.getTicker(UPBIT_TICKER_DATA_COIN_NAME)
             .test()
             .assertValue(expected)
     }
@@ -68,7 +64,7 @@ internal class UpbitAPITest {
     fun `getMarkets 함수로 API 통신에 성공하면 UpbitMarketDataResponse 클래스로 변환된 데이터를 생성한다`() {
         // given
         val response = MockResponse()
-            .setBody(File(upbitMarketSuccessDataPath).readText())
+            .setBody(File(UPBIT_MARKET_SUCCESS_DATA_PATH).readText())
         server.enqueue(response)
         val expected = listOf(
             UpbitMarketData(
@@ -95,5 +91,11 @@ internal class UpbitAPITest {
         upbitAPI.getMarkets()
             .test()
             .assertValue(expected)
+    }
+
+    companion object {
+        private const val UPBIT_TICKER_SUCCESS_DATA_PATH = "src/test/resources/upbitTickerSuccessData.json"
+        private const val UPBIT_MARKET_SUCCESS_DATA_PATH = "src/test/resources/upbitMarketSuccessData.json"
+        private const val UPBIT_TICKER_DATA_COIN_NAME = "KRW-BTC"
     }
 }
