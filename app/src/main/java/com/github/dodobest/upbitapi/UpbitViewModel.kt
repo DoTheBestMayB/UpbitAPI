@@ -40,7 +40,7 @@ class UpbitViewModel @Inject constructor(
                 _tickers.value = upbitTickerDataSet.map { upbitTickerData ->
                     val koreanName = upbitMarketDataSet.find { upbitMarketData ->
                         upbitMarketData.market == upbitTickerData.market
-                    }?.koreanName ?: NO_NAME_NONE
+                    }?.koreanName ?: Coin.NO_EXIST.koreanName
                     upbitTickerData.addKoreanName(koreanName)
                 }
             }, {
@@ -58,9 +58,5 @@ class UpbitViewModel @Inject constructor(
         }
 
         return coinName.joinToString().replace(" ", "")
-    }
-
-    companion object {
-        private const val NO_NAME_NONE = "None"
     }
 }
