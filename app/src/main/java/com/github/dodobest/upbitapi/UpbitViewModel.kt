@@ -17,6 +17,7 @@ class UpbitViewModel @Inject constructor(
     private val getMarketsUseCase: GetMarketsUseCase,
     private val getTickerUseCase: GetTickerUseCase,
 ) : ViewModel() {
+
     private val _tickers = MutableLiveData<List<UpbitTickerDataWithKoreanName>>()
     val tickers: LiveData<List<UpbitTickerDataWithKoreanName>>
         get() = _tickers

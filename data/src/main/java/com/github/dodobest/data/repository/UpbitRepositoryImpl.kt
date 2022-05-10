@@ -11,6 +11,7 @@ import javax.inject.Inject
 internal class UpbitRepositoryImpl @Inject constructor(
     private val upbitRemoteDataSource: UpbitRemoteDataSource
 ) : UpbitRepository {
+
     override fun getMarkets(): Single<List<UpbitMarketData>> {
         return upbitRemoteDataSource.getMarkets().map { upbitMarketDataList ->
             upbitMarketDataList.map { upbitMarketData ->

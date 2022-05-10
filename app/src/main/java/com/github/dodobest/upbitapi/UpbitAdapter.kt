@@ -10,6 +10,7 @@ import com.github.dodobest.upbitapi.databinding.CoinItemBinding
 class UpbitAdapter(
     private val dataFormatHandler: DataFormatHandler,
 ) : RecyclerView.Adapter<UpbitViewHolder>() {
+
     private val tickerResult: MutableList<UpbitTickerDataWithKoreanName> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpbitViewHolder {

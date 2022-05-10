@@ -8,6 +8,7 @@ import javax.inject.Inject
 internal class UpbitRemoteDataSourceImpl @Inject constructor(
     private val upbitAPI: UpbitAPI
 ) : UpbitRemoteDataSource {
+
     override fun getMarkets(): Single<List<UpbitMarketData>> {
         return upbitAPI.getMarkets()
     }

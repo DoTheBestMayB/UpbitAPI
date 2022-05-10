@@ -8,6 +8,7 @@ import javax.inject.Inject
 internal class GetTickerUseCaseImpl @Inject constructor(
     private val upbitRepository: UpbitRepository
 ) : GetTickerUseCase {
+
     override fun execute(market: String): Single<List<UpbitTickerData>> {
         return upbitRepository.getTicker(market)
     }

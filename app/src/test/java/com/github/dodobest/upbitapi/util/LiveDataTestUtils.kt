@@ -10,6 +10,7 @@ fun <T> LiveData<T>.getOrAwaitValue(
     time: Long = 2,
     timeUnit: TimeUnit = TimeUnit.SECONDS
 ): T? {
+
     var data: T? = null
     val latch = CountDownLatch(1)
     val observer = object : Observer<T> {

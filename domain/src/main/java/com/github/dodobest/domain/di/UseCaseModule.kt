@@ -13,6 +13,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal interface UseCaseModule {
+
     @Binds
     @Singleton
     fun provideGetMarketsUseCase(getMarketsUseCaseImpl: GetMarketsUseCaseImpl): GetMarketsUseCase

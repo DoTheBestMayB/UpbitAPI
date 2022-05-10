@@ -6,6 +6,7 @@ import timber.log.Timber
 
 @HiltAndroidApp
 class UpbitApplication : Application() {
+
     override fun onCreate() {
         super.onCreate()
         setTimber()

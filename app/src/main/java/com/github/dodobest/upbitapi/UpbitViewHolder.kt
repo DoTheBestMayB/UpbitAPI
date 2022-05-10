@@ -9,6 +9,7 @@ class UpbitViewHolder(
     binding: CoinItemBinding,
     private val dataFormatHandler: DataFormatHandler
 ) : RecyclerView.ViewHolder(binding.root) {
+
     private val coinName: TextView = binding.coinName
     private val coinMarket: TextView = binding.coinMarket
     private val coinPrice: TextView = binding.coinPrice

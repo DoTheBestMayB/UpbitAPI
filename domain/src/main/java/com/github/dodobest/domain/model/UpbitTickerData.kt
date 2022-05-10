@@ -7,6 +7,7 @@ data class UpbitTickerData(
     val signedChangeRate: Double,
     val aacTradePrice24h: Double,
 ) {
+
     fun addKoreanName(koreanName: String): UpbitTickerDataWithKoreanName {
         return  UpbitTickerDataWithKoreanName(
             market, koreanName, openingPrice, tradePrice, signedChangeRate, aacTradePrice24h

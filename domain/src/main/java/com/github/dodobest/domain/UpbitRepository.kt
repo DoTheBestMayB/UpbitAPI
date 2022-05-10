@@ -5,6 +5,7 @@ import com.github.dodobest.domain.model.UpbitTickerData
 import io.reactivex.rxjava3.core.Single
 
 interface UpbitRepository {
+
     fun getMarkets(): Single<List<UpbitMarketData>>
     fun getTicker(market: String): Single<List<UpbitTickerData>>
 }

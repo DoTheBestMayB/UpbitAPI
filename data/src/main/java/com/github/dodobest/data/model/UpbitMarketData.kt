@@ -13,6 +13,7 @@ data class UpbitMarketData(
     @SerializedName("market_warning")
     val marketWarning: String,
 ) {
+
     fun toDomainData(): UpbitMarketData {
         return UpbitMarketData(
             market = market,

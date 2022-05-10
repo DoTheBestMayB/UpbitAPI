@@ -4,6 +4,7 @@ import com.github.dodobest.data.model.UpbitMarketData
 import com.github.dodobest.data.model.UpbitTickerData
 
 object UpbitFakeRemoteDataSet {
+
     val upbitMarketData = listOf(
         UpbitMarketData(
             "KRW-BTC",

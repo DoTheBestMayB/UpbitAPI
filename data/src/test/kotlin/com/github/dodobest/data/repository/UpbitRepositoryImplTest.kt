@@ -9,6 +9,7 @@ import org.junit.Before
 import org.junit.Test
 
 internal class UpbitRepositoryImplTest {
+
     private lateinit var upbitRemoteDataSource: UpbitRemoteDataSource
     private lateinit var upbitRepository: UpbitRepository
 

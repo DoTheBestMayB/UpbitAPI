@@ -14,6 +14,7 @@ import org.junit.Rule
 import org.junit.Test
 
 class UpbitViewModelTest {
+
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 

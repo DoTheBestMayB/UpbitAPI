@@ -15,6 +15,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 internal class UpbitAPITest {
+
     private lateinit var server: MockWebServer
     private lateinit var baseUrl: HttpUrl
     private lateinit var retrofit: Retrofit
