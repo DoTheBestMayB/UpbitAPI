@@ -10,7 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     private val upbitAdapter: UpbitAdapter = UpbitAdapter(DataFormatHandler())
     private val viewModel: UpbitViewModel by viewModels()
