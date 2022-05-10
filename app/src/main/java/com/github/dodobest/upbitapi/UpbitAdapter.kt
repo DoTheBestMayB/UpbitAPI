@@ -6,9 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.dodobest.domain.model.UpbitTickerDataWithKoreanName
 import com.github.dodobest.upbitapi.databinding.CoinItemBinding
-import javax.inject.Inject
 
-class UpbitAdapter @Inject constructor(
+class UpbitAdapter(
     private val dataFormatHandler: DataFormatHandler,
 ) : RecyclerView.Adapter<UpbitViewHolder>() {
     private var tickerResult: List<UpbitTickerDataWithKoreanName> = listOf()

@@ -5,17 +5,14 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.dodobest.upbitapi.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
 
-    @Inject
-    lateinit var upbitAdapter: UpbitAdapter
+    private val upbitAdapter: UpbitAdapter = UpbitAdapter(DataFormatHandler())
     private val viewModel: UpbitViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {

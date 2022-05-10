@@ -1,7 +1,21 @@
 package com.github.dodobest.upbitapi
 
-interface DataFormatHandler {
-    fun formatCoinPrice(price: Double) : String
-    fun formatChangeRate(rate: Double) : String
-    fun formatAacTradePrice(tradePrice: Double) : String
+import java.text.DecimalFormat
+
+class DataFormatHandler {
+    private val coinPriceFormat = DecimalFormat("#,###.########")
+    private val changeRateFormat = DecimalFormat("#,###.##%")
+    private val aacTradePriceFormat = DecimalFormat("#,###백만")
+
+    fun formatCoinPrice(price: Double): String {
+        return coinPriceFormat.format(price)
+    }
+
+    fun formatChangeRate(rate: Double): String {
+        return changeRateFormat.format(rate)
+    }
+
+    fun formatAacTradePrice(tradePrice: Double): String {
+        return aacTradePriceFormat.format(tradePrice)
+    }
 }
