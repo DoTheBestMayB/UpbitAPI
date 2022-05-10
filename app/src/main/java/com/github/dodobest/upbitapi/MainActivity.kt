@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setDataBinding()
         setRecyclerView()
-        setAdapter()
         setLiveDataObserve()
         loadInitialContent()
     }
@@ -32,15 +31,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setRecyclerView() {
+        binding.coinPriceRecyclerView.adapter = upbitAdapter
+
         val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
         AppCompatResources.getDrawable(this, R.drawable.divider)?.let {
             divider.setDrawable(it)
         }
         binding.coinPriceRecyclerView.addItemDecoration(divider)
-    }
-
-    private fun setAdapter() {
-        binding.coinPriceRecyclerView.adapter = upbitAdapter
     }
 
     private fun setLiveDataObserve() {
