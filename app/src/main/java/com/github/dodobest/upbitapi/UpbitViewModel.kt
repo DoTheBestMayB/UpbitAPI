@@ -33,12 +33,12 @@ class UpbitViewModel @Inject constructor(
     }
 
 
-    fun getTicker(marketCoinNames: List<UpbitMarketData>) {
-        getTickerUseCase.execute(extractTickerQuery(marketCoinNames))
+    fun getTicker(upbitMarketDataSet: List<UpbitMarketData>) {
+        getTickerUseCase.execute(extractTickerQuery(upbitMarketDataSet))
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ upbitTickerDataSet ->
                 _tickers.value = upbitTickerDataSet.map { upbitTickerData ->
-                    val koreanName = marketCoinNames.find { upbitMarketData ->
+                    val koreanName = upbitMarketDataSet.find { upbitMarketData ->
                         upbitMarketData.market == upbitTickerData.market
                     }?.koreanName ?: NO_NAME_NONE
                     upbitTickerData.addKoreanName(koreanName)
@@ -48,12 +48,12 @@ class UpbitViewModel @Inject constructor(
             })
     }
 
-    private fun extractTickerQuery(marketCoinNames: List<UpbitMarketData>): String {
+    private fun extractTickerQuery(upbitMarketDataSet: List<UpbitMarketData>): String {
         val coinName: ArrayList<String> = arrayListOf()
 
-        for (marketCoinName in marketCoinNames) {
-            if (marketCoinName.market.contains("KRW-")) {
-                coinName.add(marketCoinName.market)
+        upbitMarketDataSet.forEach { upbitMarketData ->
+            if (upbitMarketData.market.contains("KRW-")) {
+                coinName.add(upbitMarketData.market)
             }
         }
         val tickerQuery = coinName.toString().replace(" ", "")
