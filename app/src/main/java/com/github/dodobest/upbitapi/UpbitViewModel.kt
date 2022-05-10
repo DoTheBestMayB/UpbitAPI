@@ -56,8 +56,8 @@ class UpbitViewModel @Inject constructor(
                 coinName.add(upbitMarketData.market)
             }
         }
-        val tickerQuery = coinName.toString().replace(" ", "")
-        return tickerQuery.slice(IntRange(1, tickerQuery.length - 2))
+
+        return coinName.joinToString().replace(" ", "")
     }
 
     companion object {
