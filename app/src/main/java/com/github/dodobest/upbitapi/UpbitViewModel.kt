@@ -4,9 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.dodobest.domain.model.UpbitMarketData
-import com.github.dodobest.domain.model.UpbitTickerDataWithKoreanName
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
+import com.github.dodobest.upbitapi.model.Coin
+import com.github.dodobest.upbitapi.model.UpbitTickerDataWithKoreanName
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import timber.log.Timber
@@ -41,7 +42,7 @@ class UpbitViewModel @Inject constructor(
                     val koreanName = upbitMarketDataSet.find { upbitMarketData ->
                         upbitMarketData.market == upbitTickerData.market
                     }?.koreanName ?: Coin.NO_EXIST.koreanName
-                    upbitTickerData.addKoreanName(koreanName)
+                    UpbitTickerDataWithKoreanName.fromUpbitTickerData(upbitTickerData, koreanName)
                 }
             }, {
                 Timber.e(it.message ?: "")
