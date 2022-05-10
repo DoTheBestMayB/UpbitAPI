@@ -10,7 +10,7 @@ import com.github.dodobest.upbitapi.databinding.CoinItemBinding
 class UpbitAdapter(
     private val dataFormatHandler: DataFormatHandler,
 ) : RecyclerView.Adapter<UpbitViewHolder>() {
-    private var tickerResult: List<UpbitTickerDataWithKoreanName> = listOf()
+    private val tickerResult: MutableList<UpbitTickerDataWithKoreanName> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpbitViewHolder {
         val binding = CoinItemBinding.inflate(
@@ -29,7 +29,8 @@ class UpbitAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun setResult(tickerData: List<UpbitTickerDataWithKoreanName>) {
-        tickerResult = tickerData
+        tickerResult.clear()
+        tickerResult.addAll(tickerData)
         notifyDataSetChanged()
     }
 }
