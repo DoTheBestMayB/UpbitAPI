@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setDataBinding()
         setRecyclerView()
@@ -26,7 +27,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setDataBinding() {
-        binding = ActivityMainBinding.inflate(layoutInflater)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
     }
