@@ -2,8 +2,8 @@ package com.github.dodobest.upbitapi
 
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.github.dodobest.domain.model.UpbitTickerDataWithKoreanName
 import com.github.dodobest.upbitapi.databinding.CoinItemBinding
+import com.github.dodobest.upbitapi.model.UpbitTickerDataWithKoreanName
 
 class UpbitViewHolder(
     binding: CoinItemBinding,

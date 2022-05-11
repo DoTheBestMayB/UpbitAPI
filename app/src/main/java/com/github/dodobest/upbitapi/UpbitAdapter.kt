@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.github.dodobest.domain.model.UpbitTickerDataWithKoreanName
 import com.github.dodobest.upbitapi.databinding.CoinItemBinding
+import com.github.dodobest.upbitapi.model.UpbitTickerDataWithKoreanName
 
 class UpbitAdapter(
     private val dataFormatHandler: DataFormatHandler,
