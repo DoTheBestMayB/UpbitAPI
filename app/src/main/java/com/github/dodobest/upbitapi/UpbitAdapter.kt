@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.dodobest.upbitapi.databinding.CoinItemBinding
 import com.github.dodobest.upbitapi.model.UpbitTickerDataWithKoreanName
 
-class UpbitAdapter(
-    private val dataFormatHandler: DataFormatHandler,
-) : RecyclerView.Adapter<UpbitViewHolder>() {
+class UpbitAdapter : RecyclerView.Adapter<UpbitViewHolder>() {
 
     private val tickerResult: MutableList<UpbitTickerDataWithKoreanName> = mutableListOf()
 
@@ -17,7 +15,7 @@ class UpbitAdapter(
         val binding = CoinItemBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return UpbitViewHolder(binding, dataFormatHandler)
+        return UpbitViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: UpbitViewHolder, position: Int) {

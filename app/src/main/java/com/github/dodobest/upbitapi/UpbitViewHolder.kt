@@ -7,7 +7,6 @@ import com.github.dodobest.upbitapi.model.UpbitTickerDataWithKoreanName
 
 class UpbitViewHolder(
     binding: CoinItemBinding,
-    private val dataFormatHandler: DataFormatHandler
 ) : RecyclerView.ViewHolder(binding.root) {
 
     private val coinName: TextView = binding.coinName
@@ -19,11 +18,11 @@ class UpbitViewHolder(
     fun setData(tickerResult: UpbitTickerDataWithKoreanName) {
         coinMarket.text = tickerResult.market
         coinName.text = tickerResult.koreanName
-        coinPrice.text = dataFormatHandler.formatCoinPrice(tickerResult.tradePrice)
-        changeRate.text = dataFormatHandler.formatChangeRate(
+        coinPrice.text = DataFormatHandler.formatCoinPrice(tickerResult.tradePrice)
+        changeRate.text = DataFormatHandler.formatChangeRate(
             tickerResult.signedChangeRate
         )
-        aacTradePrice.text = dataFormatHandler.formatAacTradePrice(
+        aacTradePrice.text = DataFormatHandler.formatAacTradePrice(
             tickerResult.aacTradePrice24h / 1_000_000
         )
     }

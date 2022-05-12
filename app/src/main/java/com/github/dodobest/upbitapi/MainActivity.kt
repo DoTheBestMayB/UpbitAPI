@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private val upbitAdapter: UpbitAdapter = UpbitAdapter(DataFormatHandler())
+    private val upbitAdapter: UpbitAdapter = UpbitAdapter()
     private val viewModel: UpbitViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {

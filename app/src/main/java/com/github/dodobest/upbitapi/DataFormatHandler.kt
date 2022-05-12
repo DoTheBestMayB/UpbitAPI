@@ -2,7 +2,7 @@ package com.github.dodobest.upbitapi
 
 import java.text.DecimalFormat
 
-class DataFormatHandler {
+object DataFormatHandler {
 
     private val coinPriceFormat = DecimalFormat("#,###.########")
     private val changeRateFormat = DecimalFormat("#,###.##%")
