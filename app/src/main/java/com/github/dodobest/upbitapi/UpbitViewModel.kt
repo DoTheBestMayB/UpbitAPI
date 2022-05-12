@@ -53,7 +53,7 @@ class UpbitViewModel @Inject constructor(
         val coinName: ArrayList<String> = arrayListOf()
 
         upbitMarketDataSet.forEach { upbitMarketData ->
-            if (upbitMarketData.market.contains("KRW-")) {
+            if (upbitMarketData.market.contains("USDT-")) {
                 coinName.add(upbitMarketData.market)
             }
         }
