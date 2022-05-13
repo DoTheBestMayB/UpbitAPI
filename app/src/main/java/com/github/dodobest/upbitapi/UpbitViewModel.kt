@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.github.dodobest.domain.model.UpbitMarketData
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
-import com.github.dodobest.upbitapi.model.Coin
 import com.github.dodobest.upbitapi.model.UpbitTickerDataWithKoreanName
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -23,14 +22,23 @@ class UpbitViewModel @Inject constructor(
     val tickers: LiveData<List<UpbitTickerDataWithKoreanName>>
         get() = _tickers
 
+    private val coinHashMap: HashMap<String, String> = hashMapOf()
+
     fun getMarkets() {
         getMarketsUseCase.execute()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+                extractCoinName(it)
                 getTicker(it)
             }, {
                 Timber.e(it.message ?: "")
             })
+    }
+
+    private fun extractCoinName(upbitMarketDataSet: List<UpbitMarketData>) {
+        upbitMarketDataSet.forEach { upbitMarketData ->
+            coinHashMap[upbitMarketData.market] = upbitMarketData.koreanName
+        }
     }
 
 
@@ -39,10 +47,10 @@ class UpbitViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ upbitTickerDataSet ->
                 _tickers.value = upbitTickerDataSet.map { upbitTickerData ->
-                    val koreanName = upbitMarketDataSet.find { upbitMarketData ->
-                        upbitMarketData.market == upbitTickerData.market
-                    }?.koreanName ?: Coin.NO_EXIST.koreanName
-                    UpbitTickerDataWithKoreanName.fromUpbitTickerData(upbitTickerData, koreanName)
+                    UpbitTickerDataWithKoreanName.fromUpbitTickerData(
+                        upbitTickerData,
+                        coinHashMap[upbitTickerData.market] ?: NO_EXIST,
+                    )
                 }
             }, {
                 Timber.e(it.message ?: "")
@@ -59,5 +67,9 @@ class UpbitViewModel @Inject constructor(
         }
 
         return coinName.joinToString().replace(" ", "")
+    }
+
+    companion object {
+        private const val NO_EXIST = "등록되지 않은 코인"
     }
 }
