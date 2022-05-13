@@ -20,15 +20,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setDataBinding()
         setRecyclerView()
         setLiveDataObserve()
         loadInitialContent()
-    }
-
-    private fun setDataBinding() {
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
     }
 
     private fun setRecyclerView() {
