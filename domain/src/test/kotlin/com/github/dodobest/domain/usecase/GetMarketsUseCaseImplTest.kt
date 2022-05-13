@@ -8,6 +8,7 @@ import org.junit.Before
 import org.junit.Test
 
 class GetMarketsUseCaseImplTest {
+
     lateinit var upbitRepository: UpbitRepository
     lateinit var getMarketsUseCase: GetMarketsUseCase
 

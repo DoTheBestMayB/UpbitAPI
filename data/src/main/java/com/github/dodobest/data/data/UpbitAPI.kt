@@ -7,6 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 internal interface UpbitAPI {
+    
     @GET(MARKET_COIN_LIST_URL)
     fun getMarkets(@Query("isDetails") isDetails: Boolean = true): Single<List<UpbitMarketData>>
 

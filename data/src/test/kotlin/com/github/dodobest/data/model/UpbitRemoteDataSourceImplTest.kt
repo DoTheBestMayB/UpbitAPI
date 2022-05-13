@@ -10,6 +10,7 @@ import org.junit.Before
 import org.junit.Test
 
 internal class UpbitRemoteDataSourceImplTest {
+
     private lateinit var upbitAPI: UpbitAPI
     private lateinit var upbitRemoteDataSource: UpbitRemoteDataSource
 

@@ -14,6 +14,7 @@ import org.junit.Rule
 import org.junit.Test
 
 class UpbitViewModelTest {
+
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
 
@@ -32,44 +33,24 @@ class UpbitViewModelTest {
     }
 
     @Test
-    fun `UpbitViewModel getMarkets를 호출하면 코인 데이터를 수신한다`() {
+    fun `getTicker를 호출하면 코인의 Ticker 데이터를 수신한다`() {
         // given
         every {
-            getMarketsUseCase.execute()
-        } returns Single.just(UpbitFakeRemoteDataSet.upbitMarketData.map {
-            it.toDomainData()
-        })
+            getTickerUseCase.execute(TICKER_QUERY)
+        } returns Single.just(UpbitFakeRemoteDataSet.upbitTickerData)
+
+        val inputData = UpbitFakeRemoteDataSet.upbitMarketData.map { it.toDomainData() }
+        upbitViewModel.extractCoinName(inputData)
 
         // when
-        upbitViewModel.getMarkets()
-
-        // then
-        assertThat(upbitViewModel.marketCoinNames.getOrAwaitValue())
-            .isEqualTo(
-                UpbitFakeRemoteDataSet.upbitMarketData.map { it.toDomainData() }
-            )
-    }
-
-    @Test
-    fun `서버에 있는 코인에 대해 getTicker를 호출하면 그 코인의 Ticker 데이터를 수신한다`() {
-        // given
-        every {
-            getTickerUseCase.execute(BTC_CODE_NAME)
-        } returns Single.just(UpbitFakeRemoteDataSet.upbitBTCTickerData.map {
-            it.toDomainData()
-        })
-
-        // when
-        upbitViewModel.getTicker(BTC_CODE_NAME)
+        upbitViewModel.getTicker(inputData)
 
         // then
         assertThat(upbitViewModel.tickers.getOrAwaitValue())
-            .isEqualTo(
-                mapOf(BTC_CODE_NAME to UpbitFakeRemoteDataSet.upbitBTCTickerData[0].toDomainData())
-            )
+            .isEqualTo(UpbitFakeRemoteDataSet.upbitTickerDataWithKoreanName)
     }
 
     companion object {
-        private const val BTC_CODE_NAME = "KRW-BTC"
+        private const val TICKER_QUERY = "KRW-BTC,KRW-ETH,KRW-NU"
     }
 }

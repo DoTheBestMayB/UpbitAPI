@@ -15,10 +15,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 internal class UpbitAPITest {
+
     private lateinit var server: MockWebServer
     private lateinit var baseUrl: HttpUrl
     private lateinit var retrofit: Retrofit
     private lateinit var upbitAPI: UpbitAPI
+
+    private val upbitTickerDataValue = listOf(100.0, 150.0, 50.0, 1000.0)
+    private val upbitMarketDataBTC = listOf("KRW-BTC", "비트코인", "Bitcoin", "NONE")
+    private val upbitMarketDataETH = listOf("KRW-ETH", "이더리움", "Ethereum", "NONE")
+    private val upbitMarketDataNU = listOf("KRW-NU", "누사이퍼", "Nucypher", "CAUTION")
 
     @Before
     fun setUp() {
@@ -44,7 +50,7 @@ internal class UpbitAPITest {
                 market = UPBIT_TICKER_DATA_COIN_NAME,
                 openingPrice = upbitTickerDataValue[0],
                 tradePrice = upbitTickerDataValue[1],
-                signedChangePrice = upbitTickerDataValue[2],
+                signedChangeRate = upbitTickerDataValue[2],
                 aacTradePrice24h = upbitTickerDataValue[3],
             )
         )
@@ -89,14 +95,8 @@ internal class UpbitAPITest {
     }
 
     companion object {
-        private const val UPBIT_TICKER_SUCCESS_DATA_PATH =
-            "src/test/resources/upbitTickerSuccessData.json"
-        private const val UPBIT_MARKET_SUCCESS_DATA_PATH =
-            "src/test/resources/upbitMarketSuccessData.json"
+        private const val UPBIT_TICKER_SUCCESS_DATA_PATH = "src/test/resources/upbitTickerSuccessData.json"
+        private const val UPBIT_MARKET_SUCCESS_DATA_PATH = "src/test/resources/upbitMarketSuccessData.json"
         private const val UPBIT_TICKER_DATA_COIN_NAME = "KRW-BTC"
-        private val upbitTickerDataValue = listOf(100.0, 150.0, 50.0, 1000.0)
-        private val upbitMarketDataBTC = listOf("KRW-BTC", "비트코인", "Bitcoin", "NONE")
-        private val upbitMarketDataETH = listOf("KRW-ETH", "이더리움", "Ethereum", "NONE")
-        private val upbitMarketDataNU = listOf("KRW-NU", "누사이퍼", "Nucypher", "CAUTION")
     }
 }

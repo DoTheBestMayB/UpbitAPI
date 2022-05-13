@@ -4,9 +4,6 @@ import com.github.dodobest.data.model.UpbitMarketData
 import com.github.dodobest.data.model.UpbitTickerData
 
 object UpbitFakeRemoteDataSet {
-    private const val BTC_CODE_NAME = "KRW-BTC"
-    private const val ETH_CODE_NAME = "KRW-ETH"
-    private const val NU_CODE_NAME = "KRW-NU"
 
     val upbitMarketData = listOf(
         UpbitMarketData(
@@ -29,39 +26,54 @@ object UpbitFakeRemoteDataSet {
         ),
     )
 
-    val upbitBTCTickerData = listOf(
+    private val upbitBTCTickerData = listOf(
         UpbitTickerData(
             "KRW-BTC",
-            8450000.0,
-            8621000.0,
-            171000.0,
-            232702901371.09308,
+            8_450_000.0,
+            8_621_000.0,
+            171_000.0,
+            232_702_901_371.093_08,
         ),
     )
 
-    val upbitETHTickerData = listOf(
+    private val upbitETHTickerData = listOf(
         UpbitTickerData(
             "KRW-ETH",
-            1000.0,
-            1500.0,
+            1_000.0,
+            1_500.0,
             500.0,
-            6000.0,
+            6_000.0,
         ),
     )
 
-    val upbitNUTickerData = listOf(
+    private val upbitNUTickerData = listOf(
         UpbitTickerData(
             "KRW-NU",
             10.0,
             5.0,
             -5.0,
-            20000.0,
+            20_000.0,
         ),
     )
 
-    val upbitTickerData = mapOf(
-        BTC_CODE_NAME to upbitBTCTickerData[0].toDomainData(),
-        ETH_CODE_NAME to upbitETHTickerData[0].toDomainData(),
-        NU_CODE_NAME to upbitNUTickerData[0].toDomainData(),
+    val upbitTickerData = listOf(
+        upbitBTCTickerData.first().toDomainData(),
+        upbitETHTickerData.first().toDomainData(),
+        upbitNUTickerData.first().toDomainData(),
+    )
+
+    val upbitTickerDataWithKoreanName = listOf(
+        UpbitTickerDataWithKoreanName.fromUpbitTickerData(
+            upbitBTCTickerData.first().toDomainData(),
+            "비트코인",
+        ),
+        UpbitTickerDataWithKoreanName.fromUpbitTickerData(
+            upbitETHTickerData.first().toDomainData(),
+            "이더리움",
+        ),
+        UpbitTickerDataWithKoreanName.fromUpbitTickerData(
+            upbitNUTickerData.first().toDomainData(),
+            "누사이퍼",
+        ),
     )
 }

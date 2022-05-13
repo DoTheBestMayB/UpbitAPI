@@ -11,6 +11,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal interface RepositoryModule {
+
     @Binds
     @Singleton
     fun provideUpbitRepository(upbitRepositoryImpl: UpbitRepositoryImpl): UpbitRepository
