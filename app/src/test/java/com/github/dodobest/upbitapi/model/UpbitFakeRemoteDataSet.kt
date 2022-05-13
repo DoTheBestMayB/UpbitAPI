@@ -63,8 +63,17 @@ object UpbitFakeRemoteDataSet {
     )
 
     val upbitTickerDataWithKoreanName = listOf(
-        upbitBTCTickerData.first().toDomainData().addKoreanName("비트코인"),
-        upbitETHTickerData.first().toDomainData().addKoreanName("이더리움"),
-        upbitNUTickerData.first().toDomainData().addKoreanName("누사이퍼"),
+        UpbitTickerDataWithKoreanName.fromUpbitTickerData(
+            upbitBTCTickerData.first().toDomainData(),
+            "비트코인",
+        ),
+        UpbitTickerDataWithKoreanName.fromUpbitTickerData(
+            upbitETHTickerData.first().toDomainData(),
+            "이더리움",
+        ),
+        UpbitTickerDataWithKoreanName.fromUpbitTickerData(
+            upbitNUTickerData.first().toDomainData(),
+            "누사이퍼",
+        ),
     )
 }

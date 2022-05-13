@@ -39,8 +39,11 @@ class UpbitViewModelTest {
             getTickerUseCase.execute(TICKER_QUERY)
         } returns Single.just(UpbitFakeRemoteDataSet.upbitTickerData)
 
+        val inputData = UpbitFakeRemoteDataSet.upbitMarketData.map { it.toDomainData() }
+        upbitViewModel.extractCoinName(inputData)
+
         // when
-        upbitViewModel.getTicker(UpbitFakeRemoteDataSet.upbitMarketData.map { it.toDomainData() })
+        upbitViewModel.getTicker(inputData)
 
         // then
         assertThat(upbitViewModel.tickers.getOrAwaitValue())

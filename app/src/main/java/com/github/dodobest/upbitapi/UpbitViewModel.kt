@@ -35,7 +35,7 @@ class UpbitViewModel @Inject constructor(
             })
     }
 
-    private fun extractCoinName(upbitMarketDataSet: List<UpbitMarketData>) {
+    fun extractCoinName(upbitMarketDataSet: List<UpbitMarketData>) {
         upbitMarketDataSet.forEach { upbitMarketData ->
             coinHashMap[upbitMarketData.market] = upbitMarketData.koreanName
         }
