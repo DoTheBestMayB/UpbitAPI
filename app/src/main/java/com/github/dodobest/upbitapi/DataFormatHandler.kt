@@ -7,6 +7,7 @@ object DataFormatHandler {
     private val coinPriceFormat = DecimalFormat("#,###.########")
     private val changeRateFormat = DecimalFormat("#,###.##%")
     private val aacTradePriceFormat = DecimalFormat("#,###백만")
+    private const val UNIT_DIVIDER = 1_000_000
 
     fun formatCoinPrice(price: Double): String {
         return coinPriceFormat.format(price)
@@ -17,6 +18,6 @@ object DataFormatHandler {
     }
 
     fun formatAacTradePrice(tradePrice: Double): String {
-        return aacTradePriceFormat.format(tradePrice)
+        return aacTradePriceFormat.format(tradePrice / UNIT_DIVIDER)
     }
 }

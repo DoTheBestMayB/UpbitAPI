@@ -15,6 +15,7 @@ class UpbitAdapter : RecyclerView.Adapter<UpbitViewHolder>() {
         val binding = CoinItemBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
+        binding.formatHandler = DataFormatHandler
         return UpbitViewHolder(binding)
     }
 

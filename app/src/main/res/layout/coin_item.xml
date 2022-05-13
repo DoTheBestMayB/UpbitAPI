@@ -1,52 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:orientation="horizontal">
+<layout>
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:orientation="vertical">
+    <data>
+
+        <variable
+            name="ticker"
+            type="com.github.dodobest.upbitapi.model.UpbitTickerDataWithKoreanName" />
+
+        <variable
+            name="formatHandler"
+            type="com.github.dodobest.upbitapi.DataFormatHandler" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/coin_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:text="@{ticker.koreanName}" />
+
+            <TextView
+                android:id="@+id/coin_market"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:text="@{ticker.market}" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/coin_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="1"/>
+            android:id="@+id/coin_price"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="end"
+            android:text="@{formatHandler.formatCoinPrice(ticker.tradePrice)}" />
 
         <TextView
-            android:id="@+id/coin_market"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="1"/>
+            android:id="@+id/change_rate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="@{formatHandler.formatChangeRate(ticker.signedChangeRate)}" />
+
+        <TextView
+            android:id="@+id/aac_trade_price"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:autoSizeMaxTextSize="14dp"
+            android:autoSizeMinTextSize="1dp"
+            android:autoSizeTextType="uniform"
+            android:gravity="end"
+            android:lines="1"
+            android:text="@{formatHandler.formatAacTradePrice(ticker.aacTradePrice24h)}" />
+
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/coin_price"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:gravity="end" />
-
-    <TextView
-        android:id="@+id/change_rate"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:gravity="end" />
-
-    <TextView
-        android:id="@+id/aac_trade_price"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:autoSizeMaxTextSize="14dp"
-        android:autoSizeMinTextSize="1dp"
-        android:autoSizeTextType="uniform"
-        android:gravity="end"
-        android:lines="1" />
-
-</LinearLayout>
+</layout>
