@@ -11,14 +11,15 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
 
     private val upbitAdapter: UpbitAdapter = UpbitAdapter()
     private val viewModel: UpbitViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setRecyclerView()
         setLiveDataObserve()
@@ -39,6 +40,12 @@ class MainActivity : AppCompatActivity() {
         viewModel.tickers.observe(this) {
             upbitAdapter.setResult(it)
         }
+    }
+
+    override fun onDestroy() {
+        _binding = null
+
+        super.onDestroy()
     }
 
     private fun loadInitialContent() {
