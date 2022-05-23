@@ -1,5 +1,6 @@
 package com.github.dodobest.upbitapi
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -13,7 +14,11 @@ class CoinListViewPagerAdapter(
     override fun getItemCount(): Int = NUM_PAGES
 
     override fun createFragment(position: Int): Fragment {
-        return CoinListPageFragment(marketPlaceName[position])
+        val fragment = CoinListPageFragment()
+        fragment.arguments = Bundle().apply {
+            putString(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT, marketPlaceName[position])
+        }
+        return fragment
     }
 
     companion object {

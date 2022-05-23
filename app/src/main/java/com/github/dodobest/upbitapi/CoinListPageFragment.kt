@@ -14,9 +14,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CoinListPageFragment(private val marketPlaceName: String) : Fragment() {
+class CoinListPageFragment : Fragment() {
 
     private lateinit var mainActivity: MainActivity
+    private lateinit var marketPlaceName: String
     @Inject lateinit var upbitViewModelFactory: UpbitViewModelFactory
 
     private var _binding : FragmentCoinListPageBinding? = null
@@ -29,6 +30,14 @@ class CoinListPageFragment(private val marketPlaceName: String) : Fragment() {
         super.onAttach(context)
 
         mainActivity = context as MainActivity
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        arguments?.takeIf { it.containsKey(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT) }?.apply {
+            marketPlaceName = getString(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT).toString()
+        }
     }
 
     override fun onCreateView(
