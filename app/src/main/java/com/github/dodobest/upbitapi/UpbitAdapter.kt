@@ -26,10 +26,8 @@ class UpbitAdapter : RecyclerView.Adapter<UpbitViewHolder>() {
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
         for (index in recyclerView.size downTo 0) {
-            val viewHolder = recyclerView.findViewHolderForAdapterPosition(index)
-            if (viewHolder is UpbitViewHolder) {
-                viewHolder.releaseBinding()
-            }
+            val viewHolder = recyclerView.findViewHolderForAdapterPosition(index) as UpbitViewHolder
+            viewHolder.releaseBinding()
         }
 
         super.onDetachedFromRecyclerView(recyclerView)
