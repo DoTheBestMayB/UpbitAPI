@@ -2,9 +2,7 @@ package com.github.dodobest.upbitapi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.viewpager2.widget.ViewPager2
 import com.github.dodobest.upbitapi.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -14,42 +12,24 @@ class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
-    private val upbitAdapter: UpbitAdapter = UpbitAdapter()
-    private val viewModel: UpbitViewModel by viewModels()
+    private lateinit var viewPager: ViewPager2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setRecyclerView()
-        setLiveDataObserve()
-        loadInitialContent()
+        setViewPager()
     }
 
-    private fun setRecyclerView() {
-        binding.coinPriceRecyclerView.adapter = upbitAdapter
-
-        val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        AppCompatResources.getDrawable(this, R.drawable.divider)?.let {
-            divider.setDrawable(it)
-        }
-        binding.coinPriceRecyclerView.addItemDecoration(divider)
-    }
-
-    private fun setLiveDataObserve() {
-        viewModel.tickers.observe(this) {
-            upbitAdapter.setResult(it)
-        }
+    private fun setViewPager() {
+        viewPager = binding.coinListViewPager
+        viewPager.adapter = CoinListViewPagerAdapter(this)
     }
 
     override fun onDestroy() {
         _binding = null
 
         super.onDestroy()
-    }
-
-    private fun loadInitialContent() {
-        viewModel.getMarkets()
     }
 }

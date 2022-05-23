@@ -7,15 +7,15 @@ import com.github.dodobest.domain.model.UpbitMarketData
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
 import com.github.dodobest.upbitapi.model.UpbitTickerDataWithKoreanName
-import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import timber.log.Timber
-import javax.inject.Inject
 
-@HiltViewModel
-class UpbitViewModel @Inject constructor(
+class UpbitViewModel @AssistedInject constructor(
     private val getMarketsUseCase: GetMarketsUseCase,
     private val getTickerUseCase: GetTickerUseCase,
+    @Assisted private val marketPlaceName: String,
 ) : ViewModel() {
 
     private val _tickers = MutableLiveData<List<UpbitTickerDataWithKoreanName>>()
@@ -61,7 +61,7 @@ class UpbitViewModel @Inject constructor(
         val coinName: ArrayList<String> = arrayListOf()
 
         upbitMarketDataSet.forEach { upbitMarketData ->
-            if (upbitMarketData.market.contains("KRW-")) {
+            if (upbitMarketData.market.contains("$marketPlaceName-")) {
                 coinName.add(upbitMarketData.market)
             }
         }
