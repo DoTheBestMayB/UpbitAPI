@@ -9,6 +9,7 @@ data class UpbitTickerDataWithKoreanName(
     val tradePrice: Double,
     val signedChangeRate: Double,
     val aacTradePrice24h: Double,
+    val marketIndex: Int,
 ) {
     companion object {
         fun fromUpbitTickerData(
@@ -22,7 +23,10 @@ data class UpbitTickerDataWithKoreanName(
                 upbitTickerData.tradePrice,
                 upbitTickerData.signedChangeRate,
                 upbitTickerData.aacTradePrice24h,
+                marketIndex.indexOf(upbitTickerData.market.split("-").first()),
             )
         }
+
+        private val marketIndex = listOf("KRW", "BTC", "USDT")
     }
 }

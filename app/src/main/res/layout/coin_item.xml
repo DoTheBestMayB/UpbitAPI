@@ -45,7 +45,7 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:gravity="end"
-            android:text="@{formatHandler.formatCoinPrice(ticker.tradePrice)}" />
+            android:text="@{formatHandler.formatCoinPrice(ticker.tradePrice, ticker.marketIndex)}" />
 
         <TextView
             android:id="@+id/change_rate"
@@ -65,7 +65,7 @@
             android:autoSizeTextType="uniform"
             android:gravity="end"
             android:lines="1"
-            android:text="@{formatHandler.formatAacTradePrice(ticker.aacTradePrice24h)}" />
+            android:text="@{formatHandler.formatAacTradePrice(ticker.aacTradePrice24h, ticker.marketIndex)}" />
 
     </LinearLayout>
 </layout>
