@@ -9,6 +9,7 @@ class UpbitApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
         setTimber()
     }
 
