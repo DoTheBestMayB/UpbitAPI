@@ -38,6 +38,10 @@ class CoinListPageFragment : Fragment() {
         arguments?.takeIf { it.containsKey(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT) }?.apply {
             marketPlaceName = getString(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT).toString()
         }
+        setViewModel()
+        setRecyclerView()
+        setLiveDataObserve()
+        loadInitialContent()
     }
 
     override fun onCreateView(
@@ -46,10 +50,6 @@ class CoinListPageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCoinListPageBinding.inflate(inflater, container, false)
-        setViewModel()
-        setRecyclerView()
-        setLiveDataObserve()
-        loadInitialContent()
         return binding.root
     }
 
