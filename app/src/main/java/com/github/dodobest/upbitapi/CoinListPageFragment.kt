@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.dodobest.upbitapi.databinding.FragmentCoinListPageBinding
 import com.github.dodobest.upbitapi.di.UpbitViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint

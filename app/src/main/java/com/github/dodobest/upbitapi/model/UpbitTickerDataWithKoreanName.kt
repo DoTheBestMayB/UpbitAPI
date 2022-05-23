@@ -1,6 +1,7 @@
 package com.github.dodobest.upbitapi.model
 
 import com.github.dodobest.domain.model.UpbitTickerData
+import com.github.dodobest.upbitapi.Constant
 
 data class UpbitTickerDataWithKoreanName(
     val market: String,
@@ -23,10 +24,9 @@ data class UpbitTickerDataWithKoreanName(
                 upbitTickerData.tradePrice,
                 upbitTickerData.signedChangeRate,
                 upbitTickerData.aacTradePrice24h,
-                marketIndex.indexOf(upbitTickerData.market.split("-").first()),
+                Constant.marketIndex.indexOf(upbitTickerData.market.split("-").first()),
             )
         }
 
-        private val marketIndex = listOf("KRW", "BTC", "USDT")
     }
 }
