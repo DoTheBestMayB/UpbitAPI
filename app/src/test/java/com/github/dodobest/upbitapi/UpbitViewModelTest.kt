@@ -29,7 +29,7 @@ class UpbitViewModelTest {
     fun setUp() {
         getMarketsUseCase = mockk()
         getTickerUseCase = mockk()
-        upbitViewModel = UpbitViewModel(getMarketsUseCase, getTickerUseCase)
+        upbitViewModel = UpbitViewModel(getMarketsUseCase, getTickerUseCase, Constant.marketIndex[0])
     }
 
     @Test
