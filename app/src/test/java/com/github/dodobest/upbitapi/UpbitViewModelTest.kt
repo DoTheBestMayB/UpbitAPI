@@ -29,7 +29,7 @@ class UpbitViewModelTest {
     fun setUp() {
         getMarketsUseCase = mockk()
         getTickerUseCase = mockk()
-        upbitViewModel = UpbitViewModel(getMarketsUseCase, getTickerUseCase, Constant.marketIndex[0])
+        upbitViewModel = UpbitViewModel(getMarketsUseCase, getTickerUseCase)
     }
 
     @Test
@@ -43,7 +43,7 @@ class UpbitViewModelTest {
         upbitViewModel.extractCoinName(inputData)
 
         // when
-        upbitViewModel.getTicker(inputData)
+        upbitViewModel.getTicker(inputData, Constant.marketIndex[0])
 
         // then
         assertThat(upbitViewModel.tickers.getOrAwaitValue())

@@ -7,24 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.dodobest.upbitapi.databinding.FragmentCoinListPageBinding
-import com.github.dodobest.upbitapi.di.UpbitViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class CoinListPageFragment : Fragment() {
 
     private lateinit var mainActivity: MainActivity
     private lateinit var marketPlaceName: String
-    @Inject lateinit var upbitViewModelFactory: UpbitViewModelFactory
 
     private var _binding : FragmentCoinListPageBinding? = null
     private val binding get() = _binding!!
 
     private val upbitAdapter: UpbitAdapter = UpbitAdapter()
-    private lateinit var viewModel: UpbitViewModel
+    private val viewModel: UpbitViewModel by viewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -38,7 +36,6 @@ class CoinListPageFragment : Fragment() {
         arguments?.takeIf { it.containsKey(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT) }?.apply {
             marketPlaceName = getString(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT).toString()
         }
-        setViewModel()
         setRecyclerView()
         setLiveDataObserve()
         loadInitialContent()
@@ -53,12 +50,8 @@ class CoinListPageFragment : Fragment() {
         return binding.root
     }
 
-    private fun setViewModel() {
-        viewModel = upbitViewModelFactory.create(marketPlaceName)
-    }
-
     private fun loadInitialContent() {
-        viewModel.getMarkets()
+        viewModel.getMarkets(marketPlaceName)
     }
 
     private fun setLiveDataObserve() {

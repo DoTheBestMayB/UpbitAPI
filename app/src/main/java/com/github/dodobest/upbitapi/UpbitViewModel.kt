@@ -7,15 +7,15 @@ import com.github.dodobest.domain.model.UpbitMarketData
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
 import com.github.dodobest.upbitapi.model.UpbitTickerDataWithKoreanName
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import timber.log.Timber
+import javax.inject.Inject
 
-class UpbitViewModel @AssistedInject constructor(
+@HiltViewModel
+class UpbitViewModel @Inject constructor(
     private val getMarketsUseCase: GetMarketsUseCase,
     private val getTickerUseCase: GetTickerUseCase,
-    @Assisted private val marketPlaceName: String,
 ) : ViewModel() {
 
     private val _tickers = MutableLiveData<List<UpbitTickerDataWithKoreanName>>()
@@ -24,12 +24,12 @@ class UpbitViewModel @AssistedInject constructor(
 
     private val coinHashMap: HashMap<String, String> = hashMapOf()
 
-    fun getMarkets() {
+    fun getMarkets(marketPlaceName: String) {
         getMarketsUseCase.execute()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 extractCoinName(it)
-                getTicker(it)
+                getTicker(it, marketPlaceName)
             }, {
                 Timber.e(it.message ?: "")
             })
@@ -42,8 +42,8 @@ class UpbitViewModel @AssistedInject constructor(
     }
 
 
-    fun getTicker(upbitMarketDataSet: List<UpbitMarketData>) {
-        getTickerUseCase.execute(extractTickerQuery(upbitMarketDataSet))
+    fun getTicker(upbitMarketDataSet: List<UpbitMarketData>, marketPlaceName: String) {
+        getTickerUseCase.execute(extractTickerQuery(upbitMarketDataSet, marketPlaceName))
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ upbitTickerDataSet ->
                 _tickers.value = upbitTickerDataSet.map { upbitTickerData ->
@@ -57,7 +57,7 @@ class UpbitViewModel @AssistedInject constructor(
             })
     }
 
-    private fun extractTickerQuery(upbitMarketDataSet: List<UpbitMarketData>): String {
+    private fun extractTickerQuery(upbitMarketDataSet: List<UpbitMarketData>, marketPlaceName: String): String {
         val coinName: ArrayList<String> = arrayListOf()
 
         upbitMarketDataSet.forEach { upbitMarketData ->
