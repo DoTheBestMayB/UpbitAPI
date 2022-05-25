@@ -5,6 +5,7 @@ import java.text.DecimalFormat
 
 object DataFormatHandler {
     private const val NO_EXIST_COIN = "등록되지 않은 마켓입니다."
+    private const val NO_EXIST_MARKET_PLACE_NAME = -1
 
     private val coinPriceDivider = listOf(1_000_000, 1, 1)
     private val coinPriceFormat = listOf(
@@ -20,7 +21,7 @@ object DataFormatHandler {
     )
 
     fun formatCoinPrice(price: Double, marketIndex: Int): String {
-        if (marketIndex == -1) throw IllegalArgumentException(NO_EXIST_COIN)
+        if (marketIndex == NO_EXIST_MARKET_PLACE_NAME) throw IllegalArgumentException(NO_EXIST_COIN)
 
         return coinPriceFormat[marketIndex].format(price)
     }
@@ -30,7 +31,7 @@ object DataFormatHandler {
     }
 
     fun formatAacTradePrice(tradePrice: Double, marketIndex: Int): String {
-        if (marketIndex == -1) throw IllegalArgumentException(NO_EXIST_COIN)
+        if (marketIndex == NO_EXIST_MARKET_PLACE_NAME) throw IllegalArgumentException(NO_EXIST_COIN)
 
         return aacTradePriceFormat[marketIndex].format(
             tradePrice / coinPriceDivider[marketIndex]
