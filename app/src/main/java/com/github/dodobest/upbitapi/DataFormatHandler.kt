@@ -27,18 +27,18 @@ object DataFormatHandler {
     fun formatCoinPrice(price: Double, marketPlaceName: MarketPlaceName): String {
         return dataFormat[marketPlaceName.toString()]?.let {
             DecimalFormat(it.priceFormat).format(price)
-        } ?: throw IllegalArgumentException(Constant.NO_EXIST_MARKET)
+        } ?: throw IllegalArgumentException()
     }
 
     fun formatChangeRate(rate: Double, marketPlaceName: MarketPlaceName): String {
         return dataFormat[marketPlaceName.toString()]?.let {
             DecimalFormat(it.changeRateFormat).format(rate)
-        } ?: throw IllegalArgumentException(Constant.NO_EXIST_MARKET)
+        } ?: throw IllegalArgumentException()
     }
 
     fun formatAacTradePrice(tradePrice: Double, marketPlaceName: MarketPlaceName): String {
         return dataFormat[marketPlaceName.toString()]?.let {
             DecimalFormat(it.aacTradeVolumeFormat).format(tradePrice / it.aacTradeVolumeUnit)
-        } ?: throw IllegalArgumentException(Constant.NO_EXIST_MARKET)
+        } ?: throw IllegalArgumentException()
     }
 }
