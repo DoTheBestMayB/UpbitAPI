@@ -14,8 +14,6 @@ class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewPager: ViewPager2
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,12 +23,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
-        viewPager = binding.coinListViewPager
-        viewPager.adapter = CoinListViewPagerAdapter(this)
+        binding.coinListViewPager.let { viewPager2 ->
+            viewPager2.adapter = CoinListViewPagerAdapter(this)
 
-        TabLayoutMediator(binding.coinListTabLayout, viewPager) { tab, position ->
-            tab.text = MarketPlaceName.from(position).toString()
-        }.attach()
+            TabLayoutMediator(binding.coinListTabLayout, viewPager2) { tab, position ->
+                tab.text = MarketPlaceName.from(position).toString()
+            }.attach()
+        }
     }
 
     override fun onDestroy() {
