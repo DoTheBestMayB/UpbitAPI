@@ -49,7 +49,7 @@ class UpbitViewModel @Inject constructor(
                 _tickers.value = upbitTickerDataSet.map { upbitTickerData ->
                     UpbitTickerDataWithKoreanName.fromUpbitTickerData(
                         upbitTickerData,
-                        coinHashMap[upbitTickerData.market] ?: NO_EXIST,
+                        coinHashMap[upbitTickerData.market] ?: NO_EXIST_COIN,
                     )
                 }
             }, {
@@ -70,6 +70,6 @@ class UpbitViewModel @Inject constructor(
     }
 
     companion object {
-        private const val NO_EXIST = "등록되지 않은 코인"
+        private const val NO_EXIST_COIN = "등록되지 않은 코인"
     }
 }

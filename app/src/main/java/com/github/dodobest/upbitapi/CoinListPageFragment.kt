@@ -34,8 +34,8 @@ class CoinListPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.takeIf { it.containsKey(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT) }?.apply {
-            MarketPlaceName.from(getInt(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT))?.let {
+        arguments?.takeIf { it.containsKey(Constant.ARGUMENT_MARKET_INDEX) }?.apply {
+            MarketPlaceName.from(getInt(Constant.ARGUMENT_MARKET_INDEX))?.let {
                 marketPlaceName = it
             } ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
         } ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
