@@ -7,7 +7,7 @@ import org.junit.Test
 class DataFormatHandlerTest {
 
     @Test
-    fun `10000000_123456을 formatCoinPrice 함수에 넣으면 KRW 마켓에서 10,000,000_123456을 만든다`() {
+    fun `숫자를 formatCoinPrice 함수에 넣으면 KRW 마켓에 맞는 숫자로 변환한다`() {
         // given
         val inputNum = 10_000_000.123_456
         val marketPlaceName = MarketPlaceName.KRW
@@ -21,7 +21,7 @@ class DataFormatHandlerTest {
     }
 
     @Test
-    fun `10_123을 formatChangeRate 함수에 넣으면 1,000_12를 만든다`() {
+    fun `숫자를 formatChangeRate 함수에 넣으면 KRW 마켓에 맞는 숫자로 변환한다`() {
         // given
         val inputNum = 10.123456
         val marketPlaceName = MarketPlaceName.KRW
@@ -35,7 +35,7 @@ class DataFormatHandlerTest {
     }
 
     @Test
-    fun `10000000000_123456을 formatAacTradePrice 함수에 넣으면 KRW 마켓에서 10,000백만을 만든다`() {
+    fun `숫자를 formatAacTradePrice 함수에 넣으면 KRW 마켓에 맞는 숫자로 변환한다`() {
         // given
         val inputNum = 10_000_000_000.123456
         val marketPlaceName = MarketPlaceName.KRW
