@@ -7,4 +7,7 @@
     <string name="coin_list_current_price">현재가</string>
     <string name="coin_list_change_rate">전일대비</string>
     <string name="coin_list_trade_volume">거래대금</string>
+
+    <!--use at code-->
+    <string name="no_exist_market">등록되지 않은 마켓입니다.</string>
 </resources>

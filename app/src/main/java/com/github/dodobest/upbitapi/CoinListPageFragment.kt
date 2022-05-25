@@ -37,8 +37,8 @@ class CoinListPageFragment : Fragment() {
         arguments?.takeIf { it.containsKey(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT) }?.apply {
             MarketPlaceName.from(getInt(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT))?.let {
                 marketPlaceName = it
-            } ?: throw IllegalArgumentException(Constant.NO_EXIST_MARKET)
-        } ?: throw IllegalArgumentException(Constant.NO_EXIST_MARKET)
+            } ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
+        } ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
         setRecyclerView()
         setLiveDataObserve()
         loadInitialContent()
@@ -70,7 +70,7 @@ class CoinListPageFragment : Fragment() {
         val divider = DividerItemDecoration(mainActivity, DividerItemDecoration.VERTICAL)
         AppCompatResources.getDrawable(mainActivity, R.drawable.divider)?.let {
             divider.setDrawable(it)
-        } ?: throw IllegalArgumentException(Constant.NO_EXIST_MARKET)
+        } ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
         binding.coinPriceRecyclerView.addItemDecoration(divider)
     }
 
