@@ -5,15 +5,15 @@ import com.github.dodobest.upbitapi.databinding.CoinItemBinding
 import com.github.dodobest.upbitapi.model.UpbitTickerDataWithKoreanName
 
 class UpbitViewHolder(
-    private var _binding: CoinItemBinding?,
-) : RecyclerView.ViewHolder(_binding?.root ?: throw IllegalArgumentException()) {
-    private val binding get() = _binding!!
+    private var binding: CoinItemBinding?,
+) : RecyclerView.ViewHolder(binding?.root ?: throw IllegalArgumentException()) {
+    private val _binding get() = binding!!
 
     fun setData(tickerResult: UpbitTickerDataWithKoreanName) {
-        binding.ticker = tickerResult
+        _binding.ticker = tickerResult
     }
 
     fun releaseBinding() {
-        _binding = null
+        binding = null
     }
 }
