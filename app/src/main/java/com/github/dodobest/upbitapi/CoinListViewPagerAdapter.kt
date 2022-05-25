@@ -9,14 +9,12 @@ class CoinListViewPagerAdapter(
     fragmentActivity: FragmentActivity
 ) : FragmentStateAdapter(fragmentActivity) {
 
-    private val marketPlaceName = listOf("KRW", "BTC", "USDT")
-
     override fun getItemCount(): Int = NUM_PAGES
 
     override fun createFragment(position: Int): Fragment {
         val fragment = CoinListPageFragment()
         fragment.arguments = Bundle().apply {
-            putString(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT, marketPlaceName[position])
+            putString(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT, Constant.marketIndex[position])
         }
         return fragment
     }
