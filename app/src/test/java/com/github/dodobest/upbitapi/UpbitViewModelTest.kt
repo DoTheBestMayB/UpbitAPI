@@ -3,6 +3,7 @@ package com.github.dodobest.upbitapi
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
+import com.github.dodobest.upbitapi.model.MarketPlaceName
 import com.github.dodobest.upbitapi.model.UpbitFakeRemoteDataSet
 import com.github.dodobest.upbitapi.util.getOrAwaitValue
 import com.google.common.truth.Truth.assertThat
@@ -43,7 +44,7 @@ class UpbitViewModelTest {
         upbitViewModel.extractCoinName(inputData)
 
         // when
-        upbitViewModel.getTicker(inputData, Constant.marketIndex[0])
+        upbitViewModel.getTicker(inputData, MarketPlaceName.from(KRW_POSITION_VALUE).toString())
 
         // then
         assertThat(upbitViewModel.tickers.getOrAwaitValue())
@@ -52,5 +53,6 @@ class UpbitViewModelTest {
 
     companion object {
         private const val TICKER_QUERY = "KRW-BTC,KRW-ETH,KRW-NU"
+        private const val KRW_POSITION_VALUE = 0
     }
 }

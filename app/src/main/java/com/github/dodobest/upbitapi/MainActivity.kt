@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager2.widget.ViewPager2
 import com.github.dodobest.upbitapi.databinding.ActivityMainBinding
+import com.github.dodobest.upbitapi.model.MarketPlaceName
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = CoinListViewPagerAdapter(this)
 
         TabLayoutMediator(binding.coinListTabLayout, viewPager) { tab, position ->
-            tab.text = Constant.marketIndex[position]
+            tab.text = MarketPlaceName.from(position).toString()
         }.attach()
     }
 

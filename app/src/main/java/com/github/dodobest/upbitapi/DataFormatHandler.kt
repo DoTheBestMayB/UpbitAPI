@@ -1,40 +1,44 @@
 package com.github.dodobest.upbitapi
 
-import java.lang.IllegalArgumentException
+import com.github.dodobest.upbitapi.model.DataFormat
+import com.github.dodobest.upbitapi.model.MarketPlaceName
 import java.text.DecimalFormat
+import kotlin.IllegalArgumentException
 
 object DataFormatHandler {
-    private const val NO_EXIST_COIN = "등록되지 않은 마켓입니다."
-    private const val NO_EXIST_MARKET_PLACE_NAME = -1
 
-    private val coinPriceDivider = listOf(1_000_000, 1, 1)
-    private val coinPriceFormat = listOf(
-        DecimalFormat("#,###.########"),
-        DecimalFormat("#,###.########"),
-        DecimalFormat("#,###.###")
+    private val krwDataFormat = DataFormat(
+        "#,###.##%", "#,###.########",
+        1_000_000, "#,###백만"
     )
-    private val changeRateFormat = DecimalFormat("#,###.##%")
-    private val aacTradePriceFormat = listOf(
-        DecimalFormat("#,###백만"),
-        DecimalFormat("#,###.###"),
-        DecimalFormat("#,###.###"),
+    private val btcDataFormat = DataFormat(
+        "#,###.##%", "#,###.########",
+        1, "#,###.###"
+    )
+    private val usdtDataFormat = DataFormat(
+        "#,###.##%", "#,###.###",
+        1, "#,###.###"
     )
 
-    fun formatCoinPrice(price: Double, marketIndex: Int): String {
-        if (marketIndex == NO_EXIST_MARKET_PLACE_NAME) throw IllegalArgumentException(NO_EXIST_COIN)
+    private val dataFormat = mapOf(
+        "KRW" to krwDataFormat, "BTC" to btcDataFormat, "USDT" to usdtDataFormat
+    )
 
-        return coinPriceFormat[marketIndex].format(price)
+    fun formatCoinPrice(price: Double, marketPlaceName: MarketPlaceName): String {
+        return dataFormat[marketPlaceName.toString()]?.let {
+            DecimalFormat(it.priceFormat).format(price)
+        } ?: throw IllegalArgumentException(Constant.NO_EXIST_MARKET)
     }
 
-    fun formatChangeRate(rate: Double): String {
-        return changeRateFormat.format(rate)
+    fun formatChangeRate(rate: Double, marketPlaceName: MarketPlaceName): String {
+        return dataFormat[marketPlaceName.toString()]?.let {
+            DecimalFormat(it.changeRateFormat).format(rate)
+        } ?: throw IllegalArgumentException(Constant.NO_EXIST_MARKET)
     }
 
-    fun formatAacTradePrice(tradePrice: Double, marketIndex: Int): String {
-        if (marketIndex == NO_EXIST_MARKET_PLACE_NAME) throw IllegalArgumentException(NO_EXIST_COIN)
-
-        return aacTradePriceFormat[marketIndex].format(
-            tradePrice / coinPriceDivider[marketIndex]
-        )
+    fun formatAacTradePrice(tradePrice: Double, marketPlaceName: MarketPlaceName): String {
+        return dataFormat[marketPlaceName.toString()]?.let {
+            DecimalFormat(it.aacTradeVolumeFormat).format(tradePrice / it.aacTradeVolumeUnit)
+        } ?: throw IllegalArgumentException(Constant.NO_EXIST_MARKET)
     }
 }

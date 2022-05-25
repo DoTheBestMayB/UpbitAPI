@@ -10,18 +10,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.dodobest.upbitapi.databinding.FragmentCoinListPageBinding
+import com.github.dodobest.upbitapi.model.MarketPlaceName
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CoinListPageFragment : Fragment() {
 
     private lateinit var mainActivity: MainActivity
-    private lateinit var marketPlaceName: String
+    private lateinit var marketPlaceName: MarketPlaceName
+    private lateinit var upbitAdapter: UpbitAdapter
 
-    private var _binding : FragmentCoinListPageBinding? = null
+    private var _binding: FragmentCoinListPageBinding? = null
     private val binding get() = _binding!!
 
-    private val upbitAdapter: UpbitAdapter = UpbitAdapter()
     private val viewModel: UpbitViewModel by viewModels()
 
     override fun onAttach(context: Context) {
@@ -34,8 +35,10 @@ class CoinListPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.takeIf { it.containsKey(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT) }?.apply {
-            marketPlaceName = getString(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT).toString()
-        }
+            MarketPlaceName.from(getInt(Constant.ARGUMENT_OF_COIN_LIST_FRAGMENT))?.let {
+                marketPlaceName = it
+            } ?: throw IllegalArgumentException(Constant.NO_EXIST_MARKET)
+        } ?: throw IllegalArgumentException(Constant.NO_EXIST_MARKET)
         setRecyclerView()
         setLiveDataObserve()
         loadInitialContent()
@@ -51,7 +54,7 @@ class CoinListPageFragment : Fragment() {
     }
 
     private fun loadInitialContent() {
-        viewModel.getMarkets(marketPlaceName)
+        viewModel.getMarkets(marketPlaceName.toString())
     }
 
     private fun setLiveDataObserve() {
@@ -61,12 +64,13 @@ class CoinListPageFragment : Fragment() {
     }
 
     private fun setRecyclerView() {
+        upbitAdapter = UpbitAdapter(marketPlaceName)
         binding.coinPriceRecyclerView.adapter = upbitAdapter
 
         val divider = DividerItemDecoration(mainActivity, DividerItemDecoration.VERTICAL)
         AppCompatResources.getDrawable(mainActivity, R.drawable.divider)?.let {
             divider.setDrawable(it)
-        } ?: throw IllegalArgumentException()
+        } ?: throw IllegalArgumentException(Constant.NO_EXIST_MARKET)
         binding.coinPriceRecyclerView.addItemDecoration(divider)
     }
 

@@ -1,7 +1,6 @@
 package com.github.dodobest.upbitapi.model
 
 import com.github.dodobest.domain.model.UpbitTickerData
-import com.github.dodobest.upbitapi.Constant
 
 data class UpbitTickerDataWithKoreanName(
     val market: String,
@@ -10,7 +9,6 @@ data class UpbitTickerDataWithKoreanName(
     val tradePrice: Double,
     val signedChangeRate: Double,
     val aacTradePrice24h: Double,
-    val marketIndex: Int,
 ) {
     companion object {
         fun fromUpbitTickerData(
@@ -24,7 +22,6 @@ data class UpbitTickerDataWithKoreanName(
                 upbitTickerData.tradePrice,
                 upbitTickerData.signedChangeRate,
                 upbitTickerData.aacTradePrice24h,
-                Constant.marketIndex.indexOf(upbitTickerData.market.split("-").first()),
             )
         }
 

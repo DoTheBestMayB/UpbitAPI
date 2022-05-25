@@ -10,6 +10,10 @@
         <variable
             name="formatHandler"
             type="com.github.dodobest.upbitapi.DataFormatHandler" />
+
+        <variable
+            name="marketPlaceName"
+            type="com.github.dodobest.upbitapi.model.MarketPlaceName" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -45,7 +49,7 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:gravity="end"
-            android:text="@{formatHandler.formatCoinPrice(ticker.tradePrice, ticker.marketIndex)}" />
+            android:text="@{formatHandler.formatCoinPrice(ticker.tradePrice, marketPlaceName)}" />
 
         <TextView
             android:id="@+id/change_rate"
@@ -53,7 +57,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="end"
-            android:text="@{formatHandler.formatChangeRate(ticker.signedChangeRate)}" />
+            android:text="@{formatHandler.formatChangeRate(ticker.signedChangeRate, marketPlaceName)}" />
 
         <TextView
             android:id="@+id/aac_trade_price"
@@ -65,7 +69,7 @@
             android:autoSizeTextType="uniform"
             android:gravity="end"
             android:lines="1"
-            android:text="@{formatHandler.formatAacTradePrice(ticker.aacTradePrice24h, ticker.marketIndex)}" />
+            android:text="@{formatHandler.formatAacTradePrice(ticker.aacTradePrice24h, marketPlaceName)}" />
 
     </LinearLayout>
 </layout>
