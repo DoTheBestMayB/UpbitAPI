@@ -11,4 +11,5 @@
 
     <!--use at code-->
     <string name="no_exist_market">등록되지 않은 마켓입니다.</string>
+    <string name="no_exist_context">context가 null입니다</string>
 </resources>

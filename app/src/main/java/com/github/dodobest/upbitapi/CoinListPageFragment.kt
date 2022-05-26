@@ -1,6 +1,5 @@
 package com.github.dodobest.upbitapi
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CoinListPageFragment : Fragment() {
 
-    private lateinit var mainActivity: MainActivity
     private lateinit var marketPlaceName: MarketPlaceName
     private lateinit var upbitAdapter: UpbitAdapter
 
@@ -24,12 +22,6 @@ class CoinListPageFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: UpbitViewModel by viewModels()
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        mainActivity = context as MainActivity
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -67,11 +59,18 @@ class CoinListPageFragment : Fragment() {
         upbitAdapter = UpbitAdapter(marketPlaceName)
         binding.coinPriceRecyclerView.adapter = upbitAdapter
 
-        val divider = DividerItemDecoration(mainActivity, DividerItemDecoration.VERTICAL)
-        AppCompatResources.getDrawable(mainActivity, R.drawable.divider)?.let {
-            divider.setDrawable(it)
-        } ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
-        binding.coinPriceRecyclerView.addItemDecoration(divider)
+        context?.let { context ->
+            DividerItemDecoration(
+                context,
+                DividerItemDecoration.VERTICAL
+            ).let { dividerItemDecoration ->
+                AppCompatResources.getDrawable(context, R.drawable.divider)?.let {
+                    dividerItemDecoration.setDrawable(it)
+                } ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
+
+                binding.coinPriceRecyclerView.addItemDecoration(dividerItemDecoration)
+            }
+        } ?: throw IllegalArgumentException(getString(R.string.no_exist_context))
     }
 
     override fun onDestroy() {
