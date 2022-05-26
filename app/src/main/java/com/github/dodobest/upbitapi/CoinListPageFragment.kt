@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.dodobest.upbitapi.databinding.FragmentCoinListPageBinding
 import com.github.dodobest.upbitapi.model.MarketPlaceName
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class CoinListPageFragment : Fragment() {
@@ -19,7 +20,7 @@ class CoinListPageFragment : Fragment() {
     private lateinit var upbitAdapter: UpbitAdapter
 
     private var _binding: FragmentCoinListPageBinding? = null
-    private val binding get() = _binding ?: throw IllegalArgumentException()
+    private val binding get() = _binding ?: throw IllegalArgumentException(getString(R.string.view_binding_is_null))
 
     private val viewModel: UpbitViewModel by viewModels()
 
@@ -66,7 +67,10 @@ class CoinListPageFragment : Fragment() {
             ).let { dividerItemDecoration ->
                 AppCompatResources.getDrawable(context, R.drawable.divider)?.let {
                     dividerItemDecoration.setDrawable(it)
-                } ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
+                } ?: run {
+                    Timber.e(getString(R.string.error_create_divider_drawable))
+                    return
+                }
 
                 binding.coinPriceRecyclerView.addItemDecoration(dividerItemDecoration)
             }

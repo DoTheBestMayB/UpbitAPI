@@ -12,4 +12,6 @@
     <!--use at code-->
     <string name="no_exist_market">등록되지 않은 마켓입니다.</string>
     <string name="no_exist_context">context가 null입니다</string>
+    <string name="view_binding_is_null">viewBinding이 null입니다</string>
+    <string name="error_create_divider_drawable">divider Drawable 생성 중 오류</string>
 </resources>
