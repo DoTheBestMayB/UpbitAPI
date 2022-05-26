@@ -7,7 +7,7 @@ import com.github.dodobest.upbitapi.model.UpbitTickerDataWithKoreanName
 class UpbitViewHolder(
     private var binding: CoinItemBinding?,
 ) : RecyclerView.ViewHolder(binding?.root ?: throw IllegalArgumentException()) {
-    private val _binding get() = binding!!
+    private val _binding get() = binding ?: throw IllegalArgumentException()
 
     fun setData(tickerResult: UpbitTickerDataWithKoreanName) {
         _binding.ticker = tickerResult
