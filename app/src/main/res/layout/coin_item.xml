@@ -13,8 +13,8 @@
             type="com.github.dodobest.upbitapi.DataFormatHandler" />
 
         <variable
-            name="marketPlaceName"
-            type="com.github.dodobest.upbitapi.model.MarketPlaceName" />
+            name="dataFormat"
+            type="com.github.dodobest.upbitapi.model.DataFormat" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,7 +50,7 @@
             android:id="@+id/coin_price"
             android:layout_width="0dp"
             android:layout_height="32dp"
-            android:text="@{formatHandler.formatCoinPrice(ticker.tradePrice, marketPlaceName)}"
+            android:text="@{formatHandler.formatCoinPrice(ticker.tradePrice, dataFormat)}"
             android:textAlignment="textEnd"
             app:layout_constraintEnd_toStartOf="@+id/change_rate"
             app:layout_constraintHorizontal_weight="2"
@@ -61,7 +61,7 @@
             android:id="@+id/change_rate"
             android:layout_width="0dp"
             android:layout_height="32dp"
-            android:text="@{formatHandler.formatChangeRate(ticker.signedChangeRate, marketPlaceName)}"
+            android:text="@{formatHandler.formatChangeRate(ticker.signedChangeRate, dataFormat)}"
             android:textAlignment="textEnd"
             app:layout_constraintEnd_toStartOf="@+id/aac_trade_price"
             app:layout_constraintHorizontal_weight="1"
@@ -76,7 +76,7 @@
             android:autoSizeMinTextSize="1dp"
             android:autoSizeTextType="uniform"
             android:lines="1"
-            android:text="@{formatHandler.formatAacTradePrice(ticker.aacTradePrice24h, marketPlaceName)}"
+            android:text="@{formatHandler.formatAacTradePrice(ticker.aacTradePrice24h, dataFormat)}"
             android:textAlignment="textEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_weight="2"
