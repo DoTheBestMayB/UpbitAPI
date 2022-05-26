@@ -19,7 +19,7 @@ class CoinListPageFragment : Fragment() {
     private lateinit var upbitAdapter: UpbitAdapter
 
     private var _binding: FragmentCoinListPageBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding ?: throw IllegalArgumentException()
 
     private val viewModel: UpbitViewModel by viewModels()
 
