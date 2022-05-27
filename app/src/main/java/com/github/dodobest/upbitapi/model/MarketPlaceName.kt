@@ -6,6 +6,6 @@ enum class MarketPlaceName(val position: Int) {
     USDT(2);
 
     companion object {
-        fun from(position: Int): MarketPlaceName? = values().find { it.position == position}
+        fun from(position: Int): MarketPlaceName? = values().find { it.position == position }
     }
 }

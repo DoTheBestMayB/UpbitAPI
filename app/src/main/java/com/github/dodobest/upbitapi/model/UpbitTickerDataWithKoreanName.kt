@@ -24,6 +24,5 @@ data class UpbitTickerDataWithKoreanName(
                 upbitTickerData.aacTradePrice24h,
             )
         }
-
     }
 }

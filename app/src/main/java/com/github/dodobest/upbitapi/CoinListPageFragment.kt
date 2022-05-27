@@ -46,6 +46,12 @@ class CoinListPageFragment : Fragment() {
         return binding.root
     }
 
+    override fun onDestroy() {
+        _binding = null
+
+        super.onDestroy()
+    }
+
     private fun loadInitialContent() {
         viewModel.getMarkets(marketPlaceName)
     }
@@ -75,11 +81,5 @@ class CoinListPageFragment : Fragment() {
                 binding.coinPriceRecyclerView.addItemDecoration(dividerItemDecoration)
             }
         } ?: throw IllegalArgumentException(getString(R.string.no_exist_context))
-    }
-
-    override fun onDestroy() {
-        _binding = null
-
-        super.onDestroy()
     }
 }
