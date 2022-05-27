@@ -31,7 +31,7 @@ object UpbitFakeRemoteDataSet {
             "KRW-BTC",
             8_450_000.0,
             8_621_000.0,
-            171_000.0,
+            0.02023668639053,
             232_702_901_371.093_08,
         ),
     )
@@ -41,7 +41,7 @@ object UpbitFakeRemoteDataSet {
             "KRW-ETH",
             1_000.0,
             1_500.0,
-            500.0,
+            0.5,
             6_000.0,
         ),
     )
@@ -51,7 +51,7 @@ object UpbitFakeRemoteDataSet {
             "KRW-NU",
             10.0,
             5.0,
-            -5.0,
+            -0.5,
             20_000.0,
         ),
     )
