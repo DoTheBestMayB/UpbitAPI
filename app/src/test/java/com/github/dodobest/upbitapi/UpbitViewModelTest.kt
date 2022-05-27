@@ -44,8 +44,11 @@ class UpbitViewModelTest {
         upbitViewModel.extractCoinName(inputData)
 
         // when
-        upbitViewModel.getTicker(inputData, MarketPlaceName.from(KRW_POSITION_VALUE).toString())
+        val marketPlaceName = MarketPlaceName.from(KRW_POSITION_VALUE)
+        if (marketPlaceName != null) {
+            upbitViewModel.getTicker(inputData, marketPlaceName)
 
+        }
         // then
         assertThat(upbitViewModel.tickers.getOrAwaitValue())
             .isEqualTo(UpbitFakeRemoteDataSet.upbitTickerDataWithKoreanName)

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.github.dodobest.domain.model.UpbitMarketData
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
+import com.github.dodobest.upbitapi.model.MarketPlaceName
 import com.github.dodobest.upbitapi.model.UpbitTickerDataWithKoreanName
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -24,7 +25,7 @@ class UpbitViewModel @Inject constructor(
 
     private val coinHashMap: HashMap<String, String> = hashMapOf()
 
-    fun getMarkets(marketPlaceName: String) {
+    fun getMarkets(marketPlaceName: MarketPlaceName) {
         getMarketsUseCase.execute()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
@@ -42,7 +43,7 @@ class UpbitViewModel @Inject constructor(
     }
 
 
-    fun getTicker(upbitMarketDataSet: List<UpbitMarketData>, marketPlaceName: String) {
+    fun getTicker(upbitMarketDataSet: List<UpbitMarketData>, marketPlaceName: MarketPlaceName) {
         getTickerUseCase.execute(extractTickerQuery(upbitMarketDataSet, marketPlaceName))
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ upbitTickerDataSet ->
@@ -57,7 +58,7 @@ class UpbitViewModel @Inject constructor(
             })
     }
 
-    private fun extractTickerQuery(upbitMarketDataSet: List<UpbitMarketData>, marketPlaceName: String): String {
+    private fun extractTickerQuery(upbitMarketDataSet: List<UpbitMarketData>, marketPlaceName: MarketPlaceName): String {
         val coinName: ArrayList<String> = arrayListOf()
 
         upbitMarketDataSet.forEach { upbitMarketData ->

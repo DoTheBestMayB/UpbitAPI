@@ -47,7 +47,7 @@ class CoinListPageFragment : Fragment() {
     }
 
     private fun loadInitialContent() {
-        viewModel.getMarkets(marketPlaceName.toString())
+        viewModel.getMarkets(marketPlaceName)
     }
 
     private fun setLiveDataObserve() {
