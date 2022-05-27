@@ -4,10 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.dodobest.domain.model.UpbitMarketData
+import com.github.dodobest.domain.model.UpbitTickerData
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
+import com.github.dodobest.upbitapi.model.DataFormat
 import com.github.dodobest.upbitapi.model.MarketPlaceName
-import com.github.dodobest.upbitapi.model.UpbitTickerDataWithKoreanName
+import com.github.dodobest.upbitapi.model.UpbitTickerDataForUI
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import timber.log.Timber
@@ -19,11 +21,26 @@ class UpbitViewModel @Inject constructor(
     private val getTickerUseCase: GetTickerUseCase,
 ) : ViewModel() {
 
-    private val _tickers = MutableLiveData<List<UpbitTickerDataWithKoreanName>>()
-    val tickers: LiveData<List<UpbitTickerDataWithKoreanName>>
+    private val _tickers = MutableLiveData<List<UpbitTickerDataForUI>>()
+    val tickers: LiveData<List<UpbitTickerDataForUI>>
         get() = _tickers
 
     private val coinHashMap: HashMap<String, String> = hashMapOf()
+
+    private var krwDataFormat = DataFormat(
+        "#,###.##%", "#,###.########"
+    )
+
+    private val btcDataFormat = DataFormat(
+        "#,###.##%", "#,###.########",
+    )
+    private val usdtDataFormat = DataFormat(
+        "#,###.##%", "#,###.###",
+    )
+
+    private val dataFormat = mapOf(
+        "KRW" to krwDataFormat, "BTC" to btcDataFormat, "USDT" to usdtDataFormat
+    )
 
     fun getMarkets(marketPlaceName: MarketPlaceName) {
         getMarketsUseCase.execute()
@@ -48,17 +65,31 @@ class UpbitViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ upbitTickerDataSet ->
                 _tickers.value = upbitTickerDataSet.map { upbitTickerData ->
-                    UpbitTickerDataWithKoreanName.fromUpbitTickerData(
-                        upbitTickerData,
-                        coinHashMap[upbitTickerData.market] ?: NO_EXIST_COIN,
-                    )
+                    convertTicker(upbitTickerData, marketPlaceName)
                 }
             }, {
                 Timber.e(it.message ?: "")
             })
     }
 
-    private fun extractTickerQuery(upbitMarketDataSet: List<UpbitMarketData>, marketPlaceName: MarketPlaceName): String {
+    private fun convertTicker(
+        upbitTickerData: UpbitTickerData,
+        marketPlaceName: MarketPlaceName
+    ): UpbitTickerDataForUI {
+        val converter = dataFormat[marketPlaceName.toString()] ?: throw IllegalArgumentException()
+
+        return UpbitTickerDataForUI.fromUpbitTickerData(
+            upbitTickerData,
+            coinHashMap[upbitTickerData.market] ?: NO_EXIST_COIN,
+            DataFormatHandler.formatTradePrice(upbitTickerData.tradePrice, converter),
+            DataFormatHandler.formatChangeRate(upbitTickerData.signedChangeRate, converter),
+        )
+    }
+
+    private fun extractTickerQuery(
+        upbitMarketDataSet: List<UpbitMarketData>,
+        marketPlaceName: MarketPlaceName
+    ): String {
         val coinName: ArrayList<String> = arrayListOf()
 
         upbitMarketDataSet.forEach { upbitMarketData ->

@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.dodobest.upbitapi.databinding.FragmentCoinListPageBinding
+import com.github.dodobest.upbitapi.model.DataFormat
 import com.github.dodobest.upbitapi.model.MarketPlaceName
+import com.github.dodobest.upbitapi.model.UpbitTickerDataForUI
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -18,23 +20,13 @@ class CoinListPageFragment : Fragment() {
 
     private lateinit var marketPlaceName: MarketPlaceName
     private lateinit var upbitAdapter: UpbitAdapter
+    private lateinit var converter: DataFormat
 
     private var _binding: FragmentCoinListPageBinding? = null
     private val binding
         get() = _binding ?: throw IllegalArgumentException(getString(R.string.view_binding_is_null))
 
     private val viewModel: UpbitViewModel by viewModels()
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        marketPlaceName = MarketPlaceName.from(requireArguments().getInt(MARKET_KEY_INDEX, -1))
-            ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
-
-        setRecyclerView()
-        setLiveDataObserve()
-        loadInitialContent()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,24 +37,42 @@ class CoinListPageFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setDataFormat()
+        setRecyclerView()
+        setLiveDataObserve()
+        loadInitialContent()
+    }
+
     override fun onDestroy() {
         _binding = null
 
         super.onDestroy()
     }
 
-    private fun loadInitialContent() {
-        viewModel.getMarkets(marketPlaceName)
-    }
+    private fun setDataFormat() {
+        marketPlaceName = MarketPlaceName.from(requireArguments().getInt(MARKET_KEY_INDEX, -1))
+            ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
 
-    private fun setLiveDataObserve() {
-        viewModel.tickers.observe(viewLifecycleOwner) {
-            upbitAdapter.setResult(it)
+        converter = when (marketPlaceName.toString()) {
+            "KRW" -> DataFormat(
+                aacTradeVolumeUnit = 1_000_000,
+                aacTradeVolumeFormat = requireContext().getString(R.string.krw_aac_trade_volume_format)
+            )
+            "BTC" -> DataFormat(
+                "#,###.##%", "#,###.########",
+            )
+            "USDT" -> DataFormat(
+                "#,###.##%", "#,###.###",
+            )
+            else -> throw IllegalArgumentException(getString(R.string.no_exist_market))
         }
     }
 
     private fun setRecyclerView() {
-        upbitAdapter = UpbitAdapter(marketPlaceName)
+        upbitAdapter = UpbitAdapter()
         binding.coinPriceRecyclerView.adapter = upbitAdapter
 
         context?.let { context ->
@@ -80,6 +90,23 @@ class CoinListPageFragment : Fragment() {
                 binding.coinPriceRecyclerView.addItemDecoration(dividerItemDecoration)
             }
         } ?: throw IllegalArgumentException(getString(R.string.no_exist_context))
+    }
+
+    private fun setLiveDataObserve() {
+        viewModel.tickers.observe(viewLifecycleOwner) {
+            upbitAdapter.setResult(it.map { tickerData ->
+                UpbitTickerDataForUI.convertAacTradePrice(
+                    tickerData,
+                    DataFormatHandler.formatAacTradePrice(
+                        tickerData.aacTradePrice24h.toDouble(), converter
+                    )
+                )
+            })
+        }
+    }
+
+    private fun loadInitialContent() {
+        viewModel.getMarkets(marketPlaceName)
     }
 
     companion object {

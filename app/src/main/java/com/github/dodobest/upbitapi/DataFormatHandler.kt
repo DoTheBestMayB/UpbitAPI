@@ -5,15 +5,16 @@ import java.text.DecimalFormat
 
 object DataFormatHandler {
 
-    fun formatCoinPrice(price: Double, dataFormat: DataFormat): String {
-        return DecimalFormat(dataFormat.priceFormat).format(price)
+    fun formatTradePrice(tradePrice: Double, dataFormat: DataFormat): String {
+        return DecimalFormat(dataFormat.priceFormat).format(tradePrice)
     }
 
     fun formatChangeRate(rate: Double, dataFormat: DataFormat): String {
         return DecimalFormat(dataFormat.changeRateFormat).format(rate)
     }
 
-    fun formatAacTradePrice(tradePrice: Double, dataFormat: DataFormat): String {
-        return DecimalFormat(dataFormat.aacTradeVolumeFormat).format(tradePrice / dataFormat.aacTradeVolumeUnit)
+    fun formatAacTradePrice(aacTradePrice: Double, dataFormat: DataFormat): String {
+        return DecimalFormat(dataFormat.aacTradeVolumeFormat)
+            .format(aacTradePrice / dataFormat.aacTradeVolumeUnit)
     }
 }
