@@ -12,11 +12,7 @@ class CoinListViewPagerAdapter(
     override fun getItemCount(): Int = NUM_PAGES
 
     override fun createFragment(position: Int): Fragment {
-        val fragment = CoinListPageFragment()
-        fragment.arguments = Bundle().apply {
-            putInt(Constant.ARGUMENT_MARKET_INDEX, position)
-        }
-        return fragment
+        return CoinListPageFragment.newInstance(position)
     }
 
     companion object {

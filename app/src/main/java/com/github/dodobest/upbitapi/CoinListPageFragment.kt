@@ -27,8 +27,8 @@ class CoinListPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.takeIf { it.containsKey(Constant.ARGUMENT_MARKET_INDEX) }?.apply {
-            MarketPlaceName.from(getInt(Constant.ARGUMENT_MARKET_INDEX))?.let {
+        arguments?.takeIf { it.containsKey(MARKET_KEY_INDEX) }?.apply {
+            MarketPlaceName.from(getInt(MARKET_KEY_INDEX))?.let {
                 marketPlaceName = it
             } ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
         } ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
@@ -81,5 +81,19 @@ class CoinListPageFragment : Fragment() {
                 binding.coinPriceRecyclerView.addItemDecoration(dividerItemDecoration)
             }
         } ?: throw IllegalArgumentException(getString(R.string.no_exist_context))
+    }
+
+    companion object {
+        private const val MARKET_KEY_INDEX = "marketPlaceName"
+
+        fun newInstance(position: Int) : CoinListPageFragment {
+            val coinListPageFragment = CoinListPageFragment()
+
+            coinListPageFragment.arguments = Bundle().apply {
+                putInt(MARKET_KEY_INDEX, position)
+            }
+
+            return coinListPageFragment
+        }
     }
 }
