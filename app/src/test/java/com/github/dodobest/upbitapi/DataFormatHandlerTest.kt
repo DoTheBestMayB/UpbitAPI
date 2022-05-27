@@ -33,7 +33,7 @@ class DataFormatHandlerTest {
         val inputNum = 10_000_000.123_456
 
         // when
-        val result = DataFormatHandler.formatCoinPrice(inputNum, dataFormat)
+        val result = DataFormatHandler.formatTradePrice(inputNum, dataFormat)
 
         // then
         val expected = "10,000,000.123456"

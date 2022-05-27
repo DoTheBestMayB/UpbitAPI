@@ -47,15 +47,19 @@ class UpbitViewModelTest {
         val marketPlaceName = MarketPlaceName.from(KRW_POSITION_VALUE)
         if (marketPlaceName != null) {
             upbitViewModel.getTicker(inputData, marketPlaceName)
-
+        } else {
+            throw IllegalArgumentException(NO_MARKET_PLACE_NAME)
         }
+
         // then
-        assertThat(upbitViewModel.tickers.getOrAwaitValue())
-            .isEqualTo(UpbitFakeRemoteDataSet.upbitTickerDataWithKoreanName)
+        assertThat(upbitViewModel.tickers.getOrAwaitValue()).isEqualTo(
+            UpbitFakeRemoteDataSet.upbitTickerDataWithKoreanName
+        )
     }
 
     companion object {
         private const val TICKER_QUERY = "KRW-BTC,KRW-ETH,KRW-NU"
         private const val KRW_POSITION_VALUE = 0
+        private const val NO_MARKET_PLACE_NAME = "등록되지 않은 마켓입니다."
     }
 }
