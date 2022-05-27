@@ -20,18 +20,17 @@ class CoinListPageFragment : Fragment() {
     private lateinit var upbitAdapter: UpbitAdapter
 
     private var _binding: FragmentCoinListPageBinding? = null
-    private val binding get() = _binding ?: throw IllegalArgumentException(getString(R.string.view_binding_is_null))
+    private val binding
+        get() = _binding ?: throw IllegalArgumentException(getString(R.string.view_binding_is_null))
 
     private val viewModel: UpbitViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        arguments?.takeIf { it.containsKey(MARKET_KEY_INDEX) }?.apply {
-            MarketPlaceName.from(getInt(MARKET_KEY_INDEX))?.let {
-                marketPlaceName = it
-            } ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
-        } ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
+        marketPlaceName = MarketPlaceName.from(requireArguments().getInt(MARKET_KEY_INDEX, -1))
+            ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
+
         setRecyclerView()
         setLiveDataObserve()
         loadInitialContent()
@@ -86,7 +85,7 @@ class CoinListPageFragment : Fragment() {
     companion object {
         private const val MARKET_KEY_INDEX = "marketPlaceName"
 
-        fun newInstance(position: Int) : CoinListPageFragment {
+        fun newInstance(position: Int): CoinListPageFragment {
             val coinListPageFragment = CoinListPageFragment()
 
             coinListPageFragment.arguments = Bundle().apply {
