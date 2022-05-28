@@ -62,10 +62,12 @@ class CoinListPageFragment : Fragment() {
                 aacTradeVolumeFormat = requireContext().getString(R.string.krw_aac_trade_volume_format)
             )
             "BTC" -> DataFormat(
-                "#,###.##%", "#,###.########",
+                aacTradeVolumeUnit = 1,
+                aacTradeVolumeFormat = "#,###.###",
             )
             "USDT" -> DataFormat(
-                "#,###.##%", "#,###.###",
+                aacTradeVolumeUnit = 1,
+                aacTradeVolumeFormat = "#,###.###",
             )
             else -> throw IllegalArgumentException(getString(R.string.no_exist_market))
         }
