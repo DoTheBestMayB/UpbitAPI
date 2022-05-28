@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -54,22 +55,24 @@ class CoinListPageFragment : Fragment() {
 
     private fun setDataFormat() {
         marketPlaceName = MarketPlaceName.from(requireArguments().getInt(MARKET_KEY_INDEX, -1))
-            ?: throw IllegalArgumentException(getString(R.string.no_exist_market))
+            ?: MarketPlaceName.NEW
 
         converter = when (marketPlaceName.toString()) {
             "KRW" -> DataFormat(
                 aacTradeVolumeUnit = 1_000_000,
                 aacTradeVolumeFormat = requireContext().getString(R.string.krw_aac_trade_volume_format)
             )
-            "BTC" -> DataFormat(
+            "BTC", "USDT" -> DataFormat(
                 aacTradeVolumeUnit = 1,
                 aacTradeVolumeFormat = "#,###.###",
             )
-            "USDT" -> DataFormat(
-                aacTradeVolumeUnit = 1,
-                aacTradeVolumeFormat = "#,###.###",
-            )
-            else -> throw IllegalArgumentException(getString(R.string.no_exist_market))
+            else -> {
+                Timber.e(getString(R.string.no_exist_market))
+                DataFormat(
+                    aacTradeVolumeUnit = 1,
+                    aacTradeVolumeFormat = "#,###.###",
+                )
+            }
         }
     }
 
@@ -91,7 +94,7 @@ class CoinListPageFragment : Fragment() {
 
                 binding.coinPriceRecyclerView.addItemDecoration(dividerItemDecoration)
             }
-        } ?: throw IllegalArgumentException(getString(R.string.no_exist_context))
+        } ?: Timber.e(getString(R.string.no_exist_context))
     }
 
     private fun setLiveDataObserve() {

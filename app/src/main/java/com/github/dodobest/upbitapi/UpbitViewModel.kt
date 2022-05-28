@@ -34,8 +34,13 @@ class UpbitViewModel @Inject constructor(
     private val btcDataFormat = DataFormat(
         changeRateFormat = "#,###.##%", priceFormat = "#,###.########",
     )
+
     private val usdtDataFormat = DataFormat(
         changeRateFormat = "#,###.##%", priceFormat = "#,###.###",
+    )
+
+    private val newDataFormat = DataFormat(
+        changeRateFormat = "#,###.##%", priceFormat = "#,###.########",
     )
 
     private val dataFormat = mapOf(
@@ -76,7 +81,10 @@ class UpbitViewModel @Inject constructor(
         upbitTickerData: UpbitTickerData,
         marketPlaceName: MarketPlaceName
     ): UpbitTickerDataForUI {
-        val converter = dataFormat[marketPlaceName.toString()] ?: throw IllegalArgumentException()
+        if (dataFormat[marketPlaceName.toString()] == null) {
+            Timber.e(NO_EXIST_MARKET)
+        }
+        val converter = dataFormat[marketPlaceName.toString()] ?: newDataFormat
 
         return UpbitTickerDataForUI.fromUpbitTickerData(
             upbitTickerData,
@@ -103,5 +111,6 @@ class UpbitViewModel @Inject constructor(
 
     companion object {
         private const val NO_EXIST_COIN = "등록되지 않은 코인"
+        private const val NO_EXIST_MARKET = "등록되지 않은 마켓"
     }
 }
