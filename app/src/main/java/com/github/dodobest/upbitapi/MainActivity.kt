@@ -10,30 +10,31 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private var _binding: ActivityMainBinding? = null
-    private val binding get() = _binding!!
+    private var binding: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        _binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
         setupUI()
     }
 
     override fun onDestroy() {
-        _binding = null
+        binding = null
 
         super.onDestroy()
     }
 
     private fun setupUI() {
-        binding.coinListViewPager.let { viewPager2 ->
-            viewPager2.adapter = CoinListViewPagerAdapter(this)
+        binding?.let {
+            it.coinListViewPager.let { viewPager2 ->
+                viewPager2.adapter = CoinListViewPagerAdapter(this)
 
-            TabLayoutMediator(binding.coinListTabLayout, viewPager2) { tab, position ->
-                tab.text = MarketPlaceName.from(position).toString()
-            }.attach()
-        }
+                TabLayoutMediator(it.coinListTabLayout, viewPager2) { tab, position ->
+                    tab.text = MarketPlaceName.from(position).toString()
+                }.attach()
+            }
+        } ?: throw IllegalArgumentException(getString(R.string.view_binding_is_null))
     }
 }
