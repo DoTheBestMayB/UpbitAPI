@@ -30,7 +30,7 @@ class DataFormatHandlerTest {
     }
 
     @Test
-    fun `숫자를 formatCoinPrice 함수에 넣으면 KRW 마켓에 맞는 숫자로 변환한다`() {
+    fun `코인 가격을 KRW 마켓에 맞는 형식으로 변환한다`() {
         // given
         val inputNum = 10_000_000.123_456
 
@@ -43,7 +43,7 @@ class DataFormatHandlerTest {
     }
 
     @Test
-    fun `숫자를 formatChangeRate 함수에 넣으면 KRW 마켓에 맞는 숫자로 변환한다`() {
+    fun `전일대비 가격 변화율을 KRW 마켓에 맞는 형식으로 변환한다`() {
         // given
         val inputNum = 10.123456
 
@@ -56,7 +56,7 @@ class DataFormatHandlerTest {
     }
 
     @Test
-    fun `숫자를 formatAacTradePrice 함수에 넣으면 KRW 마켓에 맞는 숫자로 변환한다`() {
+    fun `거래대금을 KRW 마켓에 맞는 형식으로 변환한다`() {
         // given
         val inputNum = 10_000_000_000.123456
 
