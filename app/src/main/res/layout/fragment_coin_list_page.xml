@@ -7,51 +7,50 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/expression_name_korean_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/corner_round"
         android:text="@string/coin_list_korean_name"
-        app:layout_constraintEnd_toStartOf="@+id/textView7"
+        app:layout_constraintEnd_toStartOf="@id/expression_name_current_price"
         app:layout_constraintHorizontal_weight="2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView7"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/corner_round"
-        android:text="@string/coin_list_trade_volume"
-        android:textAlignment="textEnd"
-        app:layout_constraintEnd_toStartOf="@+id/textView9"
-        app:layout_constraintHorizontal_weight="2"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/expression_name_current_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/corner_round"
         android:text="@string/coin_list_current_price"
         android:textAlignment="textEnd"
-        app:layout_constraintEnd_toStartOf="@+id/textView10"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintEnd_toStartOf="@id/expression_name_change_rate"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toEndOf="@id/expression_name_korean_name"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/expression_name_change_rate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/corner_round"
         android:text="@string/coin_list_change_rate"
         android:textAlignment="textEnd"
-        app:layout_constraintDimensionRatio="w,"
+        app:layout_constraintEnd_toStartOf="@id/expression_name_trade_volume"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/expression_name_current_price"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/expression_name_trade_volume"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_round"
+        android:text="@string/coin_list_trade_volume"
+        android:textAlignment="textEnd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="2"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintStart_toEndOf="@id/expression_name_change_rate"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -62,7 +61,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@id/expression_name_trade_volume" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

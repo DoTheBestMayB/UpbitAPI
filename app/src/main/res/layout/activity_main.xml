@@ -10,7 +10,7 @@
         android:id="@+id/coin_list_tab_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/coin_list_view_pager"
+        app:layout_constraintBottom_toTopOf="@id/coin_list_view_pager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:contentDescription="@string/activity_main_tab_layout_description"
@@ -23,6 +23,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coin_list_tab_layout" />
+        app:layout_constraintTop_toBottomOf="@id/coin_list_tab_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

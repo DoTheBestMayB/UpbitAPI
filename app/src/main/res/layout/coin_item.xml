@@ -21,7 +21,7 @@
             android:lines="1"
             android:text="@{ticker.koreanName}"
             app:layout_constraintBottom_toTopOf="@id/coin_market"
-            app:layout_constraintEnd_toStartOf="@+id/coin_price"
+            app:layout_constraintEnd_toStartOf="@id/coin_price"
             app:layout_constraintHorizontal_weight="2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,7 @@
             app:layout_constraintEnd_toStartOf="@id/coin_price"
             app:layout_constraintHorizontal_weight="2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/coin_name" />
+            app:layout_constraintTop_toBottomOf="@id/coin_name" />
 
         <TextView
             android:id="@+id/coin_price"
@@ -44,9 +44,9 @@
             android:layout_height="32dp"
             android:text="@{ticker.tradePrice}"
             android:textAlignment="textEnd"
-            app:layout_constraintEnd_toStartOf="@+id/change_rate"
+            app:layout_constraintEnd_toStartOf="@id/change_rate"
             app:layout_constraintHorizontal_weight="2"
-            app:layout_constraintStart_toEndOf="@+id/coin_name"
+            app:layout_constraintStart_toEndOf="@id/coin_name"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -55,9 +55,9 @@
             android:layout_height="32dp"
             android:text="@{ticker.signedChangeRate}"
             android:textAlignment="textEnd"
-            app:layout_constraintEnd_toStartOf="@+id/aac_trade_price"
+            app:layout_constraintEnd_toStartOf="@id/aac_trade_price"
             app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@+id/coin_price"
+            app:layout_constraintStart_toEndOf="@id/coin_price"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
