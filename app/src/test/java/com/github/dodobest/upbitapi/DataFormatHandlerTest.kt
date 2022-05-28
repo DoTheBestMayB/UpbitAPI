@@ -22,8 +22,10 @@ class DataFormatHandlerTest {
         } returns "#,###백만"
 
         dataFormat = DataFormat(
-            "#,###.##%", "#,###.########",
-            1_000_000, mockContext.getString(R.string.krw_aac_trade_volume_format)
+            changeRateFormat = "#,###.##%",
+            priceFormat = "#,###.########",
+            aacTradeVolumeUnit = 1_000_000,
+            aacTradeVolumeFormat = mockContext.getString(R.string.krw_aac_trade_volume_format),
         )
     }
 

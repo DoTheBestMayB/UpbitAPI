@@ -28,14 +28,14 @@ class UpbitViewModel @Inject constructor(
     private val coinHashMap: HashMap<String, String> = hashMapOf()
 
     private var krwDataFormat = DataFormat(
-        "#,###.##%", "#,###.########"
+        changeRateFormat = "#,###.##%", priceFormat = "#,###.########"
     )
 
     private val btcDataFormat = DataFormat(
-        "#,###.##%", "#,###.########",
+        changeRateFormat = "#,###.##%", priceFormat = "#,###.########",
     )
     private val usdtDataFormat = DataFormat(
-        "#,###.##%", "#,###.###",
+        changeRateFormat = "#,###.##%", priceFormat = "#,###.###",
     )
 
     private val dataFormat = mapOf(
