@@ -110,7 +110,7 @@ class UpbitViewModel @Inject constructor(
     }
 
     companion object {
-        private const val NO_EXIST_COIN = "등록되지 않은 코인"
-        private const val NO_EXIST_MARKET = "등록되지 않은 마켓"
+        private const val NO_EXIST_COIN = "unregistered coin"
+        private const val NO_EXIST_MARKET = "Unregistered market"
     }
 }
