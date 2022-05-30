@@ -61,16 +61,16 @@ class CoinListPageFragment : Fragment() {
         marketPlaceName = MarketPlaceName.from(requireArguments().getInt(MARKET_KEY_INDEX, -1))
             ?: MarketPlaceName.NEW
 
-        converter = when (marketPlaceName.toString()) {
-            "KRW" -> DataFormat(
+        converter = when (marketPlaceName) {
+            MarketPlaceName.KRW -> DataFormat(
                 aacTradeVolumeUnit = 1_000_000,
                 aacTradeVolumeFormat = requireContext().getString(R.string.krw_aac_trade_volume_format)
             )
-            "BTC", "USDT" -> DataFormat(
+            MarketPlaceName.BTC, MarketPlaceName.USDT -> DataFormat(
                 aacTradeVolumeUnit = 1,
                 aacTradeVolumeFormat = "#,###.###",
             )
-            else -> {
+            MarketPlaceName.NEW -> {
                 Timber.e(getString(R.string.no_exist_market))
                 DataFormat(
                     aacTradeVolumeUnit = 1,
