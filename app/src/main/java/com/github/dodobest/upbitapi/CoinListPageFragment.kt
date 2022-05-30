@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.dodobest.upbitapi.databinding.FragmentCoinListPageBinding
 import com.github.dodobest.upbitapi.model.DataFormat
@@ -26,7 +26,7 @@ class CoinListPageFragment : Fragment() {
     private val binding
         get() = _binding ?: throw IllegalArgumentException(getString(R.string.view_binding_is_null))
 
-    private val viewModel: UpbitViewModel by activityViewModels()
+    private val viewModel: UpbitViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,11 +43,10 @@ class CoinListPageFragment : Fragment() {
         setDataFormat()
         setRecyclerView()
         setLiveDataObserve()
-        loadContent()
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
 
         loadContent()
     }

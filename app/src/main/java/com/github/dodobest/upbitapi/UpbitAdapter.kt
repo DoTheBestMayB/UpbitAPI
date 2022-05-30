@@ -7,6 +7,7 @@ import androidx.core.view.size
 import androidx.recyclerview.widget.RecyclerView
 import com.github.dodobest.upbitapi.databinding.CoinItemBinding
 import com.github.dodobest.upbitapi.model.UpbitTickerDataForUI
+import timber.log.Timber
 
 class UpbitAdapter : RecyclerView.Adapter<UpbitViewHolder>() {
 
