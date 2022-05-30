@@ -43,7 +43,13 @@ class CoinListPageFragment : Fragment() {
         setDataFormat()
         setRecyclerView()
         setLiveDataObserve()
-        loadInitialContent()
+        loadContent()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        loadContent()
     }
 
     override fun onDestroy() {
@@ -101,7 +107,7 @@ class CoinListPageFragment : Fragment() {
         }
     }
 
-    private fun loadInitialContent() {
+    private fun loadContent() {
         viewModel.getMarkets(marketPlaceName)
     }
 
