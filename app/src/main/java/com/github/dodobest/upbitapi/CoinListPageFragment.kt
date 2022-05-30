@@ -79,21 +79,13 @@ class CoinListPageFragment : Fragment() {
         upbitAdapter = UpbitAdapter()
         binding.coinPriceRecyclerView.adapter = upbitAdapter
 
-        context?.let { context ->
-            DividerItemDecoration(
-                context,
-                DividerItemDecoration.VERTICAL
-            ).let { dividerItemDecoration ->
-                AppCompatResources.getDrawable(context, R.drawable.divider)?.let {
-                    dividerItemDecoration.setDrawable(it)
-                } ?: run {
-                    Timber.e(getString(R.string.error_create_divider_drawable))
-                    return
-                }
+        val dividerItemDecoration =
+            DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
 
-                binding.coinPriceRecyclerView.addItemDecoration(dividerItemDecoration)
-            }
-        } ?: Timber.e(getString(R.string.no_exist_context))
+        AppCompatResources.getDrawable(requireContext(), R.drawable.divider)?.let {
+            dividerItemDecoration.setDrawable(it)
+            binding.coinPriceRecyclerView.addItemDecoration(dividerItemDecoration)
+        } ?: Timber.e(getString(R.string.error_create_divider_drawable))
     }
 
     private fun setLiveDataObserve() {
