@@ -7,7 +7,8 @@ import com.github.dodobest.domain.model.UpbitMarketData
 import com.github.dodobest.domain.model.UpbitTickerData
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
-import com.github.dodobest.upbitapi.model.DataFormat
+import com.github.dodobest.upbitapi.DataFormatHandler.dataFormat
+import com.github.dodobest.upbitapi.DataFormatHandler.newDataFormat
 import com.github.dodobest.upbitapi.model.MarketPlaceName
 import com.github.dodobest.upbitapi.model.UpbitTickerDataForUI
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,26 +27,6 @@ class UpbitViewModel @Inject constructor(
         get() = _tickers
 
     private val coinHashMap: HashMap<String, String> = hashMapOf()
-
-    private var krwDataFormat = DataFormat(
-        changeRateFormat = "#,###.##%", priceFormat = "#,###.########"
-    )
-
-    private val btcDataFormat = DataFormat(
-        changeRateFormat = "#,###.##%", priceFormat = "#,###.########",
-    )
-
-    private val usdtDataFormat = DataFormat(
-        changeRateFormat = "#,###.##%", priceFormat = "#,###.###",
-    )
-
-    private val newDataFormat = DataFormat(
-        changeRateFormat = "#,###.##%", priceFormat = "#,###.########",
-    )
-
-    private val dataFormat = mapOf(
-        "KRW" to krwDataFormat, "BTC" to btcDataFormat, "USDT" to usdtDataFormat
-    )
 
     fun getMarkets(marketPlaceName: MarketPlaceName) {
         getMarketsUseCase.execute()
@@ -81,10 +62,10 @@ class UpbitViewModel @Inject constructor(
         upbitTickerData: UpbitTickerData,
         marketPlaceName: MarketPlaceName
     ): UpbitTickerDataForUI {
-        if (dataFormat[marketPlaceName.toString()] == null) {
+        if (dataFormat[marketPlaceName] == null) {
             Timber.e(NO_EXIST_MARKET)
         }
-        val converter = dataFormat[marketPlaceName.toString()] ?: newDataFormat
+        val converter = dataFormat[marketPlaceName] ?: newDataFormat
 
         return UpbitTickerDataForUI.fromUpbitTickerData(
             upbitTickerData,
