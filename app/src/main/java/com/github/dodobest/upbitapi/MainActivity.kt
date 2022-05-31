@@ -2,46 +2,36 @@ package com.github.dodobest.upbitapi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.github.dodobest.upbitapi.databinding.ActivityMainBinding
+import com.github.dodobest.upbitapi.model.MarketPlaceName
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-
-    private val upbitAdapter: UpbitAdapter = UpbitAdapter()
-    private val viewModel: UpbitViewModel by viewModels()
+    private var binding: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        setRecyclerView()
-        setLiveDataObserve()
-        loadInitialContent()
+        setContentView(binding?.root)
+        setupUI()
     }
 
-    private fun setRecyclerView() {
-        binding.coinPriceRecyclerView.adapter = upbitAdapter
+    override fun onDestroy() {
+        binding = null
 
-        val divider = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        AppCompatResources.getDrawable(this, R.drawable.divider)?.let {
-            divider.setDrawable(it)
-        }
-        binding.coinPriceRecyclerView.addItemDecoration(divider)
+        super.onDestroy()
     }
 
-    private fun setLiveDataObserve() {
-        viewModel.tickers.observe(this) {
-            upbitAdapter.setResult(it)
-        }
-    }
-
-    private fun loadInitialContent() {
-        viewModel.getMarkets()
+    private fun setupUI() {
+        binding?.let {
+            it.coinListViewPager.adapter = CoinListViewPagerAdapter(this)
+            TabLayoutMediator(it.coinListTabLayout, it.coinListViewPager) { tab, position ->
+                tab.text = MarketPlaceName.from(position).toString()
+            }.attach()
+        } ?: throw IllegalArgumentException(getString(R.string.view_binding_is_null))
     }
 }

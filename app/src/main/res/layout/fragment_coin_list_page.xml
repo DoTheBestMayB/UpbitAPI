@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/expression_name_korean_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_round"
+        android:text="@string/coin_list_korean_name"
+        app:layout_constraintEnd_toStartOf="@id/expression_name_current_price"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/expression_name_current_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_round"
+        android:text="@string/coin_list_current_price"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toStartOf="@id/expression_name_change_rate"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toEndOf="@id/expression_name_korean_name"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/expression_name_change_rate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_round"
+        android:text="@string/coin_list_change_rate"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toStartOf="@id/expression_name_trade_volume"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/expression_name_current_price"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/expression_name_trade_volume"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_round"
+        android:text="@string/coin_list_trade_volume"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toEndOf="@id/expression_name_change_rate"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/coin_price_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/expression_name_trade_volume" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

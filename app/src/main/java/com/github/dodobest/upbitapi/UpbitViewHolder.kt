@@ -2,13 +2,19 @@ package com.github.dodobest.upbitapi
 
 import androidx.recyclerview.widget.RecyclerView
 import com.github.dodobest.upbitapi.databinding.CoinItemBinding
-import com.github.dodobest.upbitapi.model.UpbitTickerDataWithKoreanName
+import com.github.dodobest.upbitapi.model.UpbitTickerDataForUI
 
 class UpbitViewHolder(
-    private val binding: CoinItemBinding,
-) : RecyclerView.ViewHolder(binding.root) {
+    private var binding: CoinItemBinding?,
+) : RecyclerView.ViewHolder(binding?.root ?: throw IllegalArgumentException()) {
 
-    fun setData(tickerResult: UpbitTickerDataWithKoreanName) {
-        binding.ticker = tickerResult
+    private val _binding get() = binding ?: throw IllegalArgumentException()
+
+    fun setData(tickerResult: UpbitTickerDataForUI) {
+        _binding.ticker = tickerResult
+    }
+
+    fun releaseBinding() {
+        binding = null
     }
 }

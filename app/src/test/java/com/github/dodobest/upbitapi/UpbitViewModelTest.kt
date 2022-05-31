@@ -3,6 +3,7 @@ package com.github.dodobest.upbitapi
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.github.dodobest.domain.usecase.GetMarketsUseCase
 import com.github.dodobest.domain.usecase.GetTickerUseCase
+import com.github.dodobest.upbitapi.model.MarketPlaceName
 import com.github.dodobest.upbitapi.model.UpbitFakeRemoteDataSet
 import com.github.dodobest.upbitapi.util.getOrAwaitValue
 import com.google.common.truth.Truth.assertThat
@@ -43,14 +44,22 @@ class UpbitViewModelTest {
         upbitViewModel.extractCoinName(inputData)
 
         // when
-        upbitViewModel.getTicker(inputData)
+        val marketPlaceName = MarketPlaceName.from(KRW_POSITION_VALUE)
+        if (marketPlaceName != null) {
+            upbitViewModel.getTicker(inputData, marketPlaceName)
+        } else {
+            throw IllegalArgumentException(NO_MARKET_PLACE_NAME)
+        }
 
         // then
-        assertThat(upbitViewModel.tickers.getOrAwaitValue())
-            .isEqualTo(UpbitFakeRemoteDataSet.upbitTickerDataWithKoreanName)
+        assertThat(upbitViewModel.tickers.getOrAwaitValue()).isEqualTo(
+            UpbitFakeRemoteDataSet.upbitTickerDataWithKoreanName
+        )
     }
 
     companion object {
         private const val TICKER_QUERY = "KRW-BTC,KRW-ETH,KRW-NU"
+        private const val KRW_POSITION_VALUE = 0
+        private const val NO_MARKET_PLACE_NAME = "등록되지 않은 마켓입니다."
     }
 }

@@ -1,23 +1,43 @@
 package com.github.dodobest.upbitapi
 
+import com.github.dodobest.upbitapi.model.DataFormat
+import com.github.dodobest.upbitapi.model.MarketPlaceName
 import java.text.DecimalFormat
 
 object DataFormatHandler {
 
-    private val coinPriceFormat = DecimalFormat("#,###.########")
-    private val changeRateFormat = DecimalFormat("#,###.##%")
-    private val aacTradePriceFormat = DecimalFormat("#,###백만")
-    private const val UNIT_DIVIDER = 1_000_000
+    private var krwDataFormat = DataFormat(
+        changeRateFormat = "#,###.##%", priceFormat = "#,###.########"
+    )
 
-    fun formatCoinPrice(price: Double): String {
-        return coinPriceFormat.format(price)
+    private val btcDataFormat = DataFormat(
+        changeRateFormat = "#,###.##%", priceFormat = "#,###.########",
+    )
+
+    private val usdtDataFormat = DataFormat(
+        changeRateFormat = "#,###.##%", priceFormat = "#,###.###",
+    )
+
+    val newDataFormat = DataFormat(
+        changeRateFormat = "#,###.##%", priceFormat = "#,###.########",
+    )
+
+    val dataFormat = mapOf(
+        MarketPlaceName.KRW to krwDataFormat,
+        MarketPlaceName.BTC to btcDataFormat,
+        MarketPlaceName.USDT to usdtDataFormat,
+    )
+
+    fun formatTradePrice(tradePrice: Double, dataFormat: DataFormat): String {
+        return DecimalFormat(dataFormat.priceFormat).format(tradePrice)
     }
 
-    fun formatChangeRate(rate: Double): String {
-        return changeRateFormat.format(rate)
+    fun formatChangeRate(rate: Double, dataFormat: DataFormat): String {
+        return DecimalFormat(dataFormat.changeRateFormat).format(rate)
     }
 
-    fun formatAacTradePrice(tradePrice: Double): String {
-        return aacTradePriceFormat.format(tradePrice / UNIT_DIVIDER)
+    fun formatAacTradePrice(aacTradePrice: Double, dataFormat: DataFormat): String {
+        return DecimalFormat(dataFormat.aacTradeVolumeFormat)
+            .format(aacTradePrice / dataFormat.aacTradeVolumeUnit)
     }
 }

@@ -1,71 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="ticker"
-            type="com.github.dodobest.upbitapi.model.UpbitTickerDataWithKoreanName" />
-
-        <variable
-            name="formatHandler"
-            type="com.github.dodobest.upbitapi.DataFormatHandler" />
+            type="com.github.dodobest.upbitapi.model.UpbitTickerDataForUI" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/coin_name"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical">
+            android:layout_height="16dp"
+            android:lines="1"
+            android:text="@{ticker.koreanName}"
+            app:layout_constraintBottom_toTopOf="@id/coin_market"
+            app:layout_constraintEnd_toStartOf="@id/coin_price"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/coin_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lines="1"
-                android:text="@{ticker.koreanName}" />
-
-            <TextView
-                android:id="@+id/coin_market"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lines="1"
-                android:text="@{ticker.market}" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/coin_market"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:lines="1"
+            android:text="@{ticker.market}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/coin_price"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/coin_name" />
 
         <TextView
             android:id="@+id/coin_price"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="end"
-            android:text="@{formatHandler.formatCoinPrice(ticker.tradePrice)}" />
+            android:layout_height="32dp"
+            android:text="@{ticker.tradePrice}"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toStartOf="@id/change_rate"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toEndOf="@id/coin_name"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/change_rate"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:text="@{formatHandler.formatChangeRate(ticker.signedChangeRate)}" />
+            android:layout_height="32dp"
+            android:text="@{ticker.signedChangeRate}"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toStartOf="@id/aac_trade_price"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/coin_price"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/aac_trade_price"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:autoSizeMaxTextSize="14dp"
+            android:layout_height="32dp"
+            android:autoSizeMaxTextSize="16dp"
             android:autoSizeMinTextSize="1dp"
             android:autoSizeTextType="uniform"
-            android:gravity="end"
             android:lines="1"
-            android:text="@{formatHandler.formatAacTradePrice(ticker.aacTradePrice24h)}" />
+            android:text="@{ticker.aacTradePrice24h}"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toEndOf="@id/change_rate"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
