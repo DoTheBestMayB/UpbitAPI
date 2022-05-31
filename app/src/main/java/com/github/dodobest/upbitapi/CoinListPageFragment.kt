@@ -43,11 +43,6 @@ class CoinListPageFragment : Fragment() {
         setDataFormat()
         setRecyclerView()
         setLiveDataObserve()
-    }
-
-    override fun onStart() {
-        super.onStart()
-
         loadContent()
     }
 
