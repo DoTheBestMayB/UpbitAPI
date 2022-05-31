@@ -63,13 +63,13 @@ class UpbitViewModel @Inject constructor(
         marketPlaceName: MarketPlaceName
     ): UpbitTickerDataForUI {
         if (dataFormat[marketPlaceName] == null) {
-            Timber.e(NO_EXIST_MARKET)
+            Timber.e(ERROR_404)
         }
         val converter = dataFormat[marketPlaceName] ?: newDataFormat
 
         return UpbitTickerDataForUI.fromUpbitTickerData(
             upbitTickerData,
-            coinHashMap[upbitTickerData.market] ?: NO_EXIST_COIN,
+            coinHashMap[upbitTickerData.market] ?: throw IllegalArgumentException(ERROR_404),
             DataFormatHandler.formatTradePrice(upbitTickerData.tradePrice, converter),
             DataFormatHandler.formatChangeRate(upbitTickerData.signedChangeRate, converter),
         )
@@ -91,7 +91,6 @@ class UpbitViewModel @Inject constructor(
     }
 
     companion object {
-        private const val NO_EXIST_COIN = "unregistered coin"
-        private const val NO_EXIST_MARKET = "Unregistered market"
+        private const val ERROR_404 = "404"
     }
 }
