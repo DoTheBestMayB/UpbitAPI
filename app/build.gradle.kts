@@ -68,10 +68,10 @@ dependencies {
     }
 
     with(Test) {
-        implementation(JUNIT)
-        implementation(TRUTH)
-        implementation(CORE_TEST)
-        implementation(MOCKK)
+        testImplementation(JUNIT)
+        testImplementation(TRUTH)
+        testImplementation(CORE_TEST)
+        testImplementation(MOCKK)
     }
 }
 

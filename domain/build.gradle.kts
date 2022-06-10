@@ -18,7 +18,7 @@ dependencies {
     }
 
     with(Test) {
-        implementation(JUNIT)
-        implementation(MOCKK)
+        testImplementation(JUNIT)
+        testImplementation(MOCKK)
     }
 }

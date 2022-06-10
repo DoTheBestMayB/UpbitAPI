@@ -21,7 +21,7 @@ internal class UpbitAPITest {
     private lateinit var retrofit: Retrofit
     private lateinit var upbitAPI: UpbitAPI
 
-    private val upbitTickerDataValue = listOf(100.0, 150.0, 50.0, 1000.0)
+    private val upbitTickerDataValue = listOf(100.0, 150.0, 0.5, 1000.0)
     private val upbitMarketDataBTC = listOf("KRW-BTC", "비트코인", "Bitcoin", "NONE")
     private val upbitMarketDataETH = listOf("KRW-ETH", "이더리움", "Ethereum", "NONE")
     private val upbitMarketDataNU = listOf("KRW-NU", "누사이퍼", "Nucypher", "CAUTION")

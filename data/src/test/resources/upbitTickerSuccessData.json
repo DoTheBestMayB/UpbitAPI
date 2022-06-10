@@ -3,7 +3,7 @@
     "market": "KRW-BTC",
     "opening_price": 100,
     "trade_price": 150,
-    "signed_change_price": 50,
+    "signed_change_rate": 0.5,
     "acc_trade_price_24h": 1000
   }
 ]
